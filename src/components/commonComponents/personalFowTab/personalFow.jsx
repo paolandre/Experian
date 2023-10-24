@@ -1,26 +1,9 @@
-import "./personalFow.css";
-import { AiOutlineArrowLeft } from 'react-icons/ai';
+// PersonalFowTab.jsx
 import React from 'react';
-import HeaderComponent from '../../commonComponents/navbar/navBar.jsx';
 
-export default function PersonalFow() {
+function PersonalFowTab() {
     return (
-        <div>
-            <header>
-                <HeaderComponent />
-            </header>
-
-            <div className="flex items-center space-x-1 ml-3 p-1 my-1.5">
-                <AiOutlineArrowLeft className='text-dark-blue' style={{ width: '20px', height: '20px' }} />
-                <h1 className='text-dark-blue px-1 mb-1'>Home</h1>
-            </div>
-
-
-            <div>
-                <span>Personal FOW</span>
-                <span>Team FOW</span>
-            </div>
-
+        <>
             <div>
                 <span>Office Entrance</span>
                 <span>Authorized Exceptions</span>
@@ -45,7 +28,8 @@ export default function PersonalFow() {
                 <p>If you have any concerns or need clarification please feel free to contact us at the email address:</p>
                 <a href="mailto:somehrsia@experian.com">somehrsia@experian.com</a>
             </footer>
-        </div>
+        </>
     );
 }
 
+export default PersonalFowTab;
