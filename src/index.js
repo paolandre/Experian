@@ -5,6 +5,7 @@ import Home from "./components/views/home/home";
 import PersonalFow from "./components/views/personalFow/personalFow";
 import TeamFow from "./components/views/teamFow/teamFow";
 import EmployeeFow from "./components/views/employeeFow/employeeFow";
+import "./index.css"
 
 const router = createBrowserRouter([
   {
