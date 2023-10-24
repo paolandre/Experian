@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/views/home/home";
-import PersonalFow from "./components/views/personalFow/personalFow";
-import TeamFow from "./components/views/teamFow/teamFow";
-import EmployeeFow from "./components/views/employeeFow/employeeFow";
+import LeaderView from "./components/views/leaderView/leaderView";
+import EmployeeView from "./components/views/employeeView/employeeView";
 import "./index.css"
 
 const router = createBrowserRouter([
@@ -13,16 +12,12 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/personal-fow",
-    element: <PersonalFow />,
+    path: "/leader-view",
+    element: <LeaderView />,
   },
   {
-    path: "/team-fow",
-    element: <TeamFow />
-  },
-  {
-    path: "/employee-fow",
-    element: <EmployeeFow />
+    path: "/employee-view",
+    element: <EmployeeView />
   }
 ]);
 
