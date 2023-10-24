@@ -1,6 +1,6 @@
-import "./teamFow.css";
+import "./employeeView.css";
 
-export default function TeamFow() {
+export default function EmployeeView() {
 
     return (
         <>
@@ -8,7 +8,7 @@ export default function TeamFow() {
             </header>
 
             <main>
-                <h1>Team Fow!</h1>
+                <h1>Employee Fow!</h1>
             </main>
 
             <footer>
