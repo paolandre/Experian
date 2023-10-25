@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import PersonalFowTab from '../../commonComponents/personalFowTab/personalFow';
 import TeamFowTab from '../../commonComponents/TeamFowTab/teamFow';
 import { Link } from 'react-router-dom';
+import TeamAbsences from './../../commonComponents/teamAbsences/teamAbsences';
 
 export default function LeaderView() {
     const [activeTab, setActiveTab] = useState('Personal FOW');
@@ -52,6 +53,7 @@ export default function LeaderView() {
                 {/* Condicionales para las dos tabs */}
                 {activeTab === 'Personal FOW' && <PersonalFowTab />}
                 {activeTab === 'Team FOW' && <TeamFowTab />}
+                {activeTab === 'Team Absences' && <TeamAbsences />}
             </div>
 
         </div>
