@@ -38,47 +38,40 @@ export default function Home() {
       <header>
         <HeaderComponent />
       </header>
-      <main>
+      <main className="bg-purple-clear">
         <div className="flex justify-center items-center">
-          <img
-            src={banner}
-            alt="people portal"
-            className="mx-4 my-2 w-[80%] h-[150px] "
-          />
+          <img src={banner} alt="people portal" className="mx-4 my-1 w-[60%]" />
         </div>
-        <div className="grid grid-cols-2 mx-auto text-center  w-[80%]">
-          <div className="w-[80%] border-gray-border border-2">
-            <img src={search} alt="buscar" className="w-[20%] " />
+        <div className="grid grid-cols-2 w-[1659px] ms-[274px] ">
+          <div className="flex items-center justify-end  bg-white border-gray-border border-2 shadow-md">
+            <img src={search} alt="buscar" className="w-[20%] shadow-md" />
           </div>
         </div>
-        <p className="mx-[50px] h-[50px] mt-9">
+        <p className="mx-[300px] h-[45px] mt-6">
           <strong>You</strong>
           <span> 7</span>
         </p>
-        <article className="grid grid-cols-6 ml-10 space-y ">
+        <article className="grid grid-cols-6 ml-[280px]  w-[910px] text-center">
           {elements.map((elemento, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center p-4 w-[100px] h-[100px]"
-            >
+            <div key={index} className="w-[60px]   text-center  mb-6 ">
               <img
                 src={elemento.imageSrc}
                 alt={`Imagen ${index}`}
-                className="w-[200px]"
+                className=""
               />
-              <span className="text-sm w-[101px] flex flex-col items-center">
+              <span className="text-sm  flex flex-col items-center">
                 {elemento.texto}
               </span>
             </div>
           ))}
         </article>
-        <article className="grid grid-cols-5 w-[900px] mx-auto text-center">
+        <article className="grid grid-cols-5 w-[1000px] mx-[250px] text-center">
           {imagenes.map((imagen, index) => (
             <div key={index}>
               <img src={imagen.information} alt={`Imagen ${index}`} />
             </div>
           ))}
-          <div className="w-[50px]">
+          <div className="w-[60px]">
             <img src={chatbot} alt="Imagen del chatbot"></img>
           </div>
         </article>

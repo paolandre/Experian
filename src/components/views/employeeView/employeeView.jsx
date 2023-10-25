@@ -1,5 +1,3 @@
-import "./employeeView.css";
-
 export default function EmployeeView() {
 
     return (
