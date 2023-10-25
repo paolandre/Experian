@@ -6,6 +6,9 @@ module.exports = {
       boxShadow: {
         'custom-shadow': '0 1.83px 4.58px rgba(169, 168, 168, 0.6)'
       },
+            fontFamily: {
+          roboto: ["Roboto", "sans"],
+        },
       colors: {
         'custom-gray': '#717171',
         'dark-blue': '#426DA9',
@@ -25,7 +28,8 @@ module.exports = {
         'white': '#FFFFFF',
         'decline': '#A8001F',
         'approve': '#00612F',
-        'dark-blue-icons': '#426DA9'
+        'dark-blue-icons': '#426DA9',
+        'greyborder': '#A9A8A8',
       },
       fontSize: {
         sm: '0.7rem',
