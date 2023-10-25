@@ -24,7 +24,7 @@ export default function LeaderView() {
                 </Link>
             </div>
 
-            <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl">
+            <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl relative">
                 <span
                     className={`cursor-pointer ${activeTab === 'Personal FOW' ? 'border-b-2 border-pink-color font-bold text-dark-blue' : 'text-black'}`}
                     onClick={() => setActiveTab('Personal FOW')}>

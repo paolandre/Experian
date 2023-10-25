@@ -1,5 +1,7 @@
 import React from 'react';
 import { IoPersonCircleSharp } from 'react-icons/io5';
+import chatbot from "./../../../assets/imgHome/buttonChatbot.png";
+import "./personalFow.css";
 
 function PersonalFowTab() {
     return (
@@ -96,6 +98,12 @@ function PersonalFowTab() {
                         <span className="font-bold whitespace-nowrap text-sm">Scheduled absences</span>
                     </div>
                 </div>
+            </div>
+            <div className="fixed bottom-5 right-10 w-[80px] cursor-pointer hover:shadow-lg">
+                <img src={chatbot} alt="Imagen del chatbot"></img>
+            </div>
+            <div className="fixed bottom-5 right-10 w-[80px] cursor-pointer rounded-shadow">
+                <img src={chatbot} alt="Imagen del chatbot"></img>
             </div>
 
         </div>
