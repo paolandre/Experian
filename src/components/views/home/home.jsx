@@ -46,26 +46,34 @@ export default function Home() {
       <header>
         <HeaderComponent />
       </header>
-      <main className="bg-purple-clear">
+      <main className="bg-purple-clear ">
         <div className="flex justify-center items-center">
-          <img src={banner} alt="people portal" className="mx-4 my-1 w-[60%]" />
+          <img
+            src={banner}
+            alt="people portal"
+            className=" w-[60%] my-[5px] 	"
+          />
         </div>
-        <div className="grid grid-cols-2 w-[1659px] ms-[274px] ">
-          <div className="flex items-center justify-end  bg-white border-gray-border border-2 shadow-md">
+        <div className=" flex flex-col items-center justify-center ">
+          <div className="flex items-center justify-end   w-[60vw] bg-white border-gray-border border-2 shadow-md">
             <img src={search} alt="buscar" className="w-[20%] shadow-md" />
           </div>
         </div>
-        <p className="mx-[300px] h-[45px] mt-6">
+        <p className="mx-[310px] h-[45px] mt-6">
           <strong>You</strong>
           <span> 7</span>
         </p>
-        <article className="grid grid-cols-6 ml-[280px]  w-[910px] text-center">
+        <article className="grid grid-cols-6 ml-[330px]  w-[910px] text-center">
           {elements.map((elemento, index) => (
-            <div key={index} className="w-[60px]   text-center  mb-6 ">
+            <div
+              key={index}
+              className="w-[60px] text-center mb-6 transition-transform transform hover:scale-110"
+            >
               <img
                 src={elemento.imageSrc}
                 alt={`Imagen ${index}`}
                 onClick={elemento.onClick}
+                className="cursor-pointer"
               />
               <span className="text-sm  flex flex-col items-center">
                 {elemento.texto}
@@ -73,14 +81,25 @@ export default function Home() {
             </div>
           ))}
         </article>
-        <article className="grid grid-cols-5 w-[1000px] mx-[250px] text-center">
+        <article className="grid grid-cols-5 w-[1000px] mx-[300px] text-center">
           {imagenes.map((imagen, index) => (
-            <div key={index}>
-              <img src={imagen.information} alt={`Imagen ${index}`} />
+            <div
+              key={index}
+              className="hover:shadow-md transition-transform duration-150 transform hover:scale-105"
+            >
+              <img
+                src={imagen.information}
+                alt={`Imagen ${index}`}
+                className="cursor-pointer"
+              />
             </div>
           ))}
-          <div className="w-[60px]">
-            <img src={chatbot} alt="Imagen del chatbot"></img>
+          <div className="w-[60px] ">
+            <img
+              src={chatbot}
+              alt="Imagen del chatbot"
+              className="cursor-pointer rounded-shadow"
+            ></img>
           </div>
         </article>
       </main>
