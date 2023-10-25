@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import HeaderComponent from '../../commonComponents/navbar/navBar.jsx';
 import { IoPersonCircleSharp } from 'react-icons/io5';
+import chatbot from "./../../../assets/imgHome/buttonChatbot.png";
 
 export default function EmployeeView() {
     return (
@@ -11,8 +12,7 @@ export default function EmployeeView() {
                 <HeaderComponent />
             </header>
 
-            {/* Comienza el tab bar */}
-            <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md ">
+            <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md">
                 <Link to="/">
                     <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md ">
                         <AiOutlineArrowLeft className='text-dark-blue' style={{ width: '20px', height: '20px' }} />
@@ -20,7 +20,7 @@ export default function EmployeeView() {
                     </div>
                 </Link>
             </div>
-            <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl">
+            <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl relative">
                 <div className="flex">
                     <div className="flex-none w-3/10 pr-4 space-y-4 max-w-sm">
                         {/* Nuevo Div */}
@@ -119,7 +119,9 @@ export default function EmployeeView() {
                             </div>
                         </div>
                     </div>
-
+                    <div className="fixed bottom-5 right-10 w-[80px]">
+                        <img src={chatbot} alt="Imagen del chatbot"></img>
+                    </div>
 
                 </div>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoPersonCircleSharp } from 'react-icons/io5';
+import chatbot from "./../../../assets/imgHome/buttonChatbot.png";
 
 function PersonalFowTab() {
     return (
@@ -97,7 +98,9 @@ function PersonalFowTab() {
                     </div>
                 </div>
             </div>
-
+            <div className="fixed bottom-5 right-10 w-[80px]">
+                <img src={chatbot} alt="Imagen del chatbot"></img>
+            </div>
         </div>
     );
 }
