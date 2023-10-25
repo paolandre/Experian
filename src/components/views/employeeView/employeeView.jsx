@@ -26,14 +26,17 @@ export default function EmployeeView() {
                         {/* Nuevo Div */}
                         <div className="flex justify-between items-center mb-4 items-start p-4" >
                             <div className="flex-1 flex flex-col justify-center items-start">
-                                <p className="text-xl font-bold">8</p>
+                                <p className="text-xl font-bold">7</p>
                                 <p>Days reported</p>
                             </div>
                             <div className="h-12 w-px bg-custom-gray mx-4"></div>
                             <div className="flex-1 flex flex-col justify-center items-end">
                                 <div className="flex items-center">
                                     <p className="text-xl mr-2 font-bold">90%</p>
-                                    <div className="flex-1 h-2 bg-red-bar-color w-20 rounded-md"></div>
+                                    <div className="w-20 h-2 border-[1px] border-red-bar-color rounded-md relative">
+                                        <div className="absolute top-0 left-0 h-2 bg-red-bar-color rounded-md" style={{ width: '90%' }}></div>
+                                    </div>
+
                                 </div>
                                 <p className='pr-4'>My monthly FOW</p>
                             </div>
@@ -44,16 +47,16 @@ export default function EmployeeView() {
                             <div className="flex items-center">
                                 <IoPersonCircleSharp className="text-gray-icon" size={80} />
                                 <div className="ml-4">
-                                    <p className="font-bold text-xl">Leader name</p>
-                                    <p className="font-bold">ID: 72794037</p>
+                                    <p className="font-bold text-xl">Employee name</p>
+                                    <p className="font-bold">ID: 72836375</p>
                                     <p className="font-bold">FOW: <span>Hybrid</span></p>
                                 </div>
                             </div>
                             <div className="mt-4">
-                                <p><span className="font-bold">Job:</span> Lider técnico funcional</p>
-                                <p><span className="font-bold">VP:</span> Delivery & VAPS CS Delivery</p>
-                                <p><span className="font-bold">Country:</span> Colombia</p>
-                                <p><span className="font-bold">Office location:</span> CO Bogotá oficina principal</p>
+                                <p><span className="font-bold">Job:</span> Senior business consultant </p>
+                                <p><span className="font-bold">VP:</span> Consultoria Autral</p>
+                                <p><span className="font-bold">Country:</span> Perú</p>
+                                <p><span className="font-bold">Office location:</span> Lima Perú</p>
                             </div>
                         </div>
 
@@ -65,18 +68,19 @@ export default function EmployeeView() {
                                     <span className="mr-2 w-4 h-4 rounded-full bg-purple-icon inline-block"></span>
                                     <p className='font-bold'>Holiday</p>
                                 </div>
-                                <p className="ml-6 mb-1">Aug 7, 2023 Batalla de Boyacá</p>
-                                <p className="ml-6 mb-2">Aug 21, 2023 La asunción de la Virgen</p>
+                                <p className="ml-6 mb-1">Aug 6, 2023 Batalla de Junín</p>
+                                <p className="ml-6 mb-2">Aug 30, 2023 Santa Rosa de Lima</p>
 
                                 <div className="flex items-center mb-1">
                                     <span className="mr-2 w-4 h-4 rounded-full bg-yellow-icon inline-block"></span>
                                     <p className='font-bold'>Authorized exceptions</p>
                                 </div>
-                                <p className="ml-6 mb-2">Aug 15, 2023 Corporate events</p>
+                                <p className="ml-6 mb-2">Aug 18, 2023 Corporate events</p>
                                 <div className="flex items-center mb-1">
                                     <span className="mr-2 w-4 h-4 rounded-full bg-green-icon inline-block"></span>
                                     <p className='font-bold'>Scheduled absences</p>
                                 </div>
+                                <p className="ml-6 mb-2">Aug 3 - Aug4, 2023 Vacations</p>
                             </div>
                         </div>
 
