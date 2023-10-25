@@ -4,7 +4,7 @@ import React from 'react';
 function TeamFowTab() {
     return (
         <div>
-            <h1>Hola Katherine!</h1>
+            <h1>Hola Andrea!</h1>
         </div>
     );
 }
