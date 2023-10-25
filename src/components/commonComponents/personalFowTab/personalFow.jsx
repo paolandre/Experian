@@ -1,6 +1,5 @@
 import React from "react";
 import { IoPersonCircleSharp } from "react-icons/io5";
-
 function PersonalFowTab() {
   return (
     <div className="flex">
@@ -20,7 +19,6 @@ function PersonalFowTab() {
             <p className="pr-4">My monthly FOW</p>
           </div>
         </div>
-
         {/* Leader info */}
         <div className="p-4 bg-white rounded-md shadow-custom-shadow max-w-sm">
           <div className="flex items-center">
@@ -44,12 +42,11 @@ function PersonalFowTab() {
               <span className="font-bold">Country:</span> Colombia
             </p>
             <p>
-              <span className="font-bold">Office location:</span> CO Bogota
+              <span className="font-bold">Office location:</span> CO Bogotá
               oficina principal
             </p>
           </div>
         </div>
-
         {/* Calendar Summary */}
         <div className="p-4 bg-white rounded-md shadow-custom-shadow max-w-sm">
           <p className="font-bold mb-2">Calendar Summary</p>
@@ -60,7 +57,6 @@ function PersonalFowTab() {
             </div>
             <p className="ml-6 mb-1">Aug 7, 2023 Batalla de Boyacá</p>
             <p className="ml-6 mb-2">Aug 21, 2023 La asunción de la Virgen</p>
-
             <div className="flex items-center mb-1">
               <span className="mr-2 w-4 h-4 rounded-full bg-yellow-icon inline-block"></span>
               <p className="font-bold">Authorized exceptions</p>
@@ -72,9 +68,8 @@ function PersonalFowTab() {
             </div>
           </div>
         </div>
-
         {/* Notification */}
-        <div className="relative border-l-4 border-blue-border pl-4 p-4 bg-white shadow-custom-shadow rounded-md max-w-sm">
+        <div className="relative border-2-4 border-blue-border pl-4 p-4 bg-white shadow-custom-shadow rounded-md max-w-sm">
           <p>
             If you have any concerns or need clarification, please feel free to
             contact us at the email address:{" "}
@@ -88,13 +83,32 @@ function PersonalFowTab() {
           </p>
         </div>
       </div>
-
       {/* Columna de la derecha ocupando el 70% de la pantalla */}
-      <div className="flex-grow w-7/10 p-4 bg-white rounded-md">
-        <h1>Calendario</h1>
+      <div className="flex-grow w-7/10 p-4 bg-background-gray rounded-md">
+        <div className="flex items-center justify-end space-x-6">
+          {/* Circle with border */}
+          <div className="flex items-center space-x-2">
+            <span className="w-4 h-4 bg-white border-[3px] border-dark-purple rounded-full"></span>
+            <span className="font-bold">Office entrance</span>
+          </div>
+          {/* Yellow icon circle */}
+          <div className="flex items-center space-x-2">
+            <span className="w-4 h-4 bg-yellow-icon rounded-full"></span>
+            <span className="font-bold">Authorized exceptions</span>
+          </div>
+          {/* Purple icon circle */}
+          <div className="flex items-center space-x-2">
+            <span className="w-4 h-4 bg-purple-icon rounded-full"></span>
+            <span className="font-bold">Holiday</span>
+          </div>
+          {/* Green icon circle */}
+          <div className="flex items-center space-x-2">
+            <span className="w-4 h-4 bg-green-icon rounded-full"></span>
+            <span className="font-bold">Scheduled absences</span>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
-
 export default PersonalFowTab;

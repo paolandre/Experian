@@ -19,6 +19,8 @@ module.exports = {
         'green-icon': '#5CD08E',
         'light-blue': '#BBCFEA',
         'blue-border': '#BBCFEA',
+        'dark-purple': '#6D2077',
+        'red-bar-color': '#E4002B',
         'purple-clear':'#FEF2FF',
         'white':'#FFFFFF',
       },

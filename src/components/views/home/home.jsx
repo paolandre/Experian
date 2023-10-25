@@ -1,4 +1,5 @@
 import "./home.css";
+import { useNavigate } from "react-router-dom";
 import profilePage from "./../../../assets/imgHome/profilePage.png";
 import employmentHistory from "./../../../assets/imgHome/EmploymentHistory.png";
 import payInfo from "./../../../assets/imgHome/payInfo.png";
@@ -24,9 +25,16 @@ export default function Home() {
     { imageSrc: personalInfo, texto: "Personal Info" },
     { imageSrc: viewSalary, texto: "View Salary Letter Certification" },
     { imageSrc: diversityInfo, texto: "Diversity Info" },
-    { imageSrc: fowIndicator, texto: "FOW Indicator" },
+    {
+      imageSrc: fowIndicator,
+      texto: "FOW Indicator",
+      onClick: handleFOWIndicatorClick,
+    },
   ];
-
+  const navigate = useNavigate();
+  function handleFOWIndicatorClick() {
+    navigate("/leader-view");
+  }
   const imagenes = [
     { information: normativa },
     { information: ourExperian },
@@ -57,7 +65,7 @@ export default function Home() {
               <img
                 src={elemento.imageSrc}
                 alt={`Imagen ${index}`}
-                className=""
+                onClick={elemento.onClick}
               />
               <span className="text-sm  flex flex-col items-center">
                 {elemento.texto}
