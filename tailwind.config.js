@@ -28,7 +28,7 @@ module.exports = {
         'white': '#FFFFFF',
         'decline': '#A8001F',
         'approve': '#00612F',
-        'dark-blue-icons': '#426DA9'
+        'dark-blue-icons': '#426DA9',
         'greyborder': '#A9A8A8',
       },
       fontSize: {
