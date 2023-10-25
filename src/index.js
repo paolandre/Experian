@@ -6,6 +6,13 @@ import LeaderView from "./components/views/leaderView/leaderView";
 import EmployeeView from "./components/views/employeeView/employeeView";
 import "./index.css"
 
+const link = document.createElement('link');
+
+link.rel = 'stylesheet';
+link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap';
+document.head.appendChild(link);
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +30,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+      
     <RouterProvider router={router} />
   </React.StrictMode>
 );
