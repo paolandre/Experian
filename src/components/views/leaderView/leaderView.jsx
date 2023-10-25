@@ -37,6 +37,18 @@ export default function LeaderView() {
                     Team FOW
                 </span>
 
+                <span
+                    className={`ml-4 cursor-pointer ${activeTab === 'Team Absences' ? 'border-b-2 border-pink-color font-bold text-dark-blue' : 'text-black'}`}
+                    onClick={() => setActiveTab('Team Absences')}>
+                    Team Absences
+                </span>
+
+                <span
+                    className={`ml-4 cursor-pointer ${activeTab === 'Absences Record' ? 'border-b-2 border-pink-color font-bold text-dark-blue' : 'text-black'}`}
+                    onClick={() => setActiveTab('Absences Record')}>
+                    Absences Record
+                </span>
+
                 {/* Condicionales para las dos tabs */}
                 {activeTab === 'Personal FOW' && <PersonalFowTab />}
                 {activeTab === 'Team FOW' && <TeamFowTab />}

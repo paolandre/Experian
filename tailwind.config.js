@@ -18,7 +18,9 @@ module.exports = {
         'yellow-icon': '#FFD146',
         'green-icon': '#5CD08E',
         'light-blue': '#BBCFEA',
-        'blue-border': '#BBCFEA'
+        'blue-border': '#BBCFEA',
+        'dark-purple': '#6D2077',
+        'red-bar-color': '#E4002B'
       }
     },
     variants: {},
