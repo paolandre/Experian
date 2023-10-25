@@ -21,8 +21,11 @@ module.exports = {
         'blue-border': '#BBCFEA',
         'dark-purple': '#6D2077',
         'red-bar-color': '#E4002B',
-        'purple-clear':'#FEF2FF',
-        'white':'#FFFFFF',
+        'purple-clear': '#FEF2FF',
+        'white': '#FFFFFF',
+        'decline': '#A8001F',
+        'approve': '#00612F',
+        'dark-blue-icons': '#426DA9'
       },
       fontSize: {
         sm: '0.7rem',
