@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import HeaderComponent from '../../commonComponents/navbar/navBar.jsx';
 import { IoPersonCircleSharp } from 'react-icons/io5';
-import chatbot from "./../../../assets/imgHome/buttonChatbot.png";
+import Chatbot from '../../commonComponents/chatbot/chatbot.jsx'
 
 export default function EmployeeView() {
     return (
@@ -119,9 +119,8 @@ export default function EmployeeView() {
                             </div>
                         </div>
                     </div>
-                    <div className="fixed bottom-5 right-10 w-[80px]">
-                        <img src={chatbot} alt="Imagen del chatbot"></img>
-                    </div>
+
+                    <Chatbot />
 
                 </div>
 
