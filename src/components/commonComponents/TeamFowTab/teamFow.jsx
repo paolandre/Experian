@@ -182,7 +182,10 @@ function TeamFowTab() {
                   <img src={user.user} alt="user profile" />
                 </td>
                 <td>
-                  <a href="/" className="text-dark-blue  hover:underline">
+                  <a
+                    href="/employee-view"
+                    className="text-dark-blue  hover:underline"
+                  >
                     {user.id}
                   </a>
                 </td>

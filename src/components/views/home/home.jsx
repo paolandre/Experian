@@ -14,8 +14,9 @@ import activities from "./../../../assets/imgHome/buttonActivities.png";
 import normativa from "./../../../assets/imgHome/buttonNormativa.png";
 import notifications from "./../../../assets/imgHome/buttonNotifications.png";
 import ourExperian from "./../../../assets/imgHome/buttonOurExperianCommunity.png";
-import chatbot from "./../../../assets/imgHome/buttonChatbot.png";
 import HeaderComponent from "./../../commonComponents/navbar/navBar";
+import Chatbot from "./../../commonComponents/chatbot/chatbot";
+
 export default function Home() {
   const elements = [
     { imageSrc: profilePage, texto: "Profile Page" },
@@ -41,70 +42,73 @@ export default function Home() {
     { information: notifications },
     { information: activities },
   ];
+
   return (
     <>
       <header>
         <HeaderComponent />
       </header>
-      <main className="bg-purple-clear ">
+      <main className="bg-purple-clear telephone:h-[100vh]">
         <div className="flex justify-center items-center">
           <img
             src={banner}
             alt="people portal"
-            className=" w-[60%] my-[5px] 	"
+            className=" desktop:w-[60vw] my-[5px] mt-[2vh] telephone:w-[95vw]	"
           />
         </div>
         <div className=" flex flex-col items-center justify-center ">
-          <div className="flex items-center justify-end   w-[60vw] bg-white border-gray-border border-2 shadow-md">
-            <img src={search} alt="buscar" className="w-[20%] shadow-md" />
+          <div className="desktop:w-[60vw] flex items-center justify-end   bg-white border-gray-border border-2 shadow-md telephone:w-[92vw]">
+            <img
+              src={search}
+              alt="buscar"
+              className="desktop:w-[20%] shadow-md telephone:w-[35vw]"
+            />
+          </div>
+          <div className="desktop:w-[60vw]  h-[45px]  mb-4 telephone:w-[90vw] flex flex-start mt-4">
+            <p>
+              <strong>You</strong>
+              <span> 7</span>
+            </p>
           </div>
         </div>
-        <p className="mx-[310px] h-[45px] mt-6">
-          <strong>You</strong>
-          <span> 7</span>
-        </p>
-        <article className="grid grid-cols-6 ml-[330px]  w-[910px] text-center">
-          {elements.map((elemento, index) => (
-            <div
-              key={index}
-              className="w-[60px] text-center mb-6 transition-transform transform hover:scale-110"
-            >
-              <img
-                src={elemento.imageSrc}
-                alt={`Imagen ${index}`}
-                onClick={elemento.onClick}
-                className="cursor-pointer"
-              />
-              <span className="text-sm  flex flex-col items-center">
-                {elemento.texto}
-              </span>
-            </div>
-          ))}
-        </article>
-        <article className="grid grid-cols-5 w-[1000px] mx-[300px] text-center">
-          {imagenes.map((imagen, index) => (
-            <div
-              key={index}
-              className="hover:shadow-md transition-transform duration-150 transform hover:scale-105"
-            >
-              <img
-                src={imagen.information}
-                alt={`Imagen ${index}`}
-                className="cursor-pointer"
-              />
-            </div>
-          ))}
-          <div className="w-[60px] ">
-            <img
-              src={chatbot}
-              alt="Imagen del chatbot"
-              className="cursor-pointer rounded-shadow"
-            ></img>
-          </div>
-        </article>
-      </main>
+        <section className="flex flex-col justify-center items-center ">
+          <article className="grid-container">
+            {elements.map((elemento, index) => (
+              <div
+                key={index}
+                className="desktop:w-[7vw] mb-6 flex flex-col justify-center items-center transition-transform transform hover:scale-110 telephone:h-[10vh]"
+              >
+                <img
+                  src={elemento.imageSrc}
+                  alt={`Imagen ${index}`}
+                  onClick={elemento.onClick}
+                  className="desktop:w-[4vw] cursor-pointer  telephone:w-[15vw] "
+                />
+                <span className="text-sm flex flex-col items-center">
+                  {elemento.texto}
+                </span>
+              </div>
+            ))}
+          </article>
 
-      <footer></footer>
+          <article className="desktop:w-[50vw] grid grid-cols-4 text-center mt-4 telephone:w-[150vw] overflow-x-auto">
+            {imagenes.map((imagen, index) => (
+              <div
+                key={index}
+                className="hover:shadow-md transition-transform duration-150 transform hover:scale-105 m-0 "
+              >
+                <img
+                  src={imagen.information}
+                  alt={`Imagen ${index}`}
+                  className="desktop:cursor-pointer telephone:w-[150vw]"
+                />
+              </div>
+            ))}
+          </article>
+        </section>
+
+        <Chatbot />
+      </main>
     </>
   );
 }
