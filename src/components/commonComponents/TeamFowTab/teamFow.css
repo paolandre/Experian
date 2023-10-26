@@ -1,3 +1,14 @@
 .fontRob {
   font-family: "Roboto", sans-serif;
 }
+
+.rounded:hover {
+  transform: scale(1.2);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.431);
+}
+
+.rounded {
+  transition: box-shadow 0.3s ease;
+  transform: scale(1);
+  box-shadow: 1px rgba(0, 0, 0, 0.431);
+}
