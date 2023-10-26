@@ -8,6 +8,7 @@ import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
 import promedio from "./../../../assets/teamFow/teamfowpercentage.png";
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import "./teamFow.css";
+
 function TeamFowTab() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
