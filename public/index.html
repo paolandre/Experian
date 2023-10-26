@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <!--
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -22,59 +22,59 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>Experian Colombia | Experian Colombia</title>
+    <title>Experian Colombia | Experian Colombia</title>
 </head>
 
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <script type="module">
-    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-    Chatbot.init({
-        chatflowid: "8b6b1153-4691-4bc0-b59c-8a504e6f0b2b",
-        apiHost: "https://experian-tf.onrender.com",
-        chatflowConfig: {
-            // topK: 2
-        },
-        theme: {
-            button: {
-                backgroundColor: "#3B81F6",
-                right: 20,
-                bottom: 20,
-                size: "medium",
-                iconColor: "white",
-                customIconSrc: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg",
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.init({
+            chatflowid: "8b6b1153-4691-4bc0-b59c-8a504e6f0b2b",
+            apiHost: "https://experian-tf.onrender.com",
+            chatflowConfig: {
+                // topK: 2
             },
-            chatWindow: {
-                welcomeMessage: "Hola! <br> Mi nombre es ExBot: Estoy diseñado para brindarte información del FOW  indicador. ¿indica tu Oracle id?",
-                backgroundColor: "#ffffff",
-                height: 700,
-                width: 400,
-                fontSize: 16,
-                poweredByTextColor: "#303235",
-                botMessage: {
-                    backgroundColor: "#f7f8ff",
-                    textColor: "#303235",
-                    showAvatar: true,
-                    avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
-                },
-                userMessage: {
+            theme: {
+                button: {
                     backgroundColor: "#3B81F6",
-                    textColor: "#ffffff",
-                    showAvatar: true,
-                    avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+                    right: 20,
+                    bottom: 20,
+                    size: "medium",
+                    iconColor: "white",
+                    customIconSrc: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg",
                 },
-                textInput: {
-                    placeholder: "Type your question",
+                chatWindow: {
+                    welcomeMessage: "Hola! <br> Mi nombre es ExBot: Estoy diseñado para brindarte información del FOW  indicador. ¿indica tu Oracle id?",
                     backgroundColor: "#ffffff",
-                    textColor: "#303235",
-                    sendButtonColor: "#3B81F6",
+                    height: 700,
+                    width: 400,
+                    fontSize: 16,
+                    poweredByTextColor: "#303235",
+                    botMessage: {
+                        backgroundColor: "#f7f8ff",
+                        textColor: "#303235",
+                        showAvatar: true,
+                        avatarSrc: "https://github.com/AndreaRoa/Experian/blob/main/src/assets/exbot.png?raw=true",
+                    },
+                    userMessage: {
+                        backgroundColor: "#3B81F6",
+                        textColor: "#ffffff",
+                        showAvatar: true,
+                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+                    },
+                    textInput: {
+                        placeholder: "Type your question",
+                        backgroundColor: "#ffffff",
+                        textColor: "#303235",
+                        sendButtonColor: "#3B81F6",
+                    }
                 }
             }
-        }
-    })
-</script>
-  <!--
+        })
+    </script>
+    <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
