@@ -1,0 +1,23 @@
+.rbc-calendar{
+    width: 65%;
+    height: 100%;
+  display: block;
+  position: absolute;
+  right: 1px;
+  top: 60px;
+  
+  }
+  .rbc-event-content {
+width: 0px;
+  }
+  .rbc-event {
+    background-color: #FFD146;
+    border-radius: 50px;
+width: 20px;
+height: 20px;
+  }
+  .rbc-event.rbc-selected, .rbc-day-slot .rbc-selected.rbc-background-event{
+    background-color: #FFD146;
+  }
+
+  
