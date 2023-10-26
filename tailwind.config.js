@@ -30,6 +30,7 @@ module.exports = {
         'approve': '#00612F',
         'dark-blue-icons': '#426DA9',
         'greyborder': '#A9A8A8',
+        'underlineGrey': '#D6D6D6',
       },
       fontSize: {
         sm: '0.7rem',

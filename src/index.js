@@ -9,8 +9,9 @@ import "./index.css"
 const link = document.createElement('link');
 
 link.rel = 'stylesheet';
-link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap';
+link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap';
 document.head.appendChild(link);
+
 
 
 const router = createBrowserRouter([
