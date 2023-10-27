@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import HeaderComponent from '../../commonComponents/navbar/navBar.jsx';
 import { IoPersonCircleSharp } from 'react-icons/io5';
+import EmployeeCalendar from '../../commonComponents/calendar/employeeCalendar.jsx';
+
 
 export default function EmployeeView() {
     return (
@@ -119,6 +121,7 @@ export default function EmployeeView() {
                         </div>
                     </div>
 
+                  <EmployeeCalendar />
                 </div>
 
             </div>
