@@ -15,7 +15,6 @@ import normativa from "./../../../assets/imgHome/buttonNormativa.png";
 import notifications from "./../../../assets/imgHome/buttonNotifications.png";
 import ourExperian from "./../../../assets/imgHome/buttonOurExperianCommunity.png";
 import HeaderComponent from "./../../commonComponents/navbar/navBar";
-import Chatbot from "./../../commonComponents/chatbot/chatbot";
 
 export default function Home() {
   const elements = [
@@ -106,8 +105,6 @@ export default function Home() {
             ))}
           </article>
         </section>
-
-        <Chatbot />
       </main>
     </>
   );
