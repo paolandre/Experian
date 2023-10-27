@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "canvas-confetti": "^1.9.0",
     "date-fns": "^2.30.0",
     "eslint-plugin-dependencies": "^2.5.0",
     "react": "^18.2.0",
@@ -43,5 +44,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.69.5"
   }
 }

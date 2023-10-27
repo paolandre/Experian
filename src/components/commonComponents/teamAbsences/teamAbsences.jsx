@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { IoPersonCircleSharp } from 'react-icons/io5';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { BiMessageDetail } from 'react-icons/bi';
-import Chatbot from '../chatbot/chatbot.jsx';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
@@ -183,7 +182,7 @@ function TeamAbsences() {
                         </tbody>
                     </table>
                 </div>
-                <Chatbot />
+
             </div>
             {/* Notification */}
             <div className="border-l-light-blue border-4 pl-4 p-2 bg-white shadow-custom-shadow rounded-md mt-4" style={{ maxWidth: '900px' }}>
