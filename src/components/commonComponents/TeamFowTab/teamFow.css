@@ -13,6 +13,144 @@
   box-shadow: 1px rgba(0, 0, 0, 0.431);
 }
 
+.tableTeam {
+  width: 90vw;
+  height: 10vh;
+  margin: bottom 4px;
+  background-color: white;
+  font: bold;
+  margin-bottom: 9px;
+}
+
+.titleRow {
+  border: 2px solid #e0e0e0;
+  height: 5vh;
+}
+.idRow {
+  border: 2px solid #e0e0e0;
+  height: 5vh;
+}
+.idCol {
+  border: 2px solid #e0e0e0;
+  height: 5vh;
+}
+
+.firstRow {
+  border: 2px solid #e0e0e0;
+  height: 5vh;
+}
+
+.tableColumns {
+  text-align: center;
+}
+
+.tableProfile {
+  text-align: center;
+}
+
+.link {
+  color: #426da9;
+  width: 5px;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+.tableArticle {
+  width: 90vw;
+  margin-left: 4px;
+}
+.indicator {
+  flex-direction: row;
+}
+.arrow {
+  position: absolute;
+  top: 5px;
+  right: 2px;
+  width: 10px;
+  height: 11px;
+}
+
+.percentageItem {
+  flex-direction: column;
+  margin-left: 25px;
+  margin-bottom: 2px;
+  width: 8vw;
+}
+.userFow {
+  text-align: center;
+}
+
+.information {
+  border-left: 4px solid #bbcfe0;
+  padding-left: 1rem;
+
+  background-color: #ffffff;
+  box-shadow: 0 1.83px 4.58px rgba(169, 168, 168, 0.6);
+  border-radius: 0.375rem;
+  width: 60vw;
+  height: 4vh;
+}
+
+@media screen and (max-width: 640px) {
+  .firstRow,
+  .tableColumns,
+  .tableProfile {
+    display: none;
+  }
+  .tableTeam {
+    width: 75%;
+    margin-bottom: 20px;
+  }
+  .tableArticle {
+    margin-left: 1px;
+  }
+  .firstRow {
+    display: none;
+    width: 4px;
+  }
+
+  .idRow {
+    width: 10px;
+  }
+  .indicator {
+    flex-direction: column;
+    width: 90px;
+
+    margin-left: 10px;
+  }
+  .arrow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  .idCol {
+    width: 35px;
+  }
+  .percentageItem {
+    margin-left: 12px;
+    width: 25vw;
+  }
+  .information {
+    height: 85px;
+    width: 70%;
+    font-size: small;
+  }
+}
+
+.my-confirm-button {
+  margin-top: -30px;
+  width: 130px;
+  height: 40px;
+  font-weight: bold;
+}
+
+.image-modal {
+  margin-top: -2px;
+  width: 700px;
+  height: 330px;
+}
+
 .my-confirm-button {
   margin-top: -30px;
   width: 130px;

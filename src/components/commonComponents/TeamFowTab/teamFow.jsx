@@ -14,9 +14,9 @@ import colorInformation from "./../../../assets/teamFow/colorInformation.png";
 import "./teamFow.css";
 import felicidades from "./../../../assets/felicidades.png";
 import motivacion from "./../../../assets/motivacion.png";
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
-import confetti from 'canvas-confetti';
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+import confetti from "canvas-confetti";
 
 function TeamFowTab() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -86,88 +86,95 @@ function TeamFowTab() {
         imageUrl: motivacion,
         imagePadding: 0,
         imageMargin: 0,
-        imageAlt: 'Image of motivation',
+        imageAlt: "Image of motivation",
         showConfirmButton: true,
-        confirmButtonText: 'Send',
+        confirmButtonText: "Send",
         margin: 0,
         padding: 10,
-        confirmButtonColor: '#426DA9',
+        confirmButtonColor: "#426DA9",
         customClass: {
-          confirmButton: 'my-confirm-button',
-          image: 'image-modal',
-        }
+          confirmButton: "my-confirm-button",
+          image: "image-modal",
+        },
       });
     }
 
     if (numericPercentage === 100) {
       confetti({
         particleCount: 150,
-        spread: 60
+        spread: 60,
       });
 
       Swal.fire({
         imageUrl: felicidades,
         imagePadding: 0,
         imageMargin: 0,
-        imageAlt: 'Image of congratulations',
+        imageAlt: "Image of congratulations",
         showConfirmButton: true,
-        confirmButtonText: 'Send',
+        confirmButtonText: "Send",
         margin: 0,
         padding: 10,
-        confirmButtonColor: '#426DA9',
+        confirmButtonColor: "#426DA9",
         customClass: {
-          confirmButton: 'my-confirm-button',
-          image: 'image-modal',
-        }
+          confirmButton: "my-confirm-button",
+          image: "image-modal",
+        },
       });
     }
   };
 
-
   return (
-    <article className="w-[100vw] h-[70vh] ">
-      <div className="w-[90vw]  flex flex-row-reverse">
+    <section className="w-[100vw] h-[70vh] ">
+      <div className="desktop:w-[90vw]  desktop:flex flex-row-reverse telephone:w-[70vw] telephone:flex flex-row-reverse telephone:mb-2">
         <img
           src={exportbutton}
           alt="boton para exportar información"
-          className="w-[100px] transition-transform transform hover:scale-110"
+          className="desktop:w-[100px] desktop:transition-transform transform hover:scale-110 telephone:w-[90px] mt-2"
         />
       </div>
-      <section className="flex flex-row w-[90vw] h-[8vh] ml-3 mb-6">
-        <div className="  flex flex-col border-r-2 border-greyborder ml-3 w-[12vw] ">
-          <p className="text-xl font-bold ">5</p>
-          <p>Total team members</p>
+      <section className="desktop:flex flex-row desktop:w-[90vw] desktop:h-[8vh] desktop:ml-3 desktop:mb-3 telephone:flex flex-row telephone:w-[90vw] telephone:h-[8vh] telephone:ml-3 telephone:mb-2">
+        <div className="desktop:w-[12vw] desktop:ml-3  desktop:flex flex-col desktop:border-r-2 desktop:border-greyborder   telephone:ml-0  telephone:w-[20vw] telephone:border-r-2 telephone:border-greyborder telephone:h-[6vh]">
+          <p className="desktop:text-xl desktop:font-bold desktop:mb-4 telephone:text-xs telephone:font-bold telephone:mb-0">
+            5
+          </p>
+          <p className="desktop:text-base telephone:text-xs">
+            Total team members
+          </p>
         </div>
-        <div className=" w-[6vw]  flex items-center justify-center ">
+        <div className="desktop:w-[6vw]  desktop:flex items-center desktop:justify-center telephone:w-[8vw] ml-2 ">
           <img src={promedio} alt="porcentaje rojo de rendimiento " />
         </div>
-        <div className="flex flex-col">
-          <p className="text-xl font-bold">90%</p>
-          <p>Monthly team FOW</p>
+        <div className="desktop:flex flex-col telephone:ml-3">
+          <p className=" desktop:font-bold desktop:mb-4 desktop:text-xl  telephone:mb-0 telephone:text-xs telephone:font-bold telephone:mb-0">
+            90%
+          </p>
+          <p className="desktop:text-base telephone:text-xs">
+            Monthly team FOW
+          </p>
         </div>
       </section>
-      <section className="flex flex-row w-[90vw] h-[10vh] ml-3">
-        <div className="flex flex-col  w-[11vw]">
+      <section className="desktop:flex flex-row desktop:w-[90vw] desktop:h-[10vh] desktop:ml-3 desktop:mb-1 telephone:flex flex-row telephone:w-[70vw] telephone:mb-3">
+        <div className="desktop:flex flex-col  desktop:w-[11vw] telephone:w-[20vw] telephone:mr-8">
           <span htmlFor="selectBox">Date range</span>
-          <div className="flex flex-row bg-white border-custom-gray border-2 rounded-md w-[10vw]  h-[4vh] items-center ">
+          <div className="desktop:flex flex-row desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw]  desktop:h-[4vh] desktop:items-center telephone:w-[25vw] telephone:bg-white telephone:flex flex-row telephone:border-custom-gray telephone:border-2 telephone:rounded-md   telephone:items-center telephone:h-[2.5vh]">
             <img
               src={calendarImg}
               alt="imagen de un calendario"
-              className="w-[2vw] h-[3vh]"
+              className="desktop:w-[2vw] desktop:h-[3vh] telephone:w-[4vw] telephone:h-[2vh]"
             />
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
               dateFormat="dd/MMM/yyyy"
-              className="w-[7vw] border-transparent focus:outline-none"
+              className="desktop:w-[7vw] desktop:border-transparent desktop:focus:outline-none telephone:w-[20vw] telephone:text-xs telephone:h-[1.5vh]"
             />
           </div>
         </div>
-        <div className="flex flex-col w-[11vw]">
+        <div className="desktop:flex flex-col desktop:w-[11vw] telephone:w-[20vw] telephone:mr-5">
           <label htmlFor="selectBox">Country</label>
           <select
             id="selectBox"
-            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] "
+            className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
           >
             <option value="default" disabled selected>
               Select
@@ -178,11 +185,11 @@ function TeamFowTab() {
             <option value="option4">Perú</option>
           </select>
         </div>
-        <div className="flex flex-col  w-[10vw]">
+        <div className="desktop:flex flex-col desktop:w-[10vw] telephone:w-[20vw] telephone:mr-5">
           <label htmlFor="selectBox">FOW</label>
           <select
             id="selectBox"
-            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] "
+            className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs "
           >
             <option value="default" disabled selected>
               Select
@@ -193,34 +200,20 @@ function TeamFowTab() {
           </select>
         </div>
       </section>
-      <section className=" w-[90vw] ml-4">
-        <table className="bg-white w-[90vw] h[10vh] mb-4">
+      <article className=" tableArticle">
+        <table className="tableTeam ">
           <thead>
             <tr>
-              <th className="border border-gray-icon border-2"></th>
-              <th className="border border-gray-icon border-2  font-bold py-2">
-                ID
-              </th>
-              <th className="border border-gray-icon border-2  font-bold py-2">
-                Country
-              </th>
-              <th className="border border-gray-icon border-2  font-bold py-2">
-                Job title
-              </th>
-              <th className="border border-gray-icon border-2  font-bold py-2">
-                Office location
-              </th>
-              <th className="border border-gray-icon border-2  font-bold py-2">
-                FOW
-              </th>
-              <th className="border border-gray-icon border-2  font-bold py-2">
-                <div className="flex flex-row items-center">
-                  <p className="ml-2 mr-7">FOW indicator</p>
-                  <img
-                    src={arrow}
-                    alt="arrow"
-                    className="w-[10px] h-[11px] rounded"
-                  />
+              <th className="firstRow"></th>
+              <th className="idRow">ID</th>
+              <th className=" firstRow">Country</th>
+              <th className=" firstRow">Job title</th>
+              <th className=" firstRow">Office location</th>
+              <th className=" idCol">FOW</th>
+              <th className="titleRow">
+                <div className="indicator">
+                  <p className=" ml-2 mr-3">FOW</p>
+                  <span>indicator</span>
                 </div>
               </th>
             </tr>
@@ -228,21 +221,24 @@ function TeamFowTab() {
           <tbody>
             {profile.map((user, index) => (
               <tr key={index} className="text-center h-[6vh]">
-                <td className="text-center w-[2.8vw] p-1">
-                  <img src={user.user} alt="user profile" />
+                <td className="tableProfile">
+                  <img
+                    src={user.user}
+                    alt="user profile"
+                    className="w-[2vw] ml-2"
+                  />
                 </td>
                 <td>
-                  <a href="/" className="text-dark-blue  hover:underline">
+                  <a href="/employee-view" className="link">
                     {user.id}
                   </a>
                 </td>
-                <td>{user.country}</td>
-                <td>{user.jobTitle}</td>
-                <td>{user.officeLocation}</td>
-                <td className="cursor-pointer w-[11vw]">{user.fow}</td>
-                <td className=" tex-center w-[11vw]">
-
-                  <div onClick={() => handleImageClick(user.percentage)} className="cursor-pointer flex flex-col  ml-4 mb-2  w-[8vw]">
+                <td className="tableColumns">{user.country}</td>
+                <td className="tableColumns">{user.jobTitle}</td>
+                <td className="tableColumns">{user.officeLocation}</td>
+                <td className="userFow">{user.fow}</td>
+                <td className="  tex-center w-[11vw]">
+                  <div className="percentageItem ">
                     {user.percentage}
                     <img
                       src={user.imageIndicator}
@@ -254,26 +250,22 @@ function TeamFowTab() {
                 </td>
               </tr>
             ))}
-
           </tbody>
         </table>
-        <div className=" flex flex-cols  items-center fontRob border-underlineGrey border-2 rounded-md w-[60vw] h-[5vh]  bg-white">
-          <div className=" w-[2vw] ">
-            <img
-              src={colorInformation}
-              alt="barra morada"
-              className="w-[1vw] h-[5vh]"
-            ></img>
-          </div>
+        <div className="information">
           <p>
             If you have any concerns or need clarification, please feel free to
-            contact us at the email address:
+            contact us at the email address:{" "}
+            <a
+              href="mailto:onehrsla@experian.com"
+              className="hover:underline text-black font-bold"
+            >
+              onehrsla@experian.com
+            </a>
           </p>
-          <span className="font-bold bg-white">onehrsla@experian.com</span>
         </div>
-
-      </section>
-    </article>
+      </article>
+    </section>
   );
 }
 

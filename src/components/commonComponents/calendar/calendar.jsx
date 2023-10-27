@@ -6,7 +6,7 @@ import React, { useState, useCallback, useRef } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
-import './calendar.css';
+import "./calendar.css";
 import { events } from "../../../events";
 
 const locales = {
@@ -50,58 +50,82 @@ function MyCalendar() {
   const onSelectEvent = useCallback((calEvent) => {
     window.clearTimeout(clickRef.current);
     clickRef.current = window.setTimeout(() => {
-      window.alert(buildMessage(calEvent, 'onSelectEvent'));
+      window.alert(buildMessage(calEvent, "onSelectEvent"));
     }, 250);
   }, []);
 
-
   const eventPropGetter = useCallback(
     (event) => ({
-
       //Scheduled absences
-      ...(event && event.title && event.title.includes('Office entrance') && {
-        className: 'white',
-      }),
-      ...(event && event.title && event.title.includes('licencia no remunerada') && {
-        className: 'green',
-      }),
-      ...(event && event.title && event.title.includes('Vacaciones') && {
-        className: 'green',
-      }),
-      ...(event && event.title && event.title.includes('Enfermedad') && {
-        className: 'green',
-      }),
-      ...(event && event.title && event.title.includes('Licencia personal') && {
-        className: 'green',
-      }),
-      ...(event && event.title && event.title.includes('Festivo en Chile') && {
-        className: 'purple',
-      }),
-      ...(event && event.title && event.title.includes('Festivo en Colombia') && {
-        className: 'purple',
-      }),
-      ...(event && event.title && event.title.includes('Festivo en Argentina') && {
-        className: 'purple',
-      }),
-      ...(event && event.title && event.title.includes('Festivo en Perú') && {
-        className: 'purple',
-      }),
-      ...(event && event.title && event.title.includes('Eventos corporativos') && {
-        className: 'yellow',
-      }), ...(event && event.title && event.title.includes('Visita / reuniones con clientes') && {
-        className: 'yellow',
-      }), ...(event && event.title && event.title.includes('Viajes de trabajo') && {
-        className: 'yellow',
-      }), ...(event && event.title && event.title.includes('Licencia no remunerada') && {
-        className: 'yellow',
-      }),
-
-
-
+      ...(event &&
+        event.title &&
+        event.title.includes("Office entrance") && {
+          className: "white",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("licencia no remunerada") && {
+          className: "green",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Vacaciones") && {
+          className: "green",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Enfermedad") && {
+          className: "green",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Licencia personal") && {
+          className: "green",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Festivo en Chile") && {
+          className: "purple",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Festivo en Colombia") && {
+          className: "purple",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Festivo en Argentina") && {
+          className: "purple",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Festivo en Perú") && {
+          className: "purple",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Eventos corporativos") && {
+          className: "yellow",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Visita / reuniones con clientes") && {
+          className: "yellow",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Viajes de trabajo") && {
+          className: "yellow",
+        }),
+      ...(event &&
+        event.title &&
+        event.title.includes("Licencia no remunerada") && {
+          className: "yellow",
+        }),
     }),
 
     []
-  )
+  );
 
   return (
     <div className="vent">
