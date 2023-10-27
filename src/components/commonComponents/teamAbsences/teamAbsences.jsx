@@ -96,7 +96,8 @@ function TeamAbsences() {
                         <thead>
                             <tr>
                                 <th className="border border-gray-icon border-2 font-bold py-2">Hora</th>
-                                <th className="border border-gray-icon border-2  font-bold py-2"></th>
+                                <td className="border border-gray-icon border-2  font-bold py-2"></td>
+
                                 <th className="border border-gray-icon border-2  font-bold py-2">ID</th>
                                 <th className="border border-gray-icon border-2  font-bold py-2">Type of request</th>
                                 <th className="border border-gray-icon border-2  font-bold py-2">Date</th>
@@ -112,7 +113,10 @@ function TeamAbsences() {
                         <tbody>
                             <tr className="text-center">
                                 <td className="py-2">8:30 am</td>
-                                <td><IoPersonCircleSharp className="text-gray-icon" size={24} /></td>
+                                <td className="flex justify-center items-center py-2">
+                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                </td>
+
                                 <td>72836301</td>
                                 <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
                                 <td>2023-08-09</td>
@@ -126,7 +130,10 @@ function TeamAbsences() {
 
                             <tr className="text-center justify-center">
                                 <td className="py-2">9:00 am</td>
-                                <td><IoPersonCircleSharp className="text-gray-icon" size={24} /></td>
+                                <td className="flex justify-center items-center py-2">
+                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                </td>
+
                                 <td>72836302</td>
                                 <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
                                 <td>2023-08-10</td>
@@ -140,7 +147,10 @@ function TeamAbsences() {
 
                             <tr className="text-center justify-center">
                                 <td className="py-2">10:00 am</td>
-                                <td><IoPersonCircleSharp className="text-gray-icon" size={24} /></td>
+                                <td className="flex justify-center items-center py-2">
+                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                </td>
+
                                 <td>72838302</td>
                                 <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
                                 <td>2023-08-17</td>
@@ -154,7 +164,10 @@ function TeamAbsences() {
 
                             <tr className="text-center justify-center">
                                 <td className="py-2">7:00 am</td>
-                                <td><IoPersonCircleSharp className="text-gray-icon" size={24} /></td>
+                                <td className="flex justify-center items-center py-2">
+                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                </td>
+
                                 <td>72838312</td>
                                 <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
                                 <td>2023-08-29</td>
@@ -168,7 +181,10 @@ function TeamAbsences() {
 
                             <tr className="text-center justify-center">
                                 <td className="py-2">3:00 pm</td>
-                                <td><IoPersonCircleSharp className="text-gray-icon" size={24} /></td>
+                                <td className="flex justify-center items-center py-2">
+                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                </td>
+
                                 <td>72839300</td>
                                 <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
                                 <td>2023-08-30</td>

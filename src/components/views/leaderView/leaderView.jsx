@@ -6,7 +6,7 @@ import PersonalFowTab from "../../commonComponents/personalFowTab/personalFow";
 import TeamFowTab from "../../commonComponents/TeamFowTab/teamFow";
 import { Link } from "react-router-dom";
 import TeamAbsences from "./../../commonComponents/teamAbsences/teamAbsences";
-import AnsencesRecord from '../../commonComponents/absencesRecord/absencesRecord';
+import AbsencesRecord from '../../commonComponents/absencesRecord/absencesRecord';
 
 export default function LeaderView() {
   const [activeTab, setActiveTab] = useState("Personal FOW");
@@ -74,7 +74,7 @@ export default function LeaderView() {
         {activeTab === "Personal FOW" && <PersonalFowTab />}
         {activeTab === "Team FOW" && <TeamFowTab />}
         {activeTab === "Team Absences" && <TeamAbsences />}
-        {activeTab === "Absences Record" && <AnsencesRecord />}
+        {activeTab === "Absences Record" && <AbsencesRecord />}
       </div>
     </div>
   );
