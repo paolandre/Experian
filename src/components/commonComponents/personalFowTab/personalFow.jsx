@@ -1,7 +1,6 @@
 import React from 'react';
 import { IoPersonCircleSharp } from 'react-icons/io5';
 import "./personalFow.css";
-import Chatbot from '../chatbot/chatbot.jsx';
 import MyCalendar from '../calendar/calendar';
 function PersonalFowTab() {
     return (
@@ -100,7 +99,6 @@ function PersonalFowTab() {
                 </div>
             </div>
 
-            <Chatbot />
             <MyCalendar />
 
         </div>
