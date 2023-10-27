@@ -7,8 +7,8 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./calendar.css";
-import { holiday } from "../../../holidays";
-import { authorizedExceptions } from "../../../authorizedExceptions";
+import { events } from "../../../events";
+
 const locales = {
   "en-US": require("date-fns/locale/en-US"),
 };
