@@ -1,3 +1,34 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* Scrollbar */
+/* Estilos de la barra de desplazamiento */
+::webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+/* El fondo*/
+::-webkit-scrollbar-track {
+    background-color: #f1f1f19c;
+    border-radius: 10px;
+    height: 12px;
+}
+
+/* La barra deslizante */
+::-webkit-scrollbar-thumb {
+    background-color: #afaaaa89;
+    border-radius: 10px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a1909096;
+    height: 12px;
+}
