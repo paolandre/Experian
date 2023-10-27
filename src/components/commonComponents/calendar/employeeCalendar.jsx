@@ -21,7 +21,7 @@ const localizer = dateFnsLocalizer({
     locales,
 });
 
-function MyCalendar() {
+function EmployeeCalendar() {
     const [newEvent, setNewEvent] = useState({ title: "", start: "", id: "" });
     const [allEvents, setAllEvents] = useState(events);
 
@@ -116,4 +116,4 @@ function MyCalendar() {
     );
 }
 
-export default MyCalendar;
+export default EmployeeCalendar;
