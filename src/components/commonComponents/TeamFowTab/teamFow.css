@@ -137,3 +137,29 @@
     font-size: small;
   }
 }
+
+.my-confirm-button {
+  margin-top: -30px;
+  width: 130px;
+  height: 40px;
+  font-weight: bold;
+}
+
+.image-modal {
+  margin-top: -2px;
+  width: 700px;
+  height: 330px;
+}
+
+.my-confirm-button {
+  margin-top: -30px;
+  width: 130px;
+  height: 40px;
+  font-weight: bold;
+}
+
+.image-modal {
+  margin-top: -2px;
+  width: 700px;
+  height: 330px;
+}

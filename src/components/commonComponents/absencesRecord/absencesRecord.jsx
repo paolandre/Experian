@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
 
-function TeamAbsences() {
+function AnsencesRecord() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -193,4 +193,4 @@ function TeamAbsences() {
     );
 }
 
-export default TeamAbsences;
+export default AnsencesRecord;

@@ -1,5 +1,4 @@
 // TeamFowTab.jsx
-
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,8 +11,13 @@ import novenPorce from "./../../../assets/teamFow/noventaporce.png";
 import cien from "./../../../assets/teamFow/cienporcen.png";
 import ochenta from "./../../../assets/teamFow/ochentaporce.png";
 import colorInformation from "./../../../assets/teamFow/colorInformation.png";
-import Chatbot from "../chatbot/chatbot.jsx";
 import "./teamFow.css";
+import felicidades from "./../../../assets/felicidades.png";
+import motivacion from "./../../../assets/motivacion.png";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+import confetti from "canvas-confetti";
+
 function TeamFowTab() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -73,6 +77,51 @@ function TeamFowTab() {
       percentage: "100 %",
     },
   ];
+
+  const handleImageClick = (percentage) => {
+    const numericPercentage = parseInt(percentage, 10); // Convierte "90 %" a 90 como un número
+
+    if (numericPercentage < 100) {
+      Swal.fire({
+        imageUrl: motivacion,
+        imagePadding: 0,
+        imageMargin: 0,
+        imageAlt: "Image of motivation",
+        showConfirmButton: true,
+        confirmButtonText: "Send",
+        margin: 0,
+        padding: 10,
+        confirmButtonColor: "#426DA9",
+        customClass: {
+          confirmButton: "my-confirm-button",
+          image: "image-modal",
+        },
+      });
+    }
+
+    if (numericPercentage === 100) {
+      confetti({
+        particleCount: 150,
+        spread: 60,
+      });
+
+      Swal.fire({
+        imageUrl: felicidades,
+        imagePadding: 0,
+        imageMargin: 0,
+        imageAlt: "Image of congratulations",
+        showConfirmButton: true,
+        confirmButtonText: "Send",
+        margin: 0,
+        padding: 10,
+        confirmButtonColor: "#426DA9",
+        customClass: {
+          confirmButton: "my-confirm-button",
+          image: "image-modal",
+        },
+      });
+    }
+  };
 
   return (
     <section className="w-[100vw] h-[70vh] ">
@@ -194,6 +243,8 @@ function TeamFowTab() {
                     <img
                       src={user.imageIndicator}
                       alt="indicator of percentage"
+                      className="cursor-pointer"
+                      onClick={() => handleImageClick(user.percentage)}
                     />
                   </div>
                 </td>
@@ -213,8 +264,6 @@ function TeamFowTab() {
             </a>
           </p>
         </div>
-
-        <Chatbot />
       </article>
     </section>
   );
