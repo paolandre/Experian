@@ -6,7 +6,6 @@ function PersonalFowTab() {
   return (
     <div className="flex flex-col sm:flex-row">
       <div className="flex-none sm:w-3/10 pr-4 space-y-4 max-w-sm">
-        {/* Nuevo Div */}
         <div className="flex justify-between items-center mb-4 items-start p-4">
           <div className="flex-1 flex flex-col justify-center items-start">
             <p className="text-xl font-bold">8</p>

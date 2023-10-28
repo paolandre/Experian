@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import confetti from "canvas-confetti";
 
-function tableTeam() {
+function FowIndicator({ selectedCountry, selectedFow }) {
   const profile = [
     {
       user: userProfile,
@@ -110,7 +110,6 @@ function tableTeam() {
 
   return (
     <article className=" tableArticle">
-      <div className="grid justify-items-end mt-0 w-[90vw] h-[8vh]"></div>
       <table className="tableTeam ">
         <thead>
           <tr>
@@ -129,41 +128,50 @@ function tableTeam() {
           </tr>
         </thead>
         <tbody>
-          {profile.map((user, index) => (
-            <tr key={index} className="text-center h-[6vh]">
-              <td className="tableProfile">
-                <img
-                  src={user.user}
-                  alt="user profile"
-                  className="w-[2vw] ml-2"
-                />
-              </td>
-              <td>
-                <a href="/employee-view" className="link">
-                  {user.id}
-                </a>
-              </td>
-              <td className="tableColumns">{user.country}</td>
-              <td className="tableColumns">{user.jobTitle}</td>
-              <td className="tableColumns">{user.officeLocation}</td>
-              <td className="userFow">{user.fow}</td>
-              <td className="  tex-center w-[11vw]">
-                <div className="percentageItem ">
-                  {user.percentage}
+          {profile
+
+            .filter(
+              (user) =>
+                (selectedCountry !== "default"
+                  ? user.country === selectedCountry
+                  : true) &&
+                (selectedFow !== "default" ? user.fow === selectedFow : true)
+            )
+            .map((user, index) => (
+              <tr key={index} className="text-center h-[6vh]">
+                <td className="tableProfile">
                   <img
-                    src={user.imageIndicator}
-                    alt="indicator of percentage"
-                    className="cursor-pointer"
-                    onClick={() => handleImageClick(user.percentage)}
+                    src={user.user}
+                    alt="user profile"
+                    className="w-[2vw] ml-2"
                   />
-                </div>
-              </td>
-            </tr>
-          ))}
+                </td>
+                <td>
+                  <a href="/employee-view" className="link">
+                    {user.id}
+                  </a>
+                </td>
+                <td className="tableColumns">{user.country}</td>
+                <td className="tableColumns">{user.jobTitle}</td>
+                <td className="tableColumns">{user.officeLocation}</td>
+                <td className="userFow">{user.fow}</td>
+                <td className="  tex-center w-[11vw]">
+                  <div className="percentageItem ">
+                    {user.percentage}
+                    <img
+                      src={user.imageIndicator}
+                      alt="indicator of percentage"
+                      className="cursor-pointer"
+                      onClick={() => handleImageClick(user.percentage)}
+                    />
+                  </div>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </article>
   );
 }
 
-export default tableTeam;
+export default FowIndicator;

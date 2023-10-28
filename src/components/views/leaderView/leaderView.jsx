@@ -76,6 +76,7 @@ export default function LeaderView() {
 
         {/* Condicionales para las dos tabs */}
         {activeTab === "Personal FOW" && <PersonalFowTab />}
+
         {activeTab === "Team FOW" && <TeamFowTab />}
         {activeTab === "Team Absences" && <TeamAbsences />}
         {activeTab === "Absences Record" && <AbsencesRecord />}

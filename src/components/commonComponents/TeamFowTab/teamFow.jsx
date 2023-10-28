@@ -9,14 +9,24 @@ import charRow from "./../../../assets/charRow.png";
 import diagram from "./../../../assets/diagram.png";
 import diagrWhite from "./../../../assets/diagrWhite.png";
 import columnsblue from "./../../../assets/columnsblue.png";
+import FowIndicator from "./fowIndicator";
+import DiagramTeam from "./diagramTeam";
 
 function TeamFowTab() {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedCountry, setSelectedCountry] = useState("default");
+  const [selectedFow, setSelectedFow] = useState("default");
   const [activeTab, setActiveTab] = useState("Team list");
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
+  const handleCountry = (e) => {
+    setSelectedCountry(e.target.value);
+  };
+  const handleFow = (e) => {
+    setSelectedFow(e.target.value);
+  };
   return (
     <section className="w-[100vw] h-[70vh]">
       <div className="desktop:w-[90vw]  desktop:flex flex-row-reverse telephone:w-[70vw] telephone:flex flex-row-reverse telephone:mb-2">
@@ -68,29 +78,29 @@ function TeamFowTab() {
           <label htmlFor="selectBox">Country</label>
           <select
             id="selectBox"
+            value={selectedCountry}
+            onChange={handleCountry}
             className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
           >
-            <option value="default" disabled selected>
-              Select
-            </option>
-            <option value="option1">Argentina</option>
-            <option value="option2">Chile</option>
-            <option value="option3">Colombia</option>
-            <option value="option4">Perú</option>
+            <option value="default">Select</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Chile">Chile</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Perú">Perú</option>
           </select>
         </div>
         <div className="desktop:flex flex-col desktop:w-[10vw] telephone:w-[20vw] telephone:mr-5">
           <label htmlFor="selectBox">FOW</label>
           <select
             id="selectBox"
+            value={selectedFow}
+            onChange={handleFow}
             className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs "
           >
-            <option value="default" disabled selected>
-              Select
-            </option>
-            <option value="option1">Hybrid</option>
-            <option value="option2">Home office</option>
-            <option value="option3">Roam</option>
+            <option value="default">Select</option>
+            <option value="Hybrid">Hybrid</option>
+            <option value="Home office">Home office</option>
+            <option value="Roam">Roam</option>
           </select>
         </div>
         <div className="w-[60vw] flex flex-row justify-end items-center">
@@ -131,8 +141,16 @@ function TeamFowTab() {
           </div>
         </div>
       </section>
-      <article>
-        <div className="information">
+
+      <section>
+        {activeTab === "Team list" && (
+          <FowIndicator
+            selectedCountry={selectedCountry}
+            selectedFow={selectedFow}
+          />
+        )}
+        {activeTab === "Monthly charts" && <DiagramTeam />}
+        <div className="information bg-white">
           <p>
             If you have any concerns or need clarification, please feel free to
             contact us at the email address:{" "}
@@ -144,7 +162,7 @@ function TeamFowTab() {
             </a>
           </p>
         </div>
-      </article>
+      </section>
     </section>
   );
 }
