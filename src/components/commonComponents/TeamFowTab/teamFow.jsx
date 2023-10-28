@@ -57,10 +57,10 @@ function TeamFowTab() {
           </p>
         </div>
       </section>
-      <section className="desktop:flex flex-row desktop:w-[90vw] desktop:h-[10vh] desktop:ml-3 desktop:mb-1 telephone:flex flex-row telephone:w-[70vw] telephone:mb-3">
+      <section className="sectionSelect">
         <div className="desktop:flex flex-col  desktop:w-[11vw] telephone:w-[20vw] telephone:mr-8">
           <span htmlFor="selectBox">Date range</span>
-          <div className="desktop:flex flex-row desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw]  desktop:h-[4vh] desktop:items-center telephone:w-[25vw] telephone:bg-white telephone:flex flex-row telephone:border-custom-gray telephone:border-2 telephone:rounded-md   telephone:items-center telephone:h-[2.5vh]">
+          <div className="desktop:flex flex-row desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw]  desktop:h-[4vh] desktop:items-center telephone:w-[vw] telephone:bg-white telephone:flex flex-row telephone:border-custom-gray telephone:border-2 telephone:rounded-md   telephone:items-center telephone:h-[2.5vh]">
             <img
               src={calendarImg}
               alt="imagen de un calendario"
@@ -103,37 +103,30 @@ function TeamFowTab() {
             <option value="Roam">Roam</option>
           </select>
         </div>
-        <div className="w-[60vw] flex flex-row justify-end items-center">
-          <div
-            id="buttons"
-            className="flex flex-row items-center justify-center rounded-full border border-underlineGrey w-[20vw] p-1 h-[6vh]"
-          >
+        <div className="sectionButton">
+          <div id="buttons" className="borderButton">
             <button
-              className={`cursor-pointer w-[10vw] h-[5vh] flex flex-row  items-center justify-center text-dark-blue bg-white rounded-full ${
-                activeTab === "Team list"
-                  ? "border-b-2 font-bold text-white bg-bluebuttons"
-                  : "text-black"
+              className={`tabutton ${
+                activeTab === "Team list" ? "effectButton" : "text-black"
               }`}
               onClick={() => setActiveTab("Team list")}
             >
               <img
                 src={activeTab === "Team list" ? charRow : columnsblue}
-                className="w-[1vw] h-[1vw]"
+                className="imageButton"
                 alt="rows of papel"
               />
               Team list
             </button>
             <button
-              className={`w-[10vw] h-[5vh] bg-white flex flex-row items-center justify-center text-dark-blue rounded-full ${
-                activeTab === "Monthly charts"
-                  ? "bg-bluebuttons text-white border-b-2 font-bold "
-                  : "text-black"
+              className={`tabutton ${
+                activeTab === "Monthly charts" ? "effectButton " : "text-black"
               }`}
               onClick={() => setActiveTab("Monthly charts")}
             >
               <img
                 src={activeTab === "Monthly charts" ? diagrWhite : diagram}
-                className="w-[1vw] h-[1vw]"
+                className="imageButton"
                 alt="figure of diagram"
               />
               Monthly charts
