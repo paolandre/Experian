@@ -5,126 +5,20 @@ import "react-datepicker/dist/react-datepicker.css";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
 import promedio from "./../../../assets/teamFow/teamfowpercentage.png";
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
-import arrow from "./../../../assets/teamFow/arrow.png";
-import userProfile from "./../../../assets/teamFow/user.png";
-import novenPorce from "./../../../assets/teamFow/noventaporce.png";
-import cien from "./../../../assets/teamFow/cienporcen.png";
-import ochenta from "./../../../assets/teamFow/ochentaporce.png";
-import colorInformation from "./../../../assets/teamFow/colorInformation.png";
-import "./teamFow.css";
-import felicidades from "./../../../assets/felicidades.png";
-import motivacion from "./../../../assets/motivacion.png";
-import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
-import confetti from "canvas-confetti";
+import charRow from "./../../../assets/charRow.png";
+import diagram from "./../../../assets/diagram.png";
+import diagrWhite from "./../../../assets/diagrWhite.png";
+import columnsblue from "./../../../assets/columnsblue.png";
 
 function TeamFowTab() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-
+  const [activeTab, setActiveTab] = useState("Team list");
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
-  const profile = [
-    {
-      user: userProfile,
-      id: "72836375",
-      country: "Perú",
-      jobTitle: "Senior business consultant",
-      officeLocation: "PE Lima",
-      fow: "Hybrid",
-      imageIndicator: novenPorce,
-      percentage: "90 %",
-    },
-    {
-      user: userProfile,
-      id: "72982736",
-      country: "Chile",
-      jobTitle: "Administrador de base de datos",
-      officeLocation: "CL Santiago (4091)",
-      fow: "Hybrid",
-      imageIndicator: cien,
-      percentage: "100 %",
-    },
-    {
-      user: userProfile,
-      id: "72623202",
-      country: "Colombia",
-      jobTitle: "Service leader",
-      officeLocation: "CO Bogota oficina principal",
-      fow: "Hybrid",
-      imageIndicator: ochenta,
-      percentage: "80 %",
-    },
-    {
-      user: userProfile,
-      id: "72818597",
-      country: "Argentina",
-      jobTitle: "Business consultant",
-      officeLocation: "AR Buenos Aires",
-      fow: "Hybrid",
-      imageIndicator: cien,
-      percentage: "100 %",
-    },
-    {
-      user: userProfile,
-      id: "72765178",
-      country: "Colombia",
-      jobTitle: "Architecture technical leader 1",
-      officeLocation: "CO Bogota oficina principal",
-      fow: "Hybrid",
-      imageIndicator: cien,
-      percentage: "100 %",
-    },
-  ];
-
-  const handleImageClick = (percentage) => {
-    const numericPercentage = parseInt(percentage, 10); // Convierte "90 %" a 90 como un número
-
-    if (numericPercentage < 100) {
-      Swal.fire({
-        imageUrl: motivacion,
-        imagePadding: 0,
-        imageMargin: 0,
-        imageAlt: "Image of motivation",
-        showConfirmButton: true,
-        confirmButtonText: "Send",
-        margin: 0,
-        padding: 10,
-        confirmButtonColor: "#426DA9",
-        customClass: {
-          confirmButton: "my-confirm-button",
-          image: "image-modal",
-        },
-      });
-    }
-
-    if (numericPercentage === 100) {
-      confetti({
-        particleCount: 150,
-        spread: 60,
-      });
-
-      Swal.fire({
-        imageUrl: felicidades,
-        imagePadding: 0,
-        imageMargin: 0,
-        imageAlt: "Image of congratulations",
-        showConfirmButton: true,
-        confirmButtonText: "Send",
-        margin: 0,
-        padding: 10,
-        confirmButtonColor: "#426DA9",
-        customClass: {
-          confirmButton: "my-confirm-button",
-          image: "image-modal",
-        },
-      });
-    }
-  };
-
   return (
-    <section className="w-[100vw] h-[70vh] ">
+    <section className="w-[100vw] h-[70vh]">
       <div className="desktop:w-[90vw]  desktop:flex flex-row-reverse telephone:w-[70vw] telephone:flex flex-row-reverse telephone:mb-2">
         <img
           src={exportbutton}
@@ -199,59 +93,45 @@ function TeamFowTab() {
             <option value="option3">Roam</option>
           </select>
         </div>
+        <div className="w-[60vw] flex flex-row justify-end items-center">
+          <div
+            id="buttons"
+            className="flex flex-row items-center justify-center rounded-full border border-underlineGrey w-[20vw] p-1 h-[6vh]"
+          >
+            <button
+              className={`cursor-pointer w-[10vw] h-[5vh] flex flex-row  items-center justify-center text-dark-blue bg-white rounded-full ${
+                activeTab === "Team list"
+                  ? "border-b-2 font-bold text-white bg-bluebuttons"
+                  : "text-black"
+              }`}
+              onClick={() => setActiveTab("Team list")}
+            >
+              <img
+                src={activeTab === "Team list" ? charRow : columnsblue}
+                className="w-[1vw] h-[1vw]"
+                alt="rows of papel"
+              />
+              Team list
+            </button>
+            <button
+              className={`w-[10vw] h-[5vh] bg-white flex flex-row items-center justify-center text-dark-blue rounded-full ${
+                activeTab === "Monthly charts"
+                  ? "bg-bluebuttons text-white border-b-2 font-bold "
+                  : "text-black"
+              }`}
+              onClick={() => setActiveTab("Monthly charts")}
+            >
+              <img
+                src={activeTab === "Monthly charts" ? diagrWhite : diagram}
+                className="w-[1vw] h-[1vw]"
+                alt="figure of diagram"
+              />
+              Monthly charts
+            </button>
+          </div>
+        </div>
       </section>
-      <article className=" tableArticle">
-        <table className="tableTeam ">
-          <thead>
-            <tr>
-              <th className="firstRow"></th>
-              <th className="idRow">ID</th>
-              <th className=" firstRow">Country</th>
-              <th className=" firstRow">Job title</th>
-              <th className=" firstRow">Office location</th>
-              <th className=" idCol">FOW</th>
-              <th className="titleRow">
-                <div className="indicator">
-                  <p className=" ml-2 mr-3">FOW</p>
-                  <span>indicator</span>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {profile.map((user, index) => (
-              <tr key={index} className="text-center h-[6vh]">
-                <td className="tableProfile">
-                  <img
-                    src={user.user}
-                    alt="user profile"
-                    className="w-[2vw] ml-2"
-                  />
-                </td>
-                <td>
-                  <a href="/employee-view" className="link">
-                    {user.id}
-                  </a>
-                </td>
-                <td className="tableColumns">{user.country}</td>
-                <td className="tableColumns">{user.jobTitle}</td>
-                <td className="tableColumns">{user.officeLocation}</td>
-                <td className="userFow">{user.fow}</td>
-                <td className="  tex-center w-[11vw]">
-                  <div className="percentageItem ">
-                    {user.percentage}
-                    <img
-                      src={user.imageIndicator}
-                      alt="indicator of percentage"
-                      className="cursor-pointer"
-                      onClick={() => handleImageClick(user.percentage)}
-                    />
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <article>
         <div className="information">
           <p>
             If you have any concerns or need clarification, please feel free to
