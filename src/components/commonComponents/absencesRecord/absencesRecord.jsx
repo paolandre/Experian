@@ -3,6 +3,7 @@ import { IoPersonCircleSharp } from 'react-icons/io5';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
+import requests from "./recordData"
 
 function AbsencesRecord() {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -105,94 +106,35 @@ function AbsencesRecord() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="text-center">
-
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72836301</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
-                                <td>2023-08-09</td>
-                                <td>3</td>
-                                <td>
-                                    <span className="text-white bg-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span>
-                                </td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72836302</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-10</td>
-                                <td>2</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm bg-decline text-white border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72838302</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-17</td>
-                                <td>1</td>
-                                <td>
-                                    <span className="text-white bg-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span>
-                                </td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72838312</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
-                                <td>2023-08-29</td>
-                                <td>2</td>
-                                <td>
-                                    <span className="text-white bg-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span>
-                                </td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72839300</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-30</td>
-                                <td>2</td>
-                                <td>
-                                    <span className=" border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span>
-                                </td>
-                                <td><span className="text-decline text-sm bg-decline text-white border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
+                            {requests.map((request) => (
+                                <tr className="text-center" key={request.id}>
+                                    <td className="flex justify-center items-center py-2">
+                                        <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                    </td>
+                                    <td>{request.id}</td>
+                                    <td>{request.fow}</td>
+                                    <td>
+                                        <span className={`py-0.5 text-sm px-2 rounded-full ${request.requestType === 'Authorized exceptions' ? 'bg-yellow-icon' : 'bg-green-icon'} text-black`}>
+                                            {request.requestType}
+                                        </span>
+                                    </td>
+                                    <td>{request.date}</td>
+                                    <td>{request.daysRequested}</td>
+                                    <td>
+                                        <span className={`text-${request.status === 'Approved' ? 'white' : 'custom-gray'} bg-${request.status === 'Approved' ? 'approve' : 'white'} border-2 border-${request.status === 'Approved' ? 'approve' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
+                                            {request.approvalStatus}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span className={`text-${request.status === 'Declined' ? 'white' : 'custom-gray'} bg-${request.status === 'Declined' ? 'decline' : 'white'} border-2 border-${request.status === 'Declined' ? 'decline' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
+                                            {request.declineStatus}
+                                        </span>
+                                    </td>
+                                    <td>{request.dayReviewed}</td>
+                                </tr>
+                            ))}
                         </tbody>
+
                     </table>
                 </div>
 

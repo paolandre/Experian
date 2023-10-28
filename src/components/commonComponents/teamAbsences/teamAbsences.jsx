@@ -5,8 +5,10 @@ import { BiMessageDetail } from 'react-icons/bi';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
+import absencesData from "./absencesData"
 
 function TeamAbsences() {
+
     const [selectedDate, setSelectedDate] = useState(new Date());
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -98,9 +100,9 @@ function TeamAbsences() {
                                 <th className="border border-gray-icon border-2 font-bold py-2">Hora</th>
                                 <td className="border border-gray-icon border-2  font-bold py-2"></td>
 
-                                <th className="border border-gray-icon border-2  font-bold py-2">ID</th>
-                                <th className="border border-gray-icon border-2  font-bold py-2">Type of request</th>
-                                <th className="border border-gray-icon border-2  font-bold py-2">Date</th>
+                                <th className="border border-gray-icon border-2 font-bold py-2">ID</th>
+                                <th className="border border-gray-icon border-2 font-bold py-2">Type of request</th>
+                                <th className="border border-gray-icon border-2 font-bold py-2">Date</th>
                                 <th className="border border-gray-icon border-2 font-bold py-2">Days requested</th>
                                 <th className="border border-gray-icon border-2 font-bold py-2">Remaining days</th>
                                 <th className="border border-gray-icon border-2 font-bold py-2">Approve</th>
@@ -111,91 +113,33 @@ function TeamAbsences() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="text-center">
-                                <td className="py-2">8:30 am</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72836301</td>
-                                <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
-                                <td>2023-08-09</td>
-                                <td>3</td>
-                                <td>5</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-                                <td className="py-2">9:00 am</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72836302</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-10</td>
-                                <td>2</td>
-                                <td>4</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-                                <td className="py-2">10:00 am</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72838302</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-17</td>
-                                <td>1</td>
-                                <td>4</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-                                <td className="py-2">7:00 am</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72838312</td>
-                                <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
-                                <td>2023-08-29</td>
-                                <td>2</td>
-                                <td>7</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-                                <td className="py-2">3:00 pm</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72839300</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-30</td>
-                                <td>2</td>
-                                <td>5</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
+                            {absencesData.map((item, index) => (
+                                <tr key={index} className="text-center">
+                                    <td className="py-2">{item.time}</td>
+                                    <td className="flex justify-center items-center py-2">
+                                        <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                    </td>
+                                    <td>{item.id}</td>
+                                    <td>
+                                        <span className={`py-0.5 text-sm px-2 rounded-full ${item.bgColor} text-black`}>
+                                            {item.type}
+                                        </span>
+                                    </td>
+                                    <td>{item.date}</td>
+                                    <td>{item.daysRequested}</td>
+                                    <td>{item.remainingDays}</td>
+                                    <td>
+                                        <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
+                                    </td>
+                                    <td>
+                                        <span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span>
+                                    </td>
+                                    <td className="text-dark-blue-icons pl-12"><FaRegCalendarAlt /></td>
+                                    <td className="text-dark-blue-icons pl-12"><BiMessageDetail /></td>
+                                </tr>
+                            ))}
                         </tbody>
+
                     </table>
                 </div>
 
