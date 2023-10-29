@@ -14,7 +14,7 @@ export default function EmployeeView() {
             </header>
 
             <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md">
-                <Link to="/">
+                <Link to="/leader-view">
                     <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md ">
                         <AiOutlineArrowLeft className='text-dark-blue' style={{ width: '20px', height: '20px' }} />
                         <h1 className='text-dark-blue px-1 mb-1'>Back Team Absences</h1>
@@ -121,7 +121,7 @@ export default function EmployeeView() {
                         </div>
                     </div>
 
-                  <EmployeeCalendar />
+                    <EmployeeCalendar />
                 </div>
 
             </div>

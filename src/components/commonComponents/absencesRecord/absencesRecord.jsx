@@ -3,8 +3,9 @@ import { IoPersonCircleSharp } from 'react-icons/io5';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
-import requests from "./recordData"
+import requests from "./recordData";
 import { BiSearchAlt } from 'react-icons/bi';
+import { exportToExcel, filterData } from './functions';
 
 function AbsencesRecord() {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -19,17 +20,7 @@ function AbsencesRecord() {
 
     const [searchValue, setSearchValue] = useState("");
 
-
-    const filteredData = useMemo(() => {
-        const selectedYear = selectedDate.getFullYear();
-        const selectedMonth = selectedDate.getMonth();
-
-        return requests.filter(request =>
-            (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
-            (searchValue ? request.id.includes(searchValue) : true) &&
-            (new Date(request.date).getMonth() === selectedMonth && new Date(request.date).getFullYear() === selectedYear)
-        );
-    }, [selectedRequest, searchValue, selectedDate]);
+    const filteredData = useMemo(() => filterData(selectedRequest, searchValue, selectedDate, requests), [selectedRequest, searchValue, selectedDate]);
 
     return (
         <>
@@ -38,11 +29,14 @@ function AbsencesRecord() {
                     <img
                         src={exportbutton}
                         alt="boton para exportar información"
-                        className="w-24 transition-transform transform hover:scale-110"></img>
+                        className="w-24 transition-transform transform hover:scale-110 cursor-pointer"
+                        onClick={() => exportToExcel(filteredData)}
+                    />
+
                 </div>
                 <section className="flex flex-col md:flex-row w-11/12 mx-auto">
                     <div className="flex flex-col w-[11vw]">
-                        <span htmlFor="dateSelectBox">Date range</span>
+                        <span htmlFor="dateSelectBox">Date</span>
                         <div className="flex flex-row bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] items-center">
                             <img
                                 src={calendarImg}
@@ -81,7 +75,7 @@ function AbsencesRecord() {
                             <input
                                 id="searchInputBox"
                                 type="text"
-                                placeholder="..."
+                                placeholder="User ID..."
                                 className="w-[7vw] border-transparent focus:outline-none pl-2"
                                 value={searchValue}
                                 onChange={(e) => setSearchValue(e.target.value)}
@@ -126,23 +120,16 @@ function AbsencesRecord() {
                                 <th className="border border-gray-icon border-2 font-bold p-3">Approve</th>
                                 <th className="border border-gray-icon border-2 font-bold p-3">Decline</th>
                                 <th className="border border-gray-icon border-2 font-bold p-3">Day reviewed</th>
-                                <th className="border border-gray-icon border-2 font-bold p-3">Date</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredData
                                 .map((request, index) => (
                                     <tr key={index} className="text-center">
-                                        <td className="py-2">{request.time}</td>
                                         <td className="flex justify-center items-center py-2">
                                             <IoPersonCircleSharp className="text-gray-icon" size={24} />
                                         </td>
-
-
-                                        <td><a href="/employee-view" className="link">
-                                            {request.id}
-                                        </a></td>
-
+                                        <td> {request.id} </td>
                                         <td>{request.fow}</td>
                                         <td>
                                             <span className={`py-0.5 text-sm px-2 rounded-full ${request.requestType === 'Authorized exceptions' ? 'bg-yellow-icon' : 'bg-green-icon'} text-black`}>
