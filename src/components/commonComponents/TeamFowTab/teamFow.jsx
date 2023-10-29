@@ -27,7 +27,7 @@ function TeamFowTab() {
     setSelectedFow(e.target.value);
   };
   return (
-    <section className="w-[100vw] h-[70vh]">
+    <section className="w-[100vw] h-fit">
       <div className="desktop:w-[90vw]  desktop:flex flex-row-reverse telephone:w-[70vw] telephone:flex flex-row-reverse telephone:mb-2">
         <img
           src={exportbutton}
@@ -59,7 +59,7 @@ function TeamFowTab() {
       <section className="sectionSelect">
         <div className="desktop:flex flex-col  desktop:w-[11vw] telephone:w-[20vw] telephone:mr-8">
           <span htmlFor="selectBox">Date range</span>
-          <div className="desktop:flex flex-row desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw]  desktop:h-[4vh] desktop:items-center telephone:w-[vw] telephone:bg-white telephone:flex flex-row telephone:border-custom-gray telephone:border-2 telephone:rounded-md   telephone:items-center telephone:h-[2.5vh]">
+          <div className="desktop:flex flex-row desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw]  desktop:h-[4vh] desktop:items-center telephone:w-[25vw] telephone:bg-white telephone:flex flex-row telephone:border-custom-gray telephone:border-2 telephone:rounded-md   telephone:items-center telephone:h-[2.5vh]">
             <img
               src={calendarImg}
               alt="imagen de un calendario"
@@ -68,8 +68,8 @@ function TeamFowTab() {
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
-              dateFormat="dd/MMM/yyyy"
-              className="desktop:w-[7vw] desktop:border-transparent desktop:focus:outline-none telephone:w-[20vw] telephone:text-xs telephone:h-[1.5vh]"
+              dateFormat="MMM/yyyy"
+              className="desktop:w-[7vw] desktop:border-transparent desktop:focus:outline-none telephone:w-[19vw] telephone:text-xs telephone:h-[1.5vh]"
             />
           </div>
         </div>
