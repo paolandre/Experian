@@ -1,4 +1,5 @@
 import { Bar } from "react-chartjs-2";
+
 import "./teamFow";
 import {
   Chart as ChartJS,
@@ -91,9 +92,9 @@ const misoptions = {
     },
     onResize: (chart) => {
       if (chart.width < 390) {
-        chart.legend.options.position = "top"; // Cambiar la posición a la izquierda cuando el ancho del gráfico es menor de 390
+        chart.legend.options.position = "top";
       } else {
-        chart.legend.options.position = "left"; // Volver a la posición superior cuando el ancho sea mayor o igual a 390
+        chart.legend.options.position = "left";
       }
     },
   },

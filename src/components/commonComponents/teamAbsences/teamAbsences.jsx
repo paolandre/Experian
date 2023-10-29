@@ -45,7 +45,7 @@ function TeamAbsences() {
                             />
                             <DatePicker
                                 selected={selectedDate}
-                                onChange={(date) => handleDateChange(date, setSelectedDate)}  // Modificado aquí
+                                onChange={(date) => handleDateChange(date, setSelectedDate)}
                                 showMonthYearPicker
                                 dateFormat="MMM/yyyy"
                                 className="w-[7vw] border-transparent focus:outline-none"
@@ -58,7 +58,7 @@ function TeamAbsences() {
                         <select
                             id="selectRequest"
                             value={selectedRequest}
-                            onChange={(e) => handleRequest(e, setSelectedRequest)}  // Modificado aquí
+                            onChange={(e) => handleRequest(e, setSelectedRequest)}
                             className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
                         >
                             <option value="default">
