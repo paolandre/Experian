@@ -29,7 +29,7 @@ export default function LeaderView() {
         </Link>
       </div>
 
-      <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl relative ">
+      <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl relative  h-fit">
         <span
           className={`cursor-pointer ${
             activeTab === "Personal FOW"
