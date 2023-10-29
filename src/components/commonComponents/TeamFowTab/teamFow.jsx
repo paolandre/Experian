@@ -1,4 +1,3 @@
-// TeamFowTab.jsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -106,9 +105,8 @@ function TeamFowTab() {
         <div className="sectionButton">
           <div id="buttons" className="borderButton">
             <button
-              className={`tabutton ${
-                activeTab === "Team list" ? "effectButton" : "text-black"
-              }`}
+              className={`tabutton ${activeTab === "Team list" ? "effectButton" : "text-black"
+                }`}
               onClick={() => setActiveTab("Team list")}
             >
               <img
@@ -119,9 +117,8 @@ function TeamFowTab() {
               Team list
             </button>
             <button
-              className={`tabutton ${
-                activeTab === "Monthly charts" ? "effectButton " : "text-black"
-              }`}
+              className={`tabutton ${activeTab === "Monthly charts" ? "effectButton " : "text-black"
+                }`}
               onClick={() => setActiveTab("Monthly charts")}
             >
               <img
@@ -143,18 +140,12 @@ function TeamFowTab() {
           />
         )}
         {activeTab === "Monthly charts" && <DiagramTeam />}
-        <div className="information bg-white">
-          <p>
-            If you have any concerns or need clarification, please feel free to
-            contact us at the email address:{" "}
-            <a
-              href="mailto:onehrsla@experian.com"
-              className="hover:underline text-black font-bold"
-            >
-              onehrsla@experian.com
-            </a>
-          </p>
-        </div>
+
+        {/* Notification */}
+        <div div className="border-l-light-blue border-4 pl-4 p-2 bg-white shadow-custom-shadow rounded-md mt-4" style={{ maxWidth: '900px' }
+        }>
+          <p>If you have any concerns or need clarification, please feel free to contact us at the email address: <a href="mailto:onehrsla@experian.com" className="hover:underline text-black font-bold">onehrsla@experian.com</a>.</p>
+        </div >
       </section>
     </section>
   );
