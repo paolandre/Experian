@@ -27,7 +27,7 @@ function TeamFowTab() {
     setSelectedFow(e.target.value);
   };
   return (
-    <section className="w-[100vw] h-[70vh]">
+    <section className="w-[100vw] h-fit">
       <div className="desktop:w-[90vw]  desktop:flex flex-row-reverse telephone:w-[70vw] telephone:flex flex-row-reverse telephone:mb-2">
         <img
           src={exportbutton}
@@ -35,7 +35,7 @@ function TeamFowTab() {
           className="desktop:w-[100px] desktop:transition-transform transform hover:scale-110 telephone:w-[90px] mt-2"
         />
       </div>
-      <section className="desktop:flex flex-row desktop:w-[90vw] desktop:h-[8vh] desktop:ml-3 desktop:mb-3 telephone:flex flex-row telephone:w-[90vw] telephone:h-[8vh] telephone:ml-3 telephone:mb-2">
+      <section className="desktop:flex flex-row desktop:w-[90vw] desktop:h-[8vh] desktop:ml-3 desktop:mb-3 telephone:flex flex-row telephone:w-[90vw] telephone:h-[7vh] telephone:ml-3 telephone:mb-[1px]">
         <div className="desktop:w-[12vw] desktop:ml-3  desktop:flex flex-col desktop:border-r-2 desktop:border-greyborder   telephone:ml-0  telephone:w-[20vw] telephone:border-r-2 telephone:border-greyborder telephone:h-[6vh]">
           <p className="desktop:text-xl desktop:font-bold desktop:mb-4 telephone:text-xs telephone:font-bold telephone:mb-0">
             5
@@ -58,8 +58,10 @@ function TeamFowTab() {
       </section>
       <section className="sectionSelect">
         <div className="desktop:flex flex-col  desktop:w-[11vw] telephone:w-[20vw] telephone:mr-8">
-          <span htmlFor="selectBox">Date range</span>
-          <div className="desktop:flex flex-row desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw]  desktop:h-[4vh] desktop:items-center telephone:w-[vw] telephone:bg-white telephone:flex flex-row telephone:border-custom-gray telephone:border-2 telephone:rounded-md   telephone:items-center telephone:h-[2.5vh]">
+          <span htmlFor="selectBox" className="textParraf">
+            Date range
+          </span>
+          <div className="desktop:flex flex-row  justify-center desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw]  desktop:h-[4vh] desktop:items-center telephone:w-[25vw] telephone:bg-white telephone:flex flex-row telephone:border-custom-gray telephone:border-2 telephone:rounded-md   telephone:items-center telephone:h-[2.5vh]">
             <img
               src={calendarImg}
               alt="imagen de un calendario"
@@ -68,20 +70,23 @@ function TeamFowTab() {
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
-              dateFormat="dd/MMM/yyyy"
-              className="desktop:w-[7vw] desktop:border-transparent desktop:focus:outline-none telephone:w-[20vw] telephone:text-xs telephone:h-[1.5vh]"
+              showMonthYearPicker
+              dateFormat="MMM/yyyy"
+              className="desktop:w-[6vw] desktop:border-transparent desktop:focus:outline-none telephone:w-[19vw] telephone:text-xs telephone:h-[1.5vh]"
             />
           </div>
         </div>
         <div className="desktop:flex flex-col desktop:w-[11vw] telephone:w-[20vw] telephone:mr-5">
-          <label htmlFor="selectBox">Country</label>
+          <label htmlFor="selectBox" className="textParraf">
+            Country
+          </label>
           <select
             id="selectBox"
             value={selectedCountry}
             onChange={handleCountry}
             className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
           >
-            <option value="default">Select</option>
+            <option value="default">All</option>
             <option value="Argentina">Argentina</option>
             <option value="Chile">Chile</option>
             <option value="Colombia">Colombia</option>
@@ -89,14 +94,16 @@ function TeamFowTab() {
           </select>
         </div>
         <div className="desktop:flex flex-col desktop:w-[10vw] telephone:w-[20vw] telephone:mr-5">
-          <label htmlFor="selectBox">FOW</label>
+          <label htmlFor="selectBox" className="textParraf">
+            FOW
+          </label>
           <select
             id="selectBox"
             value={selectedFow}
             onChange={handleFow}
             className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs "
           >
-            <option value="default">Select</option>
+            <option value="default">All</option>
             <option value="Hybrid">Hybrid</option>
             <option value="Home office">Home office</option>
             <option value="Roam">Roam</option>
@@ -105,8 +112,9 @@ function TeamFowTab() {
         <div className="sectionButton">
           <div id="buttons" className="borderButton">
             <button
-              className={`tabutton ${activeTab === "Team list" ? "effectButton" : "text-black"
-                }`}
+              className={`tabutton ${
+                activeTab === "Team list" ? "effectButton" : "text-black"
+              }`}
               onClick={() => setActiveTab("Team list")}
             >
               <img
@@ -117,8 +125,9 @@ function TeamFowTab() {
               Team list
             </button>
             <button
-              className={`tabutton ${activeTab === "Monthly charts" ? "effectButton " : "text-black"
-                }`}
+              className={`tabutton ${
+                activeTab === "Monthly charts" ? "effectButton " : "text-black"
+              }`}
               onClick={() => setActiveTab("Monthly charts")}
             >
               <img
@@ -142,10 +151,23 @@ function TeamFowTab() {
         {activeTab === "Monthly charts" && <DiagramTeam />}
 
         {/* Notification */}
-        <div div className="border-l-light-blue border-4 pl-4 p-2 bg-white shadow-custom-shadow rounded-md mt-4" style={{ maxWidth: '900px' }
-        }>
-          <p>If you have any concerns or need clarification, please feel free to contact us at the email address: <a href="mailto:onehrsla@experian.com" className="hover:underline text-black font-bold">onehrsla@experian.com</a>.</p>
-        </div >
+        <div
+          div
+          className="border-l-light-blue border-4 pl-4 p-2 bg-white shadow-custom-shadow rounded-md mt-4"
+          style={{ maxWidth: "60vw" }}
+        >
+          <p className="textParraf">
+            If you have any concerns or need clarification, please feel free to
+            contact us at the email address:{" "}
+            <a
+              href="mailto:onehrsla@experian.com"
+              className="hover:underline text-black font-bold"
+            >
+              onehrsla@experian.com
+            </a>
+            .
+          </p>
+        </div>
       </section>
     </section>
   );

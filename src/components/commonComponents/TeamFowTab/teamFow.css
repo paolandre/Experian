@@ -13,6 +13,20 @@
   box-shadow: 1px rgba(0, 0, 0, 0.431);
 }
 
+.diagramTable {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  height: 80vh;
+  padding: 10px;
+  background-color: white;
+  margin-left: 80px;
+  margin-bottom: 2px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+}
+
 .tableTeam {
   width: 90vw;
   height: 10vh;
@@ -154,6 +168,9 @@
   width: 1vw;
   height: 2vh;
 }
+.textParraf {
+  color: black;
+}
 @media screen and (max-width: 640px) {
   .firstRow,
   .tableColumns,
@@ -201,7 +218,7 @@
   .sectionSelect {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 0%;
+    margin-left: -10px;
   }
 
   .effectButton {
@@ -216,7 +233,7 @@
   .borderButton {
     width: 80vw;
     height: 4vh;
-    margin-left: 10vw;
+    margin-left: 8vw;
   }
   .tabutton {
     width: 29vw;
@@ -228,8 +245,24 @@
   }
   .sectionButton {
     width: 30vw;
+    height: 12vw;
     display: flex;
     flex-direction: row-reverse;
     margin-top: 4px;
+    margin-bottom: 10px;
+  }
+  .image-modal {
+    margin-top: -2px;
+    width: 85vw;
+    height: 25vh;
+  }
+  .diagramTable {
+    width: 70vw;
+    margin-left: 0;
+    height: 30vh;
+    margin-top: 3vw;
+  }
+  .textParraf {
+    font-size: small;
   }
 }
