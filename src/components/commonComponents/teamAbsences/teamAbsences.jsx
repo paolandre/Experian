@@ -15,6 +15,8 @@ import {
     handleDecline,
     exportToExcel
 } from './functions.js';
+import Modal from "./../../commonComponents/modal/modal";
+
 
 function TeamAbsences() {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -22,6 +24,17 @@ function TeamAbsences() {
     const [searchValue, setSearchValue] = useState("");
 
     const filteredData = useMemo(() => filterData(selectedRequest, searchValue, selectedDate, absencesData), [selectedRequest, searchValue, selectedDate]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+
 
     return (
         <>
@@ -157,22 +170,21 @@ function TeamAbsences() {
                                                 <FaRegCalendarAlt />
                                             </a>
                                         </td>
-
-
-                                        <td className="text-dark-blue-icons pl-12"><BiMessageDetail /></td>
+                                        <td className="text-dark-blue-icons pl-12 cursor-pointer" onClick={handleOpenModal}>
+                                            <BiMessageDetail />
+                                        </td>
                                     </tr>
                                 ))}
                         </tbody>
-
                     </table>
+                    <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
                 </div>
-
             </div>
+
             {/* Notification */}
             <div className="border-l-light-blue border-4 pl-4 p-2 bg-white shadow-custom-shadow rounded-md mt-4" style={{ maxWidth: '900px' }}>
                 <p>If you have any concerns or need clarification, please feel free to contact us at the email address: <a href="mailto:onehrsla@experian.com" className="hover:underline text-black font-bold">onehrsla@experian.com</a>.</p>
             </div>
-
         </>
     );
 }

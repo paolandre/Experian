@@ -49,6 +49,7 @@ function TeamFowTab() {
     setAveragePercentage(average.toFixed(0));
   }, [selectedCountry, selectedFow, selectedDate]);
 
+
   return (
     <section className="w-[100vw] h-fit">
       <div className="desktop:w-[90vw]  desktop:flex flex-row-reverse telephone:w-[70vw] telephone:flex flex-row-reverse telephone:mb-2">
