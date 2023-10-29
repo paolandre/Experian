@@ -1,4 +1,5 @@
 import { Bar } from "react-chartjs-2";
+import "./teamFow";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -25,18 +26,8 @@ ChartJS.register(
 );
 
 const percentageMonthly = [85, 100, 20, 100, 100, 55, 100, 90, 20];
-const abscense = [80, 25, 60, 5, 45, 10, 40, 80, 5];
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-];
+const abscense = [10, 0, 20, 0, 0, 30, 0, 10, 5];
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept"];
 
 const percentageNotAchieved = percentageMonthly.map((value) =>
   value < 100 ? value : 0
@@ -98,12 +89,19 @@ const misoptions = {
       position: "left",
       align: "start",
     },
+    onResize: (chart) => {
+      if (chart.width < 390) {
+        chart.legend.options.position = "top"; // Cambiar la posición a la izquierda cuando el ancho del gráfico es menor de 390
+      } else {
+        chart.legend.options.position = "left"; // Volver a la posición superior cuando el ancho sea mayor o igual a 390
+      }
+    },
   },
 };
 
 export default function DiagramTeam() {
   return (
-    <div className=" flex flex-row items-center justify-center w-[80vw] h-[80vh] p-10 bg-white ml-20 mb-2 drop-shadow-2xl">
+    <div className="diagramTable">
       <Bar data={midata} options={misoptions} />
     </div>
   );
