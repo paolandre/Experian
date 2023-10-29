@@ -5,7 +5,12 @@ import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
 import requests from "./recordData";
 import { BiSearchAlt } from 'react-icons/bi';
-import { exportToExcel, filterData } from './functions';
+import {
+    exportToExcel,
+    filterData,
+    getApprovedClasses,
+    getDeclinedClasses
+} from './functions';
 
 function AbsencesRecord() {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -139,13 +144,13 @@ function AbsencesRecord() {
                                         <td>{request.date}</td>
                                         <td>{request.daysRequested}</td>
                                         <td>
-                                            <span className={`text-${request.status === 'Approved' ? 'white' : 'custom-gray'} bg-${request.status === 'Approved' ? 'approve' : 'white'} border-2 border-${request.status === 'Approved' ? 'approve' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
-                                                {request.approvalStatus}
+                                            <span className={`${getApprovedClasses(request.status)} border-2 py-0.5 text-sm px-2 rounded-2xl`}>
+                                                Approved
                                             </span>
                                         </td>
                                         <td>
-                                            <span className={`text-${request.status === 'Declined' ? 'white' : 'custom-gray'} bg-${request.status === 'Declined' ? 'decline' : 'white'} border-2 border-${request.status === 'Declined' ? 'decline' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
-                                                {request.declineStatus}
+                                            <span className={`${getDeclinedClasses(request.status)} border-2 py-0.5 text-sm px-2 rounded-2xl`}>
+                                                Declined
                                             </span>
                                         </td>
                                         <td>{request.dayReviewed}</td>
