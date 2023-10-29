@@ -4,12 +4,20 @@ import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
 import requests from "./recordData"
+import { BiSearchAlt } from 'react-icons/bi';
 
 function AbsencesRecord() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
+
+    const [selectedRequest, setSelectedRequest] = useState("default");
+    const handleRequest = (e) => {
+        setSelectedRequest(e.target.value);
+    };
+
+    const [searchValue, setSearchValue] = useState("");
 
     return (
         <>
@@ -37,35 +45,37 @@ function AbsencesRecord() {
                             />
                         </div>
                     </div>
+
                     <div className="flex flex-col w-[11vw]">
-                        <label htmlFor="countrySelectBox">Country</label>
+                        <label htmlFor="requestSelectBox">Type of request</label>
                         <select
-                            id="countrySelectBox"
-                            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh]"
+                            id="selectRequest"
+                            value={selectedRequest}
+                            onChange={handleRequest}
+                            className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
                         >
-                            <option value="default" disabled selected>
-                                Select
+                            <option value="default">
+                                All
                             </option>
-                            <option value="option1">Argentina</option>
-                            <option value="option2">Chile</option>
-                            <option value="option3">Colombia</option>
-                            <option value="option4">Perú</option>
+                            <option value="Scheduled absences">Scheduled absences</option>
+                            <option value="Authorized exceptions">Authorized exceptions</option>
                         </select>
                     </div>
 
-                    <div className="flex flex-col w-[10vw]">
-                        <label htmlFor="fowSelectBox">FOW</label>
-                        <select
-                            id="fowSelectBox"
-                            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh]"
-                        >
-                            <option value="default" disabled selected>
-                                Select
-                            </option>
-                            <option value="option1">Hybrid</option>
-                            <option value="option2">Home office</option>
-                            <option value="option3">Roam</option>
-                        </select>
+                    <div className="flex flex-col w-[11vw] ml-4">
+                        <label htmlFor="searchInputBox">Search</label>
+                        <div className="flex flex-row bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] items-center">
+                            <input
+                                id="searchInputBox"
+                                type="text"
+                                placeholder="..."
+                                className="w-[7vw] border-transparent focus:outline-none pl-2"
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                            />
+
+                            <BiSearchAlt className="text-dark-blue-icons w-5 h-5" />
+                        </div>
                     </div>
                 </section>
             </div>
@@ -106,33 +116,41 @@ function AbsencesRecord() {
                             </tr>
                         </thead>
                         <tbody>
-                            {requests.map((request) => (
-                                <tr className="text-center" key={request.id}>
-                                    <td className="flex justify-center items-center py-2">
-                                        <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                    </td>
-                                    <td>{request.id}</td>
-                                    <td>{request.fow}</td>
-                                    <td>
-                                        <span className={`py-0.5 text-sm px-2 rounded-full ${request.requestType === 'Authorized exceptions' ? 'bg-yellow-icon' : 'bg-green-icon'} text-black`}>
-                                            {request.requestType}
-                                        </span>
-                                    </td>
-                                    <td>{request.date}</td>
-                                    <td>{request.daysRequested}</td>
-                                    <td>
-                                        <span className={`text-${request.status === 'Approved' ? 'white' : 'custom-gray'} bg-${request.status === 'Approved' ? 'approve' : 'white'} border-2 border-${request.status === 'Approved' ? 'approve' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
-                                            {request.approvalStatus}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className={`text-${request.status === 'Declined' ? 'white' : 'custom-gray'} bg-${request.status === 'Declined' ? 'decline' : 'white'} border-2 border-${request.status === 'Declined' ? 'decline' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
-                                            {request.declineStatus}
-                                        </span>
-                                    </td>
-                                    <td>{request.dayReviewed}</td>
-                                </tr>
-                            ))}
+                            {requests
+                                .filter((request) =>
+                                    (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
+                                    (searchValue ? request.id.includes(searchValue) : true))
+                                .map((request, index) => (
+                                    <tr className="text-center" key={request.id}>
+                                        <td className="flex justify-center items-center py-2">
+                                            <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                        </td>
+
+                                        <td><a href="/employee-view" className="link">
+                                            {request.id}
+                                        </a></td>
+
+                                        <td>{request.fow}</td>
+                                        <td>
+                                            <span className={`py-0.5 text-sm px-2 rounded-full ${request.requestType === 'Authorized exceptions' ? 'bg-yellow-icon' : 'bg-green-icon'} text-black`}>
+                                                {request.requestType}
+                                            </span>
+                                        </td>
+                                        <td>{request.date}</td>
+                                        <td>{request.daysRequested}</td>
+                                        <td>
+                                            <span className={`text-${request.status === 'Approved' ? 'white' : 'custom-gray'} bg-${request.status === 'Approved' ? 'approve' : 'white'} border-2 border-${request.status === 'Approved' ? 'approve' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
+                                                {request.approvalStatus}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span className={`text-${request.status === 'Declined' ? 'white' : 'custom-gray'} bg-${request.status === 'Declined' ? 'decline' : 'white'} border-2 border-${request.status === 'Declined' ? 'decline' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
+                                                {request.declineStatus}
+                                            </span>
+                                        </td>
+                                        <td>{request.dayReviewed}</td>
+                                    </tr>
+                                ))}
                         </tbody>
 
                     </table>

@@ -2,7 +2,7 @@ const absencesData = [
     {
         time: "8:30 am",
         id: "72836301",
-        type: "Authorized exceptions",
+        requestType: "Authorized exceptions",
         bgColor: "bg-yellow-icon",
         date: "2023-08-09",
         daysRequested: 3,
@@ -11,7 +11,7 @@ const absencesData = [
     {
         time: "9:15 am",
         id: "72803931",
-        type: "Scheduled absences",
+        requestType: "Scheduled absences",
         bgColor: "bg-green-icon",
         date: "2023-08-12",
         daysRequested: 2,
@@ -20,7 +20,7 @@ const absencesData = [
     {
         time: "10:45 am",
         id: "72823931",
-        type: "Authorized exceptions",
+        requestType: "Authorized exceptions",
         bgColor: "bg-yellow-icon",
         date: "2023-08-12",
         daysRequested: 4,
@@ -29,7 +29,7 @@ const absencesData = [
     {
         time: "7:00 am",
         id: "72823986",
-        type: "Scheduled absences",
+        requestType: "Scheduled absences",
         bgColor: "bg-green-icon",
         date: "2023-08-21",
         daysRequested: 4,
@@ -38,7 +38,7 @@ const absencesData = [
     {
         time: "7:15 am",
         id: "72743986",
-        type: "Scheduled absences",
+        requestType: "Scheduled absences",
         bgColor: "bg-green-icon",
         date: "2023-08-13",
         daysRequested: 3,

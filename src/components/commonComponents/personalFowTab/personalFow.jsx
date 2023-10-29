@@ -2,6 +2,7 @@ import React from "react";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import "./personalFow.css";
 import MyCalendar from "../calendar/calendar";
+
 function PersonalFowTab() {
   return (
     <div className="flex flex-col sm:flex-row">

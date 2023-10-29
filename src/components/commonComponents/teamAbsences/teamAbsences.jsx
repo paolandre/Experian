@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
 import absencesData from "./absencesData"
+import { BiSearchAlt } from 'react-icons/bi';
 
 function TeamAbsences() {
 
@@ -13,6 +14,13 @@ function TeamAbsences() {
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
+
+    const [selectedRequest, setSelectedRequest] = useState("default");
+    const handleRequest = (e) => {
+        setSelectedRequest(e.target.value);
+    };
+
+    const [searchValue, setSearchValue] = useState("");
 
     return (
         <>
@@ -40,35 +48,37 @@ function TeamAbsences() {
                             />
                         </div>
                     </div>
+
                     <div className="flex flex-col w-[11vw]">
-                        <label htmlFor="countrySelectBox">Country</label>
+                        <label htmlFor="requestSelectBox">Type of request</label>
                         <select
-                            id="countrySelectBox"
-                            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh]"
+                            id="selectRequest"
+                            value={selectedRequest}
+                            onChange={handleRequest}
+                            className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
                         >
-                            <option value="default" disabled selected>
-                                Select
+                            <option value="default">
+                                All
                             </option>
-                            <option value="option1">Argentina</option>
-                            <option value="option2">Chile</option>
-                            <option value="option3">Colombia</option>
-                            <option value="option4">Perú</option>
+                            <option value="Scheduled absences">Scheduled absences</option>
+                            <option value="Authorized exceptions">Authorized exceptions</option>
                         </select>
                     </div>
 
-                    <div className="flex flex-col w-[10vw]">
-                        <label htmlFor="fowSelectBox">FOW</label>
-                        <select
-                            id="fowSelectBox"
-                            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh]"
-                        >
-                            <option value="default" disabled selected>
-                                Select
-                            </option>
-                            <option value="option1">Hybrid</option>
-                            <option value="option2">Home office</option>
-                            <option value="option3">Roam</option>
-                        </select>
+                    <div className="flex flex-col w-[11vw] ml-4">
+                        <label htmlFor="searchInputBox">Search</label>
+                        <div className="flex flex-row bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] items-center">
+                            <input
+                                id="searchInputBox"
+                                type="text"
+                                placeholder="..."
+                                className="w-[7vw] border-transparent focus:outline-none pl-2"
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                            />
+
+                            <BiSearchAlt className="text-dark-blue-icons w-5 h-5" />
+                        </div>
                     </div>
                 </section>
             </div>
@@ -113,31 +123,39 @@ function TeamAbsences() {
                             </tr>
                         </thead>
                         <tbody>
-                            {absencesData.map((item, index) => (
-                                <tr key={index} className="text-center">
-                                    <td className="py-2">{item.time}</td>
-                                    <td className="flex justify-center items-center py-2">
-                                        <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                    </td>
-                                    <td>{item.id}</td>
-                                    <td>
-                                        <span className={`py-0.5 text-sm px-2 rounded-full ${item.bgColor} text-black`}>
-                                            {item.type}
-                                        </span>
-                                    </td>
-                                    <td>{item.date}</td>
-                                    <td>{item.daysRequested}</td>
-                                    <td>{item.remainingDays}</td>
-                                    <td>
-                                        <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                    </td>
-                                    <td>
-                                        <span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span>
-                                    </td>
-                                    <td className="text-dark-blue-icons pl-12"><FaRegCalendarAlt /></td>
-                                    <td className="text-dark-blue-icons pl-12"><BiMessageDetail /></td>
-                                </tr>
-                            ))}
+                            {absencesData
+                                .filter(request =>
+                                    (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
+                                    (searchValue ? request.id.includes(searchValue) : true))
+                                .map((item, index) => (
+                                    <tr key={index} className="text-center">
+                                        <td className="py-2">{item.time}</td>
+                                        <td className="flex justify-center items-center py-2">
+                                            <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                        </td>
+
+                                        <td><a href="/employee-view" className="link">
+                                            {item.id}
+                                        </a></td>
+
+                                        <td>
+                                            <span className={`py-0.5 text-sm px-2 rounded-full ${item.bgColor} text-black`}>
+                                                {item.requestType}
+                                            </span>
+                                        </td>
+                                        <td>{item.date}</td>
+                                        <td>{item.daysRequested}</td>
+                                        <td>{item.remainingDays}</td>
+                                        <td>
+                                            <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
+                                        </td>
+                                        <td>
+                                            <span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span>
+                                        </td>
+                                        <td className="text-dark-blue-icons pl-12"><FaRegCalendarAlt /></td>
+                                        <td className="text-dark-blue-icons pl-12"><BiMessageDetail /></td>
+                                    </tr>
+                                ))}
                         </tbody>
 
                     </table>
