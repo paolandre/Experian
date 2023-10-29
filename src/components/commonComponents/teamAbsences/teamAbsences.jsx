@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { IoPersonCircleSharp } from 'react-icons/io5';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { BiMessageDetail } from 'react-icons/bi';
@@ -7,6 +6,8 @@ import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
 import absencesData from "./absencesData"
 import { BiSearchAlt } from 'react-icons/bi';
+import React, { useState, useMemo } from "react";
+import Swal from 'sweetalert2';
 
 function TeamAbsences() {
 
@@ -21,6 +22,50 @@ function TeamAbsences() {
     };
 
     const [searchValue, setSearchValue] = useState("");
+
+    const filteredData = useMemo(() => {
+        const selectedYear = selectedDate.getFullYear();
+        const selectedMonth = selectedDate.getMonth();
+
+        return absencesData.filter(request =>
+            (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
+            (searchValue ? request.id.includes(searchValue) : true) &&
+            (new Date(request.date).getMonth() === selectedMonth && new Date(request.date).getFullYear() === selectedYear)
+        );
+    }, [selectedRequest, searchValue, selectedDate]);
+
+    const handleApprove = () => {
+        Swal.fire({
+            title: '¿Estás seguro/a de que quieres aprobar esta solicitud?',
+            icon: 'warning',
+            iconColor: '#426DA9',
+            showCancelButton: true,
+            confirmButtonColor: '#426DA9',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, ¡aprobar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Código para manejar la aprobación
+            }
+        })
+    };
+
+    const handleDecline = () => {
+        Swal.fire({
+            title: '¿Estás seguro/a de que quieres declinar esta solicitud?',
+            icon: 'warning',
+            iconColor: '#426DA9',
+            showCancelButton: true,
+            confirmButtonColor: '#426DA9',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, ¡declinar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            }
+        })
+    };
 
     return (
         <>
@@ -43,7 +88,8 @@ function TeamAbsences() {
                             <DatePicker
                                 selected={selectedDate}
                                 onChange={handleDateChange}
-                                dateFormat="dd/MMM/yyyy"
+                                showMonthYearPicker
+                                dateFormat="MMM/yyyy"
                                 className="w-[7vw] border-transparent focus:outline-none"
                             />
                         </div>
@@ -123,10 +169,7 @@ function TeamAbsences() {
                             </tr>
                         </thead>
                         <tbody>
-                            {absencesData
-                                .filter(request =>
-                                    (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
-                                    (searchValue ? request.id.includes(searchValue) : true))
+                            {filteredData
                                 .map((item, index) => (
                                     <tr key={index} className="text-center">
                                         <td className="py-2">{item.time}</td>
@@ -147,10 +190,10 @@ function TeamAbsences() {
                                         <td>{item.daysRequested}</td>
                                         <td>{item.remainingDays}</td>
                                         <td>
-                                            <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
+                                            <button onClick={handleApprove} className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approve</button>
                                         </td>
                                         <td>
-                                            <span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span>
+                                            <button onClick={handleDecline} className="text-decline border-2 border-decline py-0.5 text-sm px-2 rounded-2xl">Decline</button>
                                         </td>
                                         <td className="text-dark-blue-icons pl-12"><FaRegCalendarAlt /></td>
                                         <td className="text-dark-blue-icons pl-12"><BiMessageDetail /></td>

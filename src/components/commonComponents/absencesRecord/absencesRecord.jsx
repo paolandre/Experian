@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { IoPersonCircleSharp } from 'react-icons/io5';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
@@ -18,6 +18,18 @@ function AbsencesRecord() {
     };
 
     const [searchValue, setSearchValue] = useState("");
+
+
+    const filteredData = useMemo(() => {
+        const selectedYear = selectedDate.getFullYear();
+        const selectedMonth = selectedDate.getMonth();
+
+        return requests.filter(request =>
+            (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
+            (searchValue ? request.id.includes(searchValue) : true) &&
+            (new Date(request.date).getMonth() === selectedMonth && new Date(request.date).getFullYear() === selectedYear)
+        );
+    }, [selectedRequest, searchValue, selectedDate]);
 
     return (
         <>
@@ -40,7 +52,8 @@ function AbsencesRecord() {
                             <DatePicker
                                 selected={selectedDate}
                                 onChange={handleDateChange}
-                                dateFormat="dd/MMM/yyyy"
+                                dateFormat="MMM/yyyy"
+                                showMonthYearPicker
                                 className="w-[7vw] border-transparent focus:outline-none"
                             />
                         </div>
@@ -113,18 +126,18 @@ function AbsencesRecord() {
                                 <th className="border border-gray-icon border-2 font-bold p-3">Approve</th>
                                 <th className="border border-gray-icon border-2 font-bold p-3">Decline</th>
                                 <th className="border border-gray-icon border-2 font-bold p-3">Day reviewed</th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {requests
-                                .filter((request) =>
-                                    (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
-                                    (searchValue ? request.id.includes(searchValue) : true))
+                            {filteredData
                                 .map((request, index) => (
-                                    <tr className="text-center" key={request.id}>
+                                    <tr key={index} className="text-center">
+                                        <td className="py-2">{request.time}</td>
                                         <td className="flex justify-center items-center py-2">
                                             <IoPersonCircleSharp className="text-gray-icon" size={24} />
                                         </td>
+
 
                                         <td><a href="/employee-view" className="link">
                                             {request.id}
