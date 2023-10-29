@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { IoPersonCircleSharp } from 'react-icons/io5';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
+import requests from "./recordData"
+import { BiSearchAlt } from 'react-icons/bi';
 
 function AbsencesRecord() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
+
+    const [selectedRequest, setSelectedRequest] = useState("default");
+    const handleRequest = (e) => {
+        setSelectedRequest(e.target.value);
+    };
+
+    const [searchValue, setSearchValue] = useState("");
+
+
+    const filteredData = useMemo(() => {
+        const selectedYear = selectedDate.getFullYear();
+        const selectedMonth = selectedDate.getMonth();
+
+        return requests.filter(request =>
+            (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
+            (searchValue ? request.id.includes(searchValue) : true) &&
+            (new Date(request.date).getMonth() === selectedMonth && new Date(request.date).getFullYear() === selectedYear)
+        );
+    }, [selectedRequest, searchValue, selectedDate]);
 
     return (
         <>
@@ -31,40 +52,43 @@ function AbsencesRecord() {
                             <DatePicker
                                 selected={selectedDate}
                                 onChange={handleDateChange}
-                                dateFormat="dd/MMM/yyyy"
+                                dateFormat="MMM/yyyy"
+                                showMonthYearPicker
                                 className="w-[7vw] border-transparent focus:outline-none"
                             />
                         </div>
                     </div>
+
                     <div className="flex flex-col w-[11vw]">
-                        <label htmlFor="countrySelectBox">Country</label>
+                        <label htmlFor="requestSelectBox">Type of request</label>
                         <select
-                            id="countrySelectBox"
-                            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh]"
+                            id="selectRequest"
+                            value={selectedRequest}
+                            onChange={handleRequest}
+                            className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
                         >
-                            <option value="default" disabled selected>
-                                Select
+                            <option value="default">
+                                All
                             </option>
-                            <option value="option1">Argentina</option>
-                            <option value="option2">Chile</option>
-                            <option value="option3">Colombia</option>
-                            <option value="option4">Perú</option>
+                            <option value="Scheduled absences">Scheduled absences</option>
+                            <option value="Authorized exceptions">Authorized exceptions</option>
                         </select>
                     </div>
 
-                    <div className="flex flex-col w-[10vw]">
-                        <label htmlFor="fowSelectBox">FOW</label>
-                        <select
-                            id="fowSelectBox"
-                            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh]"
-                        >
-                            <option value="default" disabled selected>
-                                Select
-                            </option>
-                            <option value="option1">Hybrid</option>
-                            <option value="option2">Home office</option>
-                            <option value="option3">Roam</option>
-                        </select>
+                    <div className="flex flex-col w-[11vw] ml-4">
+                        <label htmlFor="searchInputBox">Search</label>
+                        <div className="flex flex-row bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] items-center">
+                            <input
+                                id="searchInputBox"
+                                type="text"
+                                placeholder="..."
+                                className="w-[7vw] border-transparent focus:outline-none pl-2"
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                            />
+
+                            <BiSearchAlt className="text-dark-blue-icons w-5 h-5" />
+                        </div>
                     </div>
                 </section>
             </div>
@@ -102,97 +126,46 @@ function AbsencesRecord() {
                                 <th className="border border-gray-icon border-2 font-bold p-3">Approve</th>
                                 <th className="border border-gray-icon border-2 font-bold p-3">Decline</th>
                                 <th className="border border-gray-icon border-2 font-bold p-3">Day reviewed</th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="text-center">
+                            {filteredData
+                                .map((request, index) => (
+                                    <tr key={index} className="text-center">
+                                        <td className="py-2">{request.time}</td>
+                                        <td className="flex justify-center items-center py-2">
+                                            <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                        </td>
 
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
 
-                                <td>72836301</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
-                                <td>2023-08-09</td>
-                                <td>3</td>
-                                <td>
-                                    <span className="text-white bg-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span>
-                                </td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
+                                        <td><a href="/employee-view" className="link">
+                                            {request.id}
+                                        </a></td>
 
-                            <tr className="text-center justify-center">
-
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72836302</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-10</td>
-                                <td>2</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm bg-decline text-white border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72838302</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-17</td>
-                                <td>1</td>
-                                <td>
-                                    <span className="text-white bg-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span>
-                                </td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72838312</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
-                                <td>2023-08-29</td>
-                                <td>2</td>
-                                <td>
-                                    <span className="text-white bg-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span>
-                                </td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72839300</td>
-                                <td>Hybrid</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-30</td>
-                                <td>2</td>
-                                <td>
-                                    <span className=" border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span>
-                                </td>
-                                <td><span className="text-decline text-sm bg-decline text-white border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td>2023-08-09</td>
-                            </tr>
+                                        <td>{request.fow}</td>
+                                        <td>
+                                            <span className={`py-0.5 text-sm px-2 rounded-full ${request.requestType === 'Authorized exceptions' ? 'bg-yellow-icon' : 'bg-green-icon'} text-black`}>
+                                                {request.requestType}
+                                            </span>
+                                        </td>
+                                        <td>{request.date}</td>
+                                        <td>{request.daysRequested}</td>
+                                        <td>
+                                            <span className={`text-${request.status === 'Approved' ? 'white' : 'custom-gray'} bg-${request.status === 'Approved' ? 'approve' : 'white'} border-2 border-${request.status === 'Approved' ? 'approve' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
+                                                {request.approvalStatus}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span className={`text-${request.status === 'Declined' ? 'white' : 'custom-gray'} bg-${request.status === 'Declined' ? 'decline' : 'white'} border-2 border-${request.status === 'Declined' ? 'decline' : 'custom-gray'} py-0.5 text-sm px-2 rounded-2xl`}>
+                                                {request.declineStatus}
+                                            </span>
+                                        </td>
+                                        <td>{request.dayReviewed}</td>
+                                    </tr>
+                                ))}
                         </tbody>
+
                     </table>
                 </div>
 

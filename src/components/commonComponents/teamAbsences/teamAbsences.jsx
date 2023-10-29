@@ -1,15 +1,70 @@
-import React, { useState } from "react";
 import { IoPersonCircleSharp } from 'react-icons/io5';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { BiMessageDetail } from 'react-icons/bi';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
+import absencesData from "./absencesData"
+import { BiSearchAlt } from 'react-icons/bi';
+import React, { useState, useMemo } from "react";
+import Swal from 'sweetalert2';
 
 function TeamAbsences() {
+
     const [selectedDate, setSelectedDate] = useState(new Date());
     const handleDateChange = (date) => {
         setSelectedDate(date);
+    };
+
+    const [selectedRequest, setSelectedRequest] = useState("default");
+    const handleRequest = (e) => {
+        setSelectedRequest(e.target.value);
+    };
+
+    const [searchValue, setSearchValue] = useState("");
+
+    const filteredData = useMemo(() => {
+        const selectedYear = selectedDate.getFullYear();
+        const selectedMonth = selectedDate.getMonth();
+
+        return absencesData.filter(request =>
+            (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
+            (searchValue ? request.id.includes(searchValue) : true) &&
+            (new Date(request.date).getMonth() === selectedMonth && new Date(request.date).getFullYear() === selectedYear)
+        );
+    }, [selectedRequest, searchValue, selectedDate]);
+
+    const handleApprove = () => {
+        Swal.fire({
+            title: '¿Estás seguro/a de que quieres aprobar esta solicitud?',
+            icon: 'warning',
+            iconColor: '#426DA9',
+            showCancelButton: true,
+            confirmButtonColor: '#426DA9',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, ¡aprobar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Código para manejar la aprobación
+            }
+        })
+    };
+
+    const handleDecline = () => {
+        Swal.fire({
+            title: '¿Estás seguro/a de que quieres declinar esta solicitud?',
+            icon: 'warning',
+            iconColor: '#426DA9',
+            showCancelButton: true,
+            confirmButtonColor: '#426DA9',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, ¡declinar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            }
+        })
     };
 
     return (
@@ -33,40 +88,43 @@ function TeamAbsences() {
                             <DatePicker
                                 selected={selectedDate}
                                 onChange={handleDateChange}
-                                dateFormat="dd/MMM/yyyy"
+                                showMonthYearPicker
+                                dateFormat="MMM/yyyy"
                                 className="w-[7vw] border-transparent focus:outline-none"
                             />
                         </div>
                     </div>
+
                     <div className="flex flex-col w-[11vw]">
-                        <label htmlFor="countrySelectBox">Country</label>
+                        <label htmlFor="requestSelectBox">Type of request</label>
                         <select
-                            id="countrySelectBox"
-                            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh]"
+                            id="selectRequest"
+                            value={selectedRequest}
+                            onChange={handleRequest}
+                            className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
                         >
-                            <option value="default" disabled selected>
-                                Select
+                            <option value="default">
+                                All
                             </option>
-                            <option value="option1">Argentina</option>
-                            <option value="option2">Chile</option>
-                            <option value="option3">Colombia</option>
-                            <option value="option4">Perú</option>
+                            <option value="Scheduled absences">Scheduled absences</option>
+                            <option value="Authorized exceptions">Authorized exceptions</option>
                         </select>
                     </div>
 
-                    <div className="flex flex-col w-[10vw]">
-                        <label htmlFor="fowSelectBox">FOW</label>
-                        <select
-                            id="fowSelectBox"
-                            className="bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh]"
-                        >
-                            <option value="default" disabled selected>
-                                Select
-                            </option>
-                            <option value="option1">Hybrid</option>
-                            <option value="option2">Home office</option>
-                            <option value="option3">Roam</option>
-                        </select>
+                    <div className="flex flex-col w-[11vw] ml-4">
+                        <label htmlFor="searchInputBox">Search</label>
+                        <div className="flex flex-row bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] items-center">
+                            <input
+                                id="searchInputBox"
+                                type="text"
+                                placeholder="..."
+                                className="w-[7vw] border-transparent focus:outline-none pl-2"
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                            />
+
+                            <BiSearchAlt className="text-dark-blue-icons w-5 h-5" />
+                        </div>
                     </div>
                 </section>
             </div>
@@ -98,9 +156,9 @@ function TeamAbsences() {
                                 <th className="border border-gray-icon border-2 font-bold py-2">Hora</th>
                                 <td className="border border-gray-icon border-2  font-bold py-2"></td>
 
-                                <th className="border border-gray-icon border-2  font-bold py-2">ID</th>
-                                <th className="border border-gray-icon border-2  font-bold py-2">Type of request</th>
-                                <th className="border border-gray-icon border-2  font-bold py-2">Date</th>
+                                <th className="border border-gray-icon border-2 font-bold py-2">ID</th>
+                                <th className="border border-gray-icon border-2 font-bold py-2">Type of request</th>
+                                <th className="border border-gray-icon border-2 font-bold py-2">Date</th>
                                 <th className="border border-gray-icon border-2 font-bold py-2">Days requested</th>
                                 <th className="border border-gray-icon border-2 font-bold py-2">Remaining days</th>
                                 <th className="border border-gray-icon border-2 font-bold py-2">Approve</th>
@@ -111,91 +169,38 @@ function TeamAbsences() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="text-center">
-                                <td className="py-2">8:30 am</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
+                            {filteredData
+                                .map((item, index) => (
+                                    <tr key={index} className="text-center">
+                                        <td className="py-2">{item.time}</td>
+                                        <td className="flex justify-center items-center py-2">
+                                            <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                        </td>
 
-                                <td>72836301</td>
-                                <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
-                                <td>2023-08-09</td>
-                                <td>3</td>
-                                <td>5</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
+                                        <td><a href="/employee-view" className="link">
+                                            {item.id}
+                                        </a></td>
 
-                            <tr className="text-center justify-center">
-                                <td className="py-2">9:00 am</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72836302</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-10</td>
-                                <td>2</td>
-                                <td>4</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-                                <td className="py-2">10:00 am</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72838302</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-17</td>
-                                <td>1</td>
-                                <td>4</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-                                <td className="py-2">7:00 am</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72838312</td>
-                                <td><span className="py-0.5 text-sm px-2 rounded-full bg-yellow-icon text-black">Authorized exceptions</span></td>
-                                <td>2023-08-29</td>
-                                <td>2</td>
-                                <td>7</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
-
-                            <tr className="text-center justify-center">
-                                <td className="py-2">3:00 pm</td>
-                                <td className="flex justify-center items-center py-2">
-                                    <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                </td>
-
-                                <td>72839300</td>
-                                <td><span className="py-0.5 text-sm px-2  rounded-full bg-green-icon text-black">Scheduled absences</span></td>
-                                <td>2023-08-30</td>
-                                <td>2</td>
-                                <td>5</td>
-                                <td><span className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approved</span></td>
-                                <td><span className="text-decline text-sm border-2 border-decline py-0.5 px-2 rounded-2xl">Decline</span></td>
-                                <td className="text-dark-blue-icons pl-8"><FaRegCalendarAlt /></td>
-                                <td className="text-dark-blue-icons pl-8"><BiMessageDetail /></td>
-                            </tr>
+                                        <td>
+                                            <span className={`py-0.5 text-sm px-2 rounded-full ${item.bgColor} text-black`}>
+                                                {item.requestType}
+                                            </span>
+                                        </td>
+                                        <td>{item.date}</td>
+                                        <td>{item.daysRequested}</td>
+                                        <td>{item.remainingDays}</td>
+                                        <td>
+                                            <button onClick={handleApprove} className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approve</button>
+                                        </td>
+                                        <td>
+                                            <button onClick={handleDecline} className="text-decline border-2 border-decline py-0.5 text-sm px-2 rounded-2xl">Decline</button>
+                                        </td>
+                                        <td className="text-dark-blue-icons pl-12"><FaRegCalendarAlt /></td>
+                                        <td className="text-dark-blue-icons pl-12"><BiMessageDetail /></td>
+                                    </tr>
+                                ))}
                         </tbody>
+
                     </table>
                 </div>
 
