@@ -1,71 +1,27 @@
+import React, { useState, useMemo } from "react";
 import { IoPersonCircleSharp } from 'react-icons/io5';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { BiMessageDetail } from 'react-icons/bi';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
-import absencesData from "./absencesData"
+import absencesData from "./absencesData";
 import { BiSearchAlt } from 'react-icons/bi';
-import React, { useState, useMemo } from "react";
-import Swal from 'sweetalert2';
+import {
+    handleDateChange,
+    handleRequest,
+    filterData,
+    handleApprove,
+    handleDecline,
+    exportToExcel
+} from './functions.js';
 
 function TeamAbsences() {
-
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
-
     const [selectedRequest, setSelectedRequest] = useState("default");
-    const handleRequest = (e) => {
-        setSelectedRequest(e.target.value);
-    };
-
     const [searchValue, setSearchValue] = useState("");
 
-    const filteredData = useMemo(() => {
-        const selectedYear = selectedDate.getFullYear();
-        const selectedMonth = selectedDate.getMonth();
-
-        return absencesData.filter(request =>
-            (selectedRequest !== "default" ? request.requestType === selectedRequest : true) &&
-            (searchValue ? request.id.includes(searchValue) : true) &&
-            (new Date(request.date).getMonth() === selectedMonth && new Date(request.date).getFullYear() === selectedYear)
-        );
-    }, [selectedRequest, searchValue, selectedDate]);
-
-    const handleApprove = () => {
-        Swal.fire({
-            title: '¿Estás seguro/a de que quieres aprobar esta solicitud?',
-            icon: 'warning',
-            iconColor: '#426DA9',
-            showCancelButton: true,
-            confirmButtonColor: '#426DA9',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, ¡aprobar!',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Código para manejar la aprobación
-            }
-        })
-    };
-
-    const handleDecline = () => {
-        Swal.fire({
-            title: '¿Estás seguro/a de que quieres declinar esta solicitud?',
-            icon: 'warning',
-            iconColor: '#426DA9',
-            showCancelButton: true,
-            confirmButtonColor: '#426DA9',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, ¡declinar!',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-            }
-        })
-    };
+    const filteredData = useMemo(() => filterData(selectedRequest, searchValue, selectedDate, absencesData), [selectedRequest, searchValue, selectedDate]);
 
     return (
         <>
@@ -74,11 +30,13 @@ function TeamAbsences() {
                     <img
                         src={exportbutton}
                         alt="boton para exportar información"
-                        className="w-24 transition-transform transform hover:scale-110"></img>
+                        className="w-24 transition-transform transform hover:scale-110 cursor-pointer"
+                        onClick={() => exportToExcel(filteredData)}
+                    />
                 </div>
                 <section className="flex flex-col md:flex-row w-11/12 mx-auto">
                     <div className="flex flex-col w-[11vw]">
-                        <span htmlFor="dateSelectBox">Date range</span>
+                        <span htmlFor="dateSelectBox">Date</span>
                         <div className="flex flex-row bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] items-center">
                             <img
                                 src={calendarImg}
@@ -87,7 +45,7 @@ function TeamAbsences() {
                             />
                             <DatePicker
                                 selected={selectedDate}
-                                onChange={handleDateChange}
+                                onChange={(date) => handleDateChange(date, setSelectedDate)}
                                 showMonthYearPicker
                                 dateFormat="MMM/yyyy"
                                 className="w-[7vw] border-transparent focus:outline-none"
@@ -100,7 +58,7 @@ function TeamAbsences() {
                         <select
                             id="selectRequest"
                             value={selectedRequest}
-                            onChange={handleRequest}
+                            onChange={(e) => handleRequest(e, setSelectedRequest)}
                             className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
                         >
                             <option value="default">
@@ -117,7 +75,7 @@ function TeamAbsences() {
                             <input
                                 id="searchInputBox"
                                 type="text"
-                                placeholder="..."
+                                placeholder="User ID..."
                                 className="w-[7vw] border-transparent focus:outline-none pl-2"
                                 value={searchValue}
                                 onChange={(e) => setSearchValue(e.target.value)}
@@ -177,9 +135,7 @@ function TeamAbsences() {
                                             <IoPersonCircleSharp className="text-gray-icon" size={24} />
                                         </td>
 
-                                        <td><a href="/employee-view" className="link">
-                                            {item.id}
-                                        </a></td>
+                                        <td> {item.id} </td>
 
                                         <td>
                                             <span className={`py-0.5 text-sm px-2 rounded-full ${item.bgColor} text-black`}>
@@ -195,7 +151,14 @@ function TeamAbsences() {
                                         <td>
                                             <button onClick={handleDecline} className="text-decline border-2 border-decline py-0.5 text-sm px-2 rounded-2xl">Decline</button>
                                         </td>
-                                        <td className="text-dark-blue-icons pl-12"><FaRegCalendarAlt /></td>
+
+                                        <td className="text-dark-blue-icons pl-12">
+                                            <a href="/employee-view" className="link">
+                                                <FaRegCalendarAlt />
+                                            </a>
+                                        </td>
+
+
                                         <td className="text-dark-blue-icons pl-12"><BiMessageDetail /></td>
                                     </tr>
                                 ))}

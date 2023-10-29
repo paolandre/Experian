@@ -40,10 +40,12 @@
   border: 2px solid #e0e0e0;
   height: 5vh;
 }
+
 .idRow {
   border: 2px solid #e0e0e0;
   height: 5vh;
 }
+
 .idCol {
   border: 2px solid #e0e0e0;
   height: 5vh;
@@ -66,6 +68,7 @@
   color: #426da9;
   width: 5px;
 }
+
 .link:hover {
   text-decoration: underline;
 }
@@ -74,9 +77,11 @@
   width: 90vw;
   margin-left: 4px;
 }
+
 .indicator {
   flex-direction: row;
 }
+
 .arrow {
   position: absolute;
   top: 5px;
@@ -91,6 +96,7 @@
   margin-bottom: 2px;
   width: 8vw;
 }
+
 .userFow {
   text-align: center;
 }
@@ -104,6 +110,7 @@
   width: 60vw;
   height: 4vh;
 }
+
 .sectionSelect {
   display: flex;
   flex-direction: row;
@@ -112,6 +119,7 @@
   margin-left: 0.75rem;
   margin-bottom: 0.25rem;
 }
+
 .tabutton {
   cursor: pointer;
   width: 10vw;
@@ -157,6 +165,7 @@
   padding: 0.25rem;
   height: 6vh;
 }
+
 .sectionButton {
   width: 60vw;
   display: flex;
@@ -164,26 +173,33 @@
   justify-content: flex-end;
   align-items: center;
 }
+
 .imageButton {
   width: 1vw;
   height: 2vh;
 }
+
 .textParraf {
   color: black;
 }
+
 @media screen and (max-width: 640px) {
+
   .firstRow,
   .tableColumns,
   .tableProfile {
     display: none;
   }
+
   .tableTeam {
     width: 75%;
     margin-bottom: 10px;
   }
+
   .tableArticle {
     margin-left: 1px;
   }
+
   .firstRow {
     display: none;
     width: 4px;
@@ -192,29 +208,35 @@
   .idRow {
     width: 10px;
   }
+
   .indicator {
     flex-direction: column;
     width: 90px;
 
     margin-left: 10px;
   }
+
   .arrow {
     position: absolute;
     top: 10px;
     left: 10px;
   }
+
   .idCol {
     width: 35px;
   }
+
   .percentageItem {
     margin-left: 12px;
     width: 25vw;
   }
+
   .information {
     height: 85px;
     width: 70%;
     font-size: small;
   }
+
   .sectionSelect {
     display: flex;
     flex-wrap: wrap;
@@ -226,6 +248,7 @@
     background-color: #426da9;
     color: #ffffff;
   }
+
   .imageButton {
     display: none;
   }
@@ -235,6 +258,7 @@
     height: 4vh;
     margin-left: 8vw;
   }
+
   .tabutton {
     width: 29vw;
     height: 3vh;
@@ -243,6 +267,7 @@
     border-radius: 9px;
     margin-right: 10px;
   }
+
   .sectionButton {
     width: 30vw;
     height: 12vw;
@@ -251,18 +276,58 @@
     margin-top: 4px;
     margin-bottom: 10px;
   }
+
   .image-modal {
     margin-top: -2px;
     width: 85vw;
     height: 25vh;
   }
+
   .diagramTable {
     width: 70vw;
     margin-left: 0;
     height: 30vh;
     margin-top: 3vw;
   }
+
   .textParraf {
     font-size: small;
   }
+}
+
+/* Barra de progreso */
+
+.tex-center {
+  width: 11vw;
+}
+
+.percentageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.progressBarBackground {
+  width: 50%;
+  height: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.progressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.percentageText {
+  font-size: 12px;
 }
