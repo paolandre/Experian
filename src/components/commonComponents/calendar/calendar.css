@@ -4,11 +4,11 @@
 }
 
 .yellow {
-  background-color: #FFD146;
+  background-color: #ffd146;
 }
 
 .purple {
-  background-color: #C43E9F;
+  background-color: #c43e9f;
 }
 
 .rbc-calendar {
@@ -25,14 +25,13 @@
 }
 
 .rbc-event {
-
   border-radius: 50px;
   width: 20px;
   height: 20px;
 }
 
 .green {
-  background-color: #5CD08E;
+  background-color: #5cd08e;
 }
 
 /* Fondo blanco para celdas de días en la vista mensual */
@@ -49,4 +48,16 @@
 .rbc-time-view .rbc-day-bg,
 .rbc-time-view .rbc-time-content {
   background-color: #ffffff;
+}
+
+.calendarStyle {
+  height: 620;
+  margin: 50px;
+  width: 60vw;
+}
+@media screen and (max-width: 640px) {
+  .calendarStyle {
+    margin-top: 1100px;
+    width: 75vw;
+  }
 }

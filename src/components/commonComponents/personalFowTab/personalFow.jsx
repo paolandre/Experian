@@ -23,36 +23,51 @@ function PersonalFowTab() {
         </div>
 
         {/* Leader info */}
-        <div className="p-4 bg-white rounded-md shadow-custom-shadow max-w-sm">
+        <div className="desktop:p-4 desktop:bg-white desktop:rounded-md desktop:shadow-custom-shadow desktop:max-w-sm telephone:p-2 telephone:bg-white telephone:rounded-md telephone:shadow-custom-shadow telephone:max-w-sm">
           <div className="flex items-center">
             <IoPersonCircleSharp className="text-gray-icon" size={80} />
             <div className="ml-4">
-              <p className="font-bold text-xl">Leader name</p>
-              <p className="font-bold">ID: 72794037</p>
-              <p className="font-bold">
+              <p className="desktop:font-bold desktop:text-xl telephone:text-sm telephone:font-bold">
+                Leader name
+              </p>
+              <p className="desktop:font-bold desktop:text-base telephone:text-sm telephone:font-bold">
+                ID: 72794037
+              </p>
+              <p className="desktop:font-bold desktop:text-base telephone:text-sm telephone:font-bold">
                 FOW: <span>Hybrid</span>
               </p>
             </div>
           </div>
-          <div className="mt-4">
-            <p>
-              <span className="font-bold">Job:</span> Lider técnico funcional
+          <div className="desktop:mt-4 telephone:mt-1">
+            <p className="desktop:text-base telephone:text-sm">
+              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold">
+                Job:
+              </span>
+              Lider técnico funcional
             </p>
-            <p>
-              <span className="font-bold">VP:</span> Delivery & VAPS CS Delivery
+            <p className="desktop:text-base telephone:text-sm">
+              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold">
+                VP:
+              </span>
+              Delivery & VAPS CS Delivery
             </p>
-            <p>
-              <span className="font-bold">Country:</span> Colombia
+            <p className="desktop:text-base telephone:text-sm">
+              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold">
+                Country:
+              </span>
+              Colombia
             </p>
-            <p>
-              <span className="font-bold">Office location:</span> CO Bogotá
-              oficina principal
+            <p className="desktop:text-base telephone:text-sm">
+              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold">
+                Office location:
+              </span>
+              CO Bogotá oficina principal
             </p>
           </div>
         </div>
 
         {/* Calendar Summary */}
-        <div className="p-4 bg-white rounded-md shadow-custom-shadow max-w-sm">
+        <div className="calendar">
           <p className="font-bold mb-2">Calendar Summary</p>
           <div className="p-2">
             <div className="flex items-center mb-1">
@@ -75,7 +90,7 @@ function PersonalFowTab() {
         </div>
 
         {/* Notification */}
-        <div className="border-l-light-blue border-4 pl-4 p-4 bg-white shadow-custom-shadow rounded-md max-w-sm">
+        <div className="textParraf border-l-light-blue border-4 pl-4 p-4 bg-white shadow-custom-shadow rounded-md max-w-sm">
           <p>
             If you have any concerns or need clarification, please feel free to
             contact us at the email address:{" "}
@@ -91,8 +106,8 @@ function PersonalFowTab() {
       </div>
 
       {/* Columna de la derecha ocupando el 70% de la pantalla */}
-      <div className="flex-grow w-7/10 p-4 bg-background-gray rounded-md">
-        <div className="flex justify-end space-x-6">
+      <div className="classDiv">
+        <div className="typesOfJob">
           {/* Circle with border */}
           <div className="flex items-center space-x-2">
             <span className="w-4 h-4 bg-white border-[3px] border-dark-purple rounded-full"></span>
@@ -124,8 +139,9 @@ function PersonalFowTab() {
           </div>
         </div>
       </div>
-
-      <MyCalendar />
+      <div className="calendarDiv">
+        <MyCalendar />
+      </div>
     </div>
   );
 }

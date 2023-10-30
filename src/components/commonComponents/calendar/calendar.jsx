@@ -25,6 +25,18 @@ function MyCalendar() {
   const [newEvent, setNewEvent] = useState({ title: "", start: "", id: "" });
   const [allEvents, setAllEvents] = useState(events);
 
+  // Calcula el valor del margin-top en función del ancho de la pantalla
+  const marginTop = window.innerWidth <= 390 ? "425px" : "40px";
+  const marginLeft = window.innerWidth <= 390 ? "0px" : "50px";
+  const widithTable = window.innerWidth <= 390 ? "75vw" : "60vw";
+  const heightTable = window.innerWidth <= 390 ? "35vh" : "620px";
+  // Establece el estilo del componente Calendar
+  const calendarStyle = {
+    height: `${heightTable}`,
+    margin: `${marginTop} ${marginLeft} 0px 0px`,
+    width: `${widithTable}`,
+  };
+
   function handleAddEvent() {
     for (let i = 0; i < allEvents.length; i++) {
       const d1 = new Date(allEvents[i].start);
@@ -128,13 +140,13 @@ function MyCalendar() {
   );
 
   return (
-    <div className="vent">
+    <div>
       <Calendar
         eventPropGetter={eventPropGetter}
         onSelectEvent={onSelectEvent}
         localizer={localizer}
         events={allEvents}
-        style={{ height: 620, margin: "50px" }}
+        style={calendarStyle}
       />
     </div>
   );
