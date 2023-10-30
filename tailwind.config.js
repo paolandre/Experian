@@ -3,6 +3,16 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        'tablet': '640px',
+        // => @media (min-width: 640px) { ... }
+        'telephone': '390px',
+        'laptop': '1024px',
+        // => @media (min-width: 1024px) { ... }
+  
+        'desktop': '1280px',
+        // => @media (min-width: 1280px) { ... }
+      },
       boxShadow: {
         'custom-shadow': '0 1.83px 4.58px rgba(169, 168, 168, 0.6)'
       },
@@ -31,6 +41,7 @@ module.exports = {
         'dark-blue-icons': '#426DA9',
         'greyborder': '#A9A8A8',
         'underlineGrey': '#D6D6D6',
+        'bluebuttons': '#426DA9',
       },
       fontSize: {
         sm: '0.7rem',

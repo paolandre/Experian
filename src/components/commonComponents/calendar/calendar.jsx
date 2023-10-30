@@ -6,19 +6,19 @@ import React, { useState, useCallback } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
-import './calendar.css';
+import "./calendar.css";
 import { events } from "../../../events";
 
 const locales = {
-    "en-US": require("date-fns/locale/en-US"),
+  "en-US": require("date-fns/locale/en-US"),
 };
 
 const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
 });
 
 
@@ -34,21 +34,21 @@ function MyCalendar() {
     const [newEvent, setNewEvent] = useState({ title: "", start: "", id: "" });
     const [allEvents, setAllEvents] = useState(filteredEvents );
 
-    function handleAddEvent() {
-        for (let i = 0; i < allEvents.length; i++) {
-            const d1 = new Date(allEvents[i].start);
-            const d2 = new Date(newEvent.start);
-            const d3 = new Date(allEvents[i].end);
-            const d4 = new Date(newEvent.end);
-            
-            if ((d1 <= d2 && d2 <= d3) || (d1 <= d4 && d4 <= d3)) {
-                alert("CLASH");
-                break;
-            }
-        }
+  function handleAddEvent() {
+    for (let i = 0; i < allEvents.length; i++) {
+      const d1 = new Date(allEvents[i].start);
+      const d2 = new Date(newEvent.start);
+      const d3 = new Date(allEvents[i].end);
+      const d4 = new Date(newEvent.end);
 
-        setAllEvents([...allEvents, newEvent]);
+      if ((d1 <= d2 && d2 <= d3) || (d1 <= d4 && d4 <= d3)) {
+        alert("CLASH");
+        break;
+      }
     }
+
+    setAllEvents([...allEvents, newEvent]);
+  }
 
 
     

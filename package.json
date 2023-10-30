@@ -6,20 +6,25 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "canvas-confetti": "^1.9.0",
+    "chart.js": "^4.4.0",
     "date-fns": "^2.30.0",
     "eslint-plugin-dependencies": "^2.5.0",
+    "faker": "^6.6.6",
     "react": "^18.2.0",
     "react-big-calendar": "^1.8.4",
-    "react-datepicker": "^4.21.0",
+    "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.11.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
     "sweetalert2": "^11.7.32",
     "tailwindcss": "^3.3.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,5 +49,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.69.5"
   }
 }

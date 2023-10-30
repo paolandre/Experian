@@ -6,6 +6,7 @@ import PersonalFowTab from "../../commonComponents/personalFowTab/personalFow";
 import TeamFowTab from "../../commonComponents/TeamFowTab/teamFow";
 import { Link } from "react-router-dom";
 import TeamAbsences from "./../../commonComponents/teamAbsences/teamAbsences";
+import AbsencesRecord from "../../commonComponents/absencesRecord/absencesRecord";
 
 export default function LeaderView() {
   const [activeTab, setActiveTab] = useState("Personal FOW");
@@ -28,7 +29,7 @@ export default function LeaderView() {
         </Link>
       </div>
 
-      <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl relative ">
+      <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl relative  h-fit">
         <span
           className={`cursor-pointer ${
             activeTab === "Personal FOW"
@@ -75,8 +76,10 @@ export default function LeaderView() {
 
         {/* Condicionales para las dos tabs */}
         {activeTab === "Personal FOW" && <PersonalFowTab />}
+
         {activeTab === "Team FOW" && <TeamFowTab />}
         {activeTab === "Team Absences" && <TeamAbsences />}
+        {activeTab === "Absences Record" && <AbsencesRecord />}
       </div>
     </div>
   );

@@ -3,5 +3,18 @@ body {
   height: 100%;
   margin: 0;
   overflow-x: hidden;
-  /* overflow: hidden; */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 60vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: repeat(3, 1fr);
+    width: 90vw;
+  }
 }

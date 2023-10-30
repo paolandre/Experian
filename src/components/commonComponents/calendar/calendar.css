@@ -13,8 +13,9 @@
     
     color: white;
 }
-.rbc-calendar{
-    width: 67%;
+
+.rbc-calendar {
+  width: 67%;
   display: block;
   position: absolute;
   right: 1px;
@@ -36,3 +37,9 @@ align-content: center;
    background-color:  #5CD08E;
    color: black;
   }
+
+/* Fondo blanco para celdas de días en la vista semanal y diaria */
+.rbc-time-view .rbc-day-bg,
+.rbc-time-view .rbc-time-content {
+  background-color: #ffffff;
+}

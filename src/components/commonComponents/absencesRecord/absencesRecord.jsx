@@ -1,40 +1,31 @@
 import React, { useState, useMemo } from "react";
 import { IoPersonCircleSharp } from 'react-icons/io5';
-import { FaRegCalendarAlt } from 'react-icons/fa';
-import { BiMessageDetail } from 'react-icons/bi';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
 import calendarImg from "./../../../assets/teamFow/calendarIcon.png";
-import absencesData from "./absencesData";
+import requests from "./recordData";
 import { BiSearchAlt } from 'react-icons/bi';
 import {
-    handleDateChange,
-    handleRequest,
+    exportToExcel,
     filterData,
-    handleApprove,
-    handleDecline,
-    exportToExcel
-} from './functions.js';
-import Modal from "./../../commonComponents/modal/modal";
+    getApprovedClasses,
+    getDeclinedClasses
+} from './functions';
 
-
-function TeamAbsences() {
+function AbsencesRecord() {
     const [selectedDate, setSelectedDate] = useState(new Date());
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+
     const [selectedRequest, setSelectedRequest] = useState("default");
+    const handleRequest = (e) => {
+        setSelectedRequest(e.target.value);
+    };
+
     const [searchValue, setSearchValue] = useState("");
 
-    const filteredData = useMemo(() => filterData(selectedRequest, searchValue, selectedDate, absencesData), [selectedRequest, searchValue, selectedDate]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-
-
+    const filteredData = useMemo(() => filterData(selectedRequest, searchValue, selectedDate, requests), [selectedRequest, searchValue, selectedDate]);
 
     return (
         <>
@@ -46,6 +37,7 @@ function TeamAbsences() {
                         className="w-24 transition-transform transform hover:scale-110 cursor-pointer"
                         onClick={() => exportToExcel(filteredData)}
                     />
+
                 </div>
                 <section className="flex flex-col md:flex-row w-11/12 mx-auto">
                     <div className="flex flex-col w-[11vw]">
@@ -58,9 +50,9 @@ function TeamAbsences() {
                             />
                             <DatePicker
                                 selected={selectedDate}
-                                onChange={(date) => handleDateChange(date, setSelectedDate)}
-                                showMonthYearPicker
+                                onChange={handleDateChange}
                                 dateFormat="MMM/yyyy"
+                                showMonthYearPicker
                                 className="w-[7vw] border-transparent focus:outline-none"
                             />
                         </div>
@@ -71,7 +63,7 @@ function TeamAbsences() {
                         <select
                             id="selectRequest"
                             value={selectedRequest}
-                            onChange={(e) => handleRequest(e, setSelectedRequest)}
+                            onChange={handleRequest}
                             className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
                         >
                             <option value="default">
@@ -121,72 +113,63 @@ function TeamAbsences() {
 
 
                 <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white">
+                    <table className="min-w-full bg-white w-full table-auto">
                         <thead>
                             <tr>
-                                <th className="border border-gray-icon border-2 font-bold py-2">Hora</th>
-                                <td className="border border-gray-icon border-2  font-bold py-2"></td>
-
-                                <th className="border border-gray-icon border-2 font-bold py-2">ID</th>
-                                <th className="border border-gray-icon border-2 font-bold py-2">Type of request</th>
-                                <th className="border border-gray-icon border-2 font-bold py-2">Date</th>
-                                <th className="border border-gray-icon border-2 font-bold py-2">Days requested</th>
-                                <th className="border border-gray-icon border-2 font-bold py-2">Remaining days</th>
-                                <th className="border border-gray-icon border-2 font-bold py-2">Approve</th>
-                                <th className="border border-gray-icon border-2 font-bold py-2">Decline</th>
-                                <th className="border border-gray-icon border-2 font-bold py-2">Calendar</th>
-                                <th className="border border-gray-icon border-2 font-bold py-2">Mensaje</th>
-
+                                <th className="border border-gray-icon border-2 font-bold p-3"></th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">ID</th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">FOW</th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">Type of request</th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">Date</th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">Days requested</th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">Approve</th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">Decline</th>
+                                <th className="border border-gray-icon border-2 font-bold p-3">Day reviewed</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredData
-                                .map((item, index) => (
+                                .map((request, index) => (
                                     <tr key={index} className="text-center">
-                                        <td className="py-2">{item.time}</td>
                                         <td className="flex justify-center items-center py-2">
                                             <IoPersonCircleSharp className="text-gray-icon" size={24} />
                                         </td>
-
-                                        <td> {item.id} </td>
-
+                                        <td> {request.id} </td>
+                                        <td>{request.fow}</td>
                                         <td>
-                                            <span className={`py-0.5 text-sm px-2 rounded-full ${item.bgColor} text-black`}>
-                                                {item.requestType}
+                                            <span className={`py-0.5 text-sm px-2 rounded-full ${request.requestType === 'Authorized exceptions' ? 'bg-yellow-icon' : 'bg-green-icon'} text-black`}>
+                                                {request.requestType}
                                             </span>
                                         </td>
-                                        <td>{item.date}</td>
-                                        <td>{item.daysRequested}</td>
-                                        <td>{item.remainingDays}</td>
+                                        <td>{request.date}</td>
+                                        <td>{request.daysRequested}</td>
                                         <td>
-                                            <button onClick={handleApprove} className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approve</button>
+                                            <span className={`${getApprovedClasses(request.status)} border-2 py-0.5 text-sm px-2 rounded-2xl`}>
+                                                Approved
+                                            </span>
                                         </td>
                                         <td>
-                                            <button onClick={handleDecline} className="text-decline border-2 border-decline py-0.5 text-sm px-2 rounded-2xl">Decline</button>
+                                            <span className={`${getDeclinedClasses(request.status)} border-2 py-0.5 text-sm px-2 rounded-2xl`}>
+                                                Declined
+                                            </span>
                                         </td>
-
-                                        <td className="text-dark-blue-icons pl-12">
-                                            <a href="/employee-view" className="link">
-                                                <FaRegCalendarAlt />
-                                            </a>
-                                        </td>
-                                        <td className="text-dark-blue-icons pl-12 cursor-pointer" onClick={handleOpenModal}>
-                                            <BiMessageDetail />
-                                        </td>
+                                        <td>{request.dayReviewed}</td>
                                     </tr>
                                 ))}
                         </tbody>
-                    </table>
-                    <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
-                </div>
-            </div>
 
+                    </table>
+                </div>
+
+            </div >
             {/* Notification */}
-            <div className="border-l-light-blue border-4 pl-4 p-2 bg-white shadow-custom-shadow rounded-md mt-4" style={{ maxWidth: '900px' }}>
+            <div div className="border-l-light-blue border-4 pl-4 p-2 bg-white shadow-custom-shadow rounded-md mt-4" style={{ maxWidth: '900px' }
+            }>
                 <p>If you have any concerns or need clarification, please feel free to contact us at the email address: <a href="mailto:onehrsla@experian.com" className="hover:underline text-black font-bold">onehrsla@experian.com</a>.</p>
-            </div>
+            </div >
+
         </>
     );
 }
 
-export default TeamAbsences;
+export default AbsencesRecord;

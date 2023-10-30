@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import HeaderComponent from '../../commonComponents/navbar/navBar.jsx';
 import { IoPersonCircleSharp } from 'react-icons/io5';
-import Chatbot from '../../commonComponents/chatbot/chatbot.jsx'
 import EmployeeCalendar from '../../commonComponents/calendar/employeeCalendar.jsx';
+
+
 export default function EmployeeView() {
     return (
         <div className='bg-light-pink pb-8'>
@@ -13,7 +14,7 @@ export default function EmployeeView() {
             </header>
 
             <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md">
-                <Link to="/">
+                <Link to="/leader-view">
                     <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md ">
                         <AiOutlineArrowLeft className='text-dark-blue' style={{ width: '20px', height: '20px' }} />
                         <h1 className='text-dark-blue px-1 mb-1'>Back Team Absences</h1>
@@ -120,8 +121,7 @@ export default function EmployeeView() {
                         </div>
                     </div>
 
-                    <Chatbot />
-                  <EmployeeCalendar />
+                    <EmployeeCalendar />
                 </div>
 
             </div>
