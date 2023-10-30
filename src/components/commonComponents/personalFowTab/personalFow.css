@@ -1,0 +1,66 @@
+.contenedor {
+  display: flex;
+  flex-direction: column;
+}
+
+.divConte {
+  flex: none;
+}
+
+.classDiv {
+  flex-grow: 1;
+  width: 70%;
+  padding: 1rem;
+  background-color: #f6f6f6;
+  border-radius: 0.375rem;
+}
+.typesOfJob {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.calendarDiv {
+  color: black;
+}
+.calendar {
+  color: black;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 0.375rem;
+  max-width: 30rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.textParraf {
+  color: black;
+}
+@media screen and (max-width: 640px) {
+  .textParraf {
+    display: none;
+  }
+  .calendar {
+    display: none;
+  }
+  .classDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .typesOfJob {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+  .contenedor {
+    display: flex;
+    flex-direction: row;
+    width: 70vw;
+    background-color: blueviolet;
+  }
+  .divConte {
+    width: 50vw;
+  }
+  .calendarDiv {
+    width: 70vw;
+    height: 40vh;
+  }
+}
