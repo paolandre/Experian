@@ -17,3 +17,20 @@ export const filterData = (selectedRequest, searchValue, selectedDate, requests)
         (new Date(request.date).getMonth() === selectedMonth && new Date(request.date).getFullYear() === selectedYear)
     );
 };
+
+
+export function getApprovedClasses(status) {
+    if (status === 'Approved') {
+        return 'text-white bg-approve border-approve';
+    } else {
+        return 'text-custom-gray bg-white border-custom-gray';
+    }
+}
+
+export function getDeclinedClasses(status) {
+    if (status === 'Declined') {
+        return 'text-white bg-decline border-decline';
+    } else {
+        return 'text-custom-gray bg-white border-custom-gray';
+    }
+}

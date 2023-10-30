@@ -2,7 +2,7 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -21,9 +21,17 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
+function filterEventsById(data, id) {
+  const filteredData = data.filter((event) => id.includes(event.id));
+  return filteredData;
+}
+
+const eventIdToFilter = ["72794037", "Holiday"];
+const filteredEvents = filterEventsById(events, eventIdToFilter);
+
 function MyCalendar() {
   const [newEvent, setNewEvent] = useState({ title: "", start: "", id: "" });
-  const [allEvents, setAllEvents] = useState(events);
+  const [allEvents, setAllEvents] = useState(filteredEvents);
 
   // Calcula el valor del margin-top en función del ancho de la pantalla
   const marginTop = window.innerWidth <= 390 ? "425px" : "40px";
@@ -52,19 +60,6 @@ function MyCalendar() {
 
     setAllEvents([...allEvents, newEvent]);
   }
-
-  const clickRef = useRef(null);
-
-  const buildMessage = (calEvent) => {
-    return ` Title: ${calEvent.title} - ID: ${calEvent.id}`;
-  };
-
-  const onSelectEvent = useCallback((calEvent) => {
-    window.clearTimeout(clickRef.current);
-    clickRef.current = window.setTimeout(() => {
-      window.alert(buildMessage(calEvent, "onSelectEvent"));
-    }, 250);
-  }, []);
 
   const eventPropGetter = useCallback(
     (event) => ({
@@ -143,7 +138,6 @@ function MyCalendar() {
     <div>
       <Calendar
         eventPropGetter={eventPropGetter}
-        onSelectEvent={onSelectEvent}
         localizer={localizer}
         events={allEvents}
         style={calendarStyle}
