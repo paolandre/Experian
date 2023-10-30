@@ -21,7 +21,7 @@ Sin embargo, esta información se gestiona de manera manual por una sola persona
 Por ello,	 se requiere un módulo de auto consulta que permita a las/los colaboradores consultar mes vencido el indicador de cumplimiento del FOW, así como el histórico con el detalle que se indicará más adelante.
 Adicional, este módulo también debe permitir una vista a los lideres que puedan ver el cumplimiento del indicador de sus colaboradores a cargo y con ello establecer planes de acción.
 
-## 2. Resumen del proyecto
+## 2. Resumen del Proyecto
 
 El detalle de cada uno de estos módulos se encuentra a continuación:
 
