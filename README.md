@@ -4,16 +4,11 @@
 
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Prototipo de Alta Fidelidad](#3-consideraciones-generales)
-* [4. Historias de Usuario](#4-hito-criterios-de-aceptación-mínimos-del-proyecto)
-* [5. Herramientas Utilizadas](#5-hito-opcional-mostrar-la-franquicia-de-tarjeta)
-* [6. Consideraciones técnicas](#6-consideraciones-técnicas)
-* [7. Objetivos de aprendizaje](#7-objetivos-de-aprendizaje)
-* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
-* [9. Para considerar Project Feedback](#9-para-considerar-project-feedback)
+* [3. Prototipo de Alta Fidelidad](#3-prototipo-de-alta-fidelidad)
+* [4. Historias de Usuario](#4-historias-de-usuario)
+* [5. Herramientas Utilizadas](#5-herramientas-utilizadas)
 
 ***
-
 
 ## 1. Preámbulo
 
@@ -26,7 +21,7 @@ Sin embargo, esta información se gestiona de manera manual por una sola persona
 Por ello,	 se requiere un módulo de auto consulta que permita a las/los colaboradores consultar mes vencido el indicador de cumplimiento del FOW, así como el histórico con el detalle que se indicará más adelante.
 Adicional, este módulo también debe permitir una vista a los lideres que puedan ver el cumplimiento del indicador de sus colaboradores a cargo y con ello establecer planes de acción.
 
-## 1. Resumen del proyecto
+## 2. Resumen del proyecto
 
 El detalle de cada uno de estos módulos se encuentra a continuación:
 
@@ -99,7 +94,57 @@ Recursos:
 - Logo, manual de marca, y cualquier lineamiento gráfico que vean necesario para tener en cuenta en el diseño del aplicativo: https://www.experian.com/brand-central/ 
 
 
-## 1. Resumen del proyecto
+## 3. Prototipo de Alta Fidelidad
 
-En este proyecto tendrás que construir una aplicación web que le permita a un
-usuario validar el número de una tarjeta de crédito. Además, tendrás que
+Se diseño una Interfaz de Usuario mediante la plataforma figma, en la cual podemos observar una idea general del proyectó, con funcionalidad, ingresando al siguiente link. <a href="[https://balsamiq.cloud/s6uzhqq/pscs7rn/rC3FC](https://www.figma.com/proto/wuTXc96v2vfLiM6MmIkwAI/Experian?type=design&node-id=160-41340&t=R1qZvLZESHAJGu06-1&scaling=min-zoom&page-id=158%3A3645&mode=design)https://www.figma.com/proto/wuTXc96v2vfLiM6MmIkwAI/Experian?type=design&node-id=160-41340&t=R1qZvLZESHAJGu06-1&scaling=min-zoom&page-id=158%3A3645&mode=design"> FIGMA</a>
+
+\## 4. Historias de Usuario
+Primera historia de usuario: 
+
+Yo como líder debería visualizar el botón de people portal FOW Indicator para redirigir a mi personal FOW. 
+
+Segunda historia de usuario: 
+
+Yo como líder debería ver la barra de navegación, mis datos, porcentaje de cumplimiento, días reportados, resumen de las convenciones del calendario, caja de información, calendario. 
+
+Tercera historia de usuario: 
+
+Yo como líder debería ver los días marcados en el calendario con colores de acuerdo a las convenciones como días festivos (holiday), excepciones autorizados, ausencias programadas (scheduled absences). 
+	
+Cuarta historia de usuario: 
+
+Yo como líder debería ver las estadísticas de mi equipo en la pestaña Team FOW. 
+
+Quinta historia de usuario: 
+
+Yo como líder debería ver la barra de navegación, los miembros del equipo, el progreso del equipo, las opciones de filtro, el botón de exportar, tabla con información y estadísticas de los miembros, caja de información. 
+
+Sexta historia de usuario: 
+
+Yo como líder debería dar click en el ID del usuario para ver su información en otra página nueva. 
+
+\## 4. Herramientas Utilizadas
+
+Lenguajes y frameworks: 
+
+Javascript
+React
+CSS
+Tailwind
+HTML
+
+Librerías: 
+Sweet alert 
+Canvas conffetti
+React icons
+datepicker de jQuery 
+react-big-calendar
+FlowiseChatEmbed
+Chartjs-2
+xlsx
+
+Otras herramientas: 
+- Flowise (plataforma de código abierto)
+-Vercel
+
+
