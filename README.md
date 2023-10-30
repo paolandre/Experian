@@ -123,7 +123,7 @@ Sexta historia de usuario:
 
 Yo como líder debería dar click en el ID del usuario para ver su información en otra página nueva. 
 
-## 4. Herramientas Utilizadas
+## 5. Herramientas Utilizadas
 
 Lenguajes y frameworks: 
 
