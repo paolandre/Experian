@@ -40,7 +40,7 @@ function FowIndicator({ selectedCountry, selectedFow, selectedDate }) {
                   <img
                     src={user.user}
                     alt="user profile"
-                    className="w-[2vw] ml-2"
+                    className="w-[2vw] ml-8 items-center"
                   />
                 </td>
                 <td>

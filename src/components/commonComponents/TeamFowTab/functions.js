@@ -77,7 +77,7 @@ export function CircularProgressBar({ percentage }) {
     const radius = 20;
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (percentage / 100) * circumference;
-    const color = Number(percentage) === 100 ? '#009F4D' : '#E4002B';  // Convierte percentage a número
+    const color = Number(percentage) === 100 ? '#009F4D' : '#E4002B'; 
 
     return (
         <svg width="50" height="50">

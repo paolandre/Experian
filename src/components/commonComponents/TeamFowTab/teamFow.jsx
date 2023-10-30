@@ -12,8 +12,8 @@ import DiagramTeam from "./diagramTeam";
 import {
   exportToExcel,
   filteredProfile,
-  CircularProgressBar
-} from './functions.js';
+  CircularProgressBar,
+} from "./functions.js";
 import profile from "./data";
 
 function TeamFowTab() {
@@ -22,6 +22,7 @@ function TeamFowTab() {
   const [selectedFow, setSelectedFow] = useState("default");
   const [filteredDataLength, setFilteredDataLength] = useState(0);
   const [activeTab, setActiveTab] = useState("Team list");
+  const [selectsVisible, setSelectsVisible] = useState(true);
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -34,18 +35,26 @@ function TeamFowTab() {
   };
 
   useEffect(() => {
-    const filteredData = filteredProfile(selectedCountry, selectedFow, selectedDate);
+    const filteredData = filteredProfile(
+      selectedCountry,
+      selectedFow,
+      selectedDate
+    );
     setFilteredDataLength(filteredData.length);
   }, [selectedCountry, selectedFow, selectedDate]);
 
   const [averagePercentage, setAveragePercentage] = useState(0);
 
   useEffect(() => {
-    const filteredData = filteredProfile(selectedCountry, selectedFow, selectedDate);
+    const filteredData = filteredProfile(
+      selectedCountry,
+      selectedFow,
+      selectedDate
+    );
     const totalPercentage = filteredData.reduce((total, user) => {
       return total + parseInt(user.percentage, 10);
     }, 0);
-    const average = (totalPercentage / filteredData.length) || 0;
+    const average = totalPercentage / filteredData.length || 0;
     setAveragePercentage(average.toFixed(0));
   }, [selectedCountry, selectedFow, selectedDate]);
 
@@ -70,77 +79,95 @@ function TeamFowTab() {
           </p>
         </div>
         <div className="desktop:w-[6vw]  desktop:flex items-center desktop:justify-center telephone:w-[8vw] ml-2 ">
-          <CircularProgressBar percentage={averagePercentage} />
+          <CircularProgressBar
+            percentage={averagePercentage}
+            className="percentageItem"
+          />
         </div>
         <div className="desktop:flex flex-col telephone:ml-3">
-          <p className=" desktop:font-bold desktop:mb-4 desktop:text-xl  telephone:mb-0 telephone:text-xs telephone:font-bold telephone:mb-0">
+          <p className=" desktop:font-bold desktop:mb-4 desktop:text-xl  telephone:mb-0 telephone:text-xs telephone:font-bold telephone:mb-0 telephone:ml-3">
             {averagePercentage}%
           </p>
-          <p className="desktop:text-base telephone:text-xs">
+          <p className="desktop:text-base telephone:text-xs telephone:ml-3">
             Monthly team FOW
           </p>
         </div>
       </section>
-      <section className="sectionSelect">
-
+      <section
+        className={`sectionSelect ${
+          selectsVisible ? "sectionSelect " : "modificSection"
+        }`}
+      >
         <div className="desktop:flex flex-col  desktop:w-[11vw] telephone:w-[20vw] telephone:mr-8">
-          <span htmlFor="selectBox" className="textParraf">
-            Date
-          </span>
-          <div className="desktop:flex flex-row  justify-center desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw]  desktop:h-[4vh] desktop:items-center telephone:w-[25vw] telephone:bg-white telephone:flex flex-row telephone:border-custom-gray telephone:border-2 telephone:rounded-md   telephone:items-center telephone:h-[2.5vh]">
-            <img
-              src={calendarImg}
-              alt="imagen de un calendario"
-              className="desktop:w-[2vw] desktop:h-[3vh] telephone:w-[4vw] telephone:h-[2vh]"
-            />
-            <DatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
-              showMonthYearPicker
-              dateFormat="MMM/yyyy"
-              className="desktop:w-[6vw] desktop:border-transparent desktop:focus:outline-none telephone:w-[19vw] telephone:text-xs telephone:h-[1.5vh]"
-            />
+          {selectsVisible && (
+            <div>
+              <span htmlFor="selectBox" className="textParraf">
+                Date
+              </span>
+              <div className="desktop:flex flex-row justify-center desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] desktop:items-center telephone:w-[25vw] telephone:bg-white telephone:flex flex-row telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:items-center telephone:h-[2.5vh]">
+                <img
+                  src={calendarImg}
+                  alt="imagen de un calendario"
+                  className="desktop:w-[2vw] desktop:h-[3vh] telephone:w-[4vw] telephone:h-[2vh]"
+                />
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={handleDateChange}
+                  showMonthYearPicker
+                  dateFormat="MMM/yyyy"
+                  className="desktop:w-[6vw] desktop:border-transparent desktop:focus:outline-none telephone:w-[19vw] telephone:text-xs telephone:h-[1.5vh]"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+        {selectsVisible && (
+          <div className="desktop:flex flex-col desktop:w-[11vw] telephone:w-[20vw] telephone:mr-5">
+            <label htmlFor="selectBox" className="textParraf">
+              Country
+            </label>
+            <select
+              id="selectBox"
+              value={selectedCountry}
+              onChange={handleCountry}
+              className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
+            >
+              <option value="default">All</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Chile">Chile</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Perú">Perú</option>
+            </select>
           </div>
-        </div>
-        <div className="desktop:flex flex-col desktop:w-[11vw] telephone:w-[20vw] telephone:mr-5">
-          <label htmlFor="selectBox" className="textParraf">
-            Country
-          </label>
-          <select
-            id="selectBox"
-            value={selectedCountry}
-            onChange={handleCountry}
-            className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
-          >
-            <option value="default">All</option>
-            <option value="Argentina">Argentina</option>
-            <option value="Chile">Chile</option>
-            <option value="Colombia">Colombia</option>
-            <option value="Perú">Perú</option>
-          </select>
-        </div>
-        <div className="desktop:flex flex-col desktop:w-[10vw] telephone:w-[20vw] telephone:mr-5">
-          <label htmlFor="selectBox" className="textParraf">
-            FOW
-          </label>
-          <select
-            id="selectBox"
-            value={selectedFow}
-            onChange={handleFow}
-            className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs "
-          >
-            <option value="default">All</option>
-            <option value="Hybrid">Hybrid</option>
-            <option value="Home office">Home office</option>
-            <option value="Roam">Roam</option>
-          </select>
-        </div>
+        )}
+        {selectsVisible && (
+          <div className="desktop:flex flex-col desktop:w-[10vw] telephone:w-[20vw] telephone:mr-5">
+            <label htmlFor="selectBox" className="textParraf">
+              FOW
+            </label>
+            <select
+              id="selectBox"
+              value={selectedFow}
+              onChange={handleFow}
+              className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs "
+            >
+              <option value="default">All</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="Home office">Home office</option>
+              <option value="Roam">Roam</option>
+            </select>
+          </div>
+        )}
         <div className="sectionButton">
           <div id="buttons" className="borderButton">
             <button
-              className={`tabutton ${activeTab === "Team list" ? "effectButton" : "text-black"
-                }`}
-              onClick={() => setActiveTab("Team list")}
+              className={`tabutton ${
+                activeTab === "Team list" ? "effectButton" : "text-black"
+              }`}
+              onClick={() => {
+                setActiveTab("Team list");
+                setSelectsVisible(true);
+              }}
             >
               <img
                 src={activeTab === "Team list" ? charRow : columnsblue}
@@ -150,9 +177,13 @@ function TeamFowTab() {
               Team list
             </button>
             <button
-              className={`tabutton ${activeTab === "Monthly charts" ? "effectButton " : "text-black"
-                }`}
-              onClick={() => setActiveTab("Monthly charts")}
+              className={`tabutton ${
+                activeTab === "Monthly charts" ? "effectButton " : "text-black"
+              }`}
+              onClick={() => {
+                setActiveTab("Monthly charts");
+                setSelectsVisible(false);
+              }}
             >
               <img
                 src={activeTab === "Monthly charts" ? diagrWhite : diagram}

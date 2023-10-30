@@ -156,7 +156,7 @@
 
 .borderButton {
   align-items: center;
-  justify-content: center;
+  justify-content: end;
   display: flex;
   flex-direction: row;
   border-radius: 2.5vh;
@@ -183,8 +183,13 @@
   color: black;
 }
 
-@media screen and (max-width: 640px) {
+.modificSection {
+  display: flex;
+  justify-content: flex-end;
+  width: 90vw;
+}
 
+@media screen and (max-width: 640px) {
   .firstRow,
   .tableColumns,
   .tableProfile {
@@ -265,9 +270,13 @@
     font-size: smaller;
     text-align: center;
     border-radius: 9px;
-    margin-right: 10px;
+    margin-right: 5px;
   }
-
+  .modificSection {
+    display: flex;
+    justify-content: flex-end;
+    width: 30vw;
+  }
   .sectionButton {
     width: 30vw;
     height: 12vw;

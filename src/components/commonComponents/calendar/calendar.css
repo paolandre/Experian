@@ -1,17 +1,15 @@
-.white{
-    background-color: white;
-    border: 4px solid purple;
-    width: 20px;
-  
+.white {
+  background-color: white;
+  border: 4px solid purple;
+  width: 20px;
 }
-.yellow{
-   background-color: #FFD146;
-   color: black;
+.yellow {
+  background-color: #ffd146;
+  color: black;
 }
-.purple{
-    background-color: #C43E9F;
-    
-    color: white;
+
+.purple {
+  background-color: #c43e9f;
 }
 
 .rbc-calendar {
@@ -20,26 +18,62 @@
   position: absolute;
   right: 1px;
   top: 60px;
-  overflow-y: scroll; 
-  }
-  .rbc-event-content {
-display: flex;
+  overflow-y: scroll;
+}
 
-  }
-  .rbc-event {
- border-radius: 50px;
-height: 21px;
-font-size: 15px;
-display: flex;
-align-content: center;
-  }
-  .green{
-   background-color:  #5CD08E;
-   color: black;
-  }
+.rbc-event-content {
+  width: 0px;
+}
+
+.rbc-event {
+  border-radius: 50px;
+  width: 20px;
+  height: 20px;
+}
+
+.green {
+  background-color: #5cd08e;
+}
+
+/* Fondo blanco para celdas de días en la vista mensual */
+.rbc-month-view .rbc-day-bg {
+  background-color: #ffffff;
+}
+
+/* Quitar el fondo para los días que no pertenecen al mes actual en la vista mensual */
+.rbc-month-view .rbc-off-range-bg {
+  background-color: transparent;
+}
+
+.rbc-event-content {
+  display: flex;
+}
+.rbc-event {
+  border-radius: 50px;
+  height: 21px;
+  font-size: 15px;
+  display: flex;
+  align-content: center;
+}
+.green {
+  background-color: #5cd08e;
+  color: black;
+}
 
 /* Fondo blanco para celdas de días en la vista semanal y diaria */
 .rbc-time-view .rbc-day-bg,
 .rbc-time-view .rbc-time-content {
   background-color: #ffffff;
+}
+
+.calendarStyle {
+  height: 620;
+  margin: 50px;
+  width: 60vw;
+}
+@media screen and (max-width: 640px) {
+  .calendarStyle {
+    margin-top: 1100px;
+    width: 75vw;
+  }
 }

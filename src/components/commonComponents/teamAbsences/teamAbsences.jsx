@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { IoPersonCircleSharp } from 'react-icons/io5';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { BiMessageDetail } from 'react-icons/bi';
@@ -13,16 +13,19 @@ import {
     filterData,
     handleApprove,
     handleDecline,
-    exportToExcel
+    exportToExcel,
+    ResponsiveTable,
+    ResponsiveSection
 } from './functions.js';
 import Modal from "./../../commonComponents/modal/modal";
+import "./teamAbsences.css";
 
 
 function TeamAbsences() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedRequest, setSelectedRequest] = useState("default");
     const [searchValue, setSearchValue] = useState("");
-
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 390);
     const filteredData = useMemo(() => filterData(selectedRequest, searchValue, selectedDate, absencesData), [selectedRequest, searchValue, selectedDate]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,11 +37,33 @@ function TeamAbsences() {
         setIsModalOpen(false);
     };
 
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 390);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Limpiar el event listener cuando el componente se desmonte
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
 
     return (
         <>
-            <div className="w-full">
+            <ResponsiveSection
+                data={filteredData}
+                isMobile={isMobile}
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+                selectedRequest={selectedRequest}
+                setSelectedRequest={setSelectedRequest}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+            />
+            <div className="w-full non-responsive-section">
                 <div className="flex flex-row-reverse w-11/12 mx-auto my-4">
                     <img
                         src={exportbutton}
@@ -47,7 +72,7 @@ function TeamAbsences() {
                         onClick={() => exportToExcel(filteredData)}
                     />
                 </div>
-                <section className="flex flex-col md:flex-row w-11/12 mx-auto">
+                <section className="flex flex-wrap md:flex-nowrap w-11/12 mx-auto space-x-4 md:space-x-0">
                     <div className="flex flex-col w-[11vw]">
                         <span htmlFor="dateSelectBox">Date</span>
                         <div className="flex flex-row bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] items-center">
@@ -66,8 +91,11 @@ function TeamAbsences() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col w-[11vw]">
-                        <label htmlFor="requestSelectBox">Type of request</label>
+                    <div className="flex flex-col w-[11vw] ml-4">
+                        <div className="flex flex-col w-[11vw]">
+                            <label htmlFor="requestSelectBox" className="block md:hidden">Request</label>
+                            <label htmlFor="requestSelectBox" className="hidden md:block">Type of request</label>
+                        </div>
                         <select
                             id="selectRequest"
                             value={selectedRequest}
@@ -103,8 +131,7 @@ function TeamAbsences() {
             <div className="bg-white">
 
                 <div className="p-4 bg-background-gray rounded-md">
-                    <div className="flex justify-end space-x-6">
-
+                    <div className="flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-6">
                         {/* Yellow icon circle */}
                         <div className="flex items-center space-x-2">
                             <span className="w-4 h-4 bg-yellow-icon rounded-full"></span>
@@ -120,7 +147,8 @@ function TeamAbsences() {
                 </div>
 
 
-                <div className="overflow-x-auto">
+                <ResponsiveTable data={filteredData} />
+                <div className="overflow-x-auto non-responsive-table">
                     <table className="min-w-full bg-white">
                         <thead>
                             <tr>
@@ -140,41 +168,40 @@ function TeamAbsences() {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredData
-                                .map((item, index) => (
-                                    <tr key={index} className="text-center">
-                                        <td className="py-2">{item.time}</td>
-                                        <td className="flex justify-center items-center py-2">
-                                            <IoPersonCircleSharp className="text-gray-icon" size={24} />
-                                        </td>
+                            {filteredData.map((item, index) => (
+                                <tr key={index} className="text-center">
+                                    <td className="py-2">{item.time}</td>
+                                    <td className="flex justify-center items-center py-2">
+                                        <IoPersonCircleSharp className="text-gray-icon" size={24} />
+                                    </td>
 
-                                        <td> {item.id} </td>
+                                    <td> {item.id} </td>
 
-                                        <td>
-                                            <span className={`py-0.5 text-sm px-2 rounded-full ${item.bgColor} text-black`}>
-                                                {item.requestType}
-                                            </span>
-                                        </td>
-                                        <td>{item.date}</td>
-                                        <td>{item.daysRequested}</td>
-                                        <td>{item.remainingDays}</td>
-                                        <td>
-                                            <button onClick={handleApprove} className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approve</button>
-                                        </td>
-                                        <td>
-                                            <button onClick={handleDecline} className="text-decline border-2 border-decline py-0.5 text-sm px-2 rounded-2xl">Decline</button>
-                                        </td>
+                                    <td>
+                                        <span className={`py-0.5 text-sm px-2 rounded-full ${item.bgColor} text-black`}>
+                                            {item.requestType}
+                                        </span>
+                                    </td>
+                                    <td>{item.date}</td>
+                                    <td>{item.daysRequested}</td>
+                                    <td>{item.remainingDays}</td>
+                                    <td>
+                                        <button onClick={handleApprove} className="text-approve border-2 border-approve py-0.5 text-sm px-2 rounded-2xl">Approve</button>
+                                    </td>
+                                    <td>
+                                        <button onClick={handleDecline} className="text-decline border-2 border-decline py-0.5 text-sm px-2 rounded-2xl">Decline</button>
+                                    </td>
 
-                                        <td className="text-dark-blue-icons pl-12">
-                                            <a href="/employee-view" className="link">
-                                                <FaRegCalendarAlt />
-                                            </a>
-                                        </td>
-                                        <td className="text-dark-blue-icons pl-12 cursor-pointer" onClick={handleOpenModal}>
-                                            <BiMessageDetail />
-                                        </td>
-                                    </tr>
-                                ))}
+                                    <td className="text-dark-blue-icons pl-12">
+                                        <a href="/employee-view" className="link">
+                                            <FaRegCalendarAlt />
+                                        </a>
+                                    </td>
+                                    <td className="text-dark-blue-icons pl-12 cursor-pointer" onClick={handleOpenModal}>
+                                        <BiMessageDetail />
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                     <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
