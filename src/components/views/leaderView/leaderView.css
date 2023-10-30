@@ -32,3 +32,8 @@
     background-color: #a1909096;
     height: 12px;
 }
+
+.tab-title {
+    margin-bottom: 10px;
+    /* Ajusta este valor a tu preferencia */
+}
