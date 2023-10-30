@@ -3,6 +3,7 @@ import { Bar } from "react-chartjs-2";
 import "./teamFow";
 import {
   Chart as ChartJS,
+  registerables,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -14,7 +15,9 @@ import {
   Filler,
 } from "chart.js";
 
+// Register everything at once
 ChartJS.register(
+  ...registerables,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -23,8 +26,9 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
 );
+
 
 const percentageMonthly = [85, 100, 20, 100, 100, 55, 100, 90, 20];
 const abscense = [10, 0, 20, 0, 0, 30, 0, 10, 5];
