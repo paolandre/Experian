@@ -2,55 +2,36 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import React, { useState, useCallback  } from "react";
-import { dateFnsLocalizer } from "react-big-calendar";
+import React, { useState, useCallback } from "react";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
-import './calendar.css';
+import "./calendar.css";
 import { events } from "../../../events";
+
 const locales = {
-    "en-US": require("date-fns/locale/en-US"),
+  "en-US": require("date-fns/locale/en-US"),
 };
 
 const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
 });
 
+
 function filterEventsById(data, id) {
-    const filteredData = data.filter((event) => event.id === id);
+    const filteredData = data.filter((event) => id.includes(event.id));
     return filteredData;
   }
 
-  const eventIdToFilter = '72794037';
+  const eventIdToFilter = ['72836375', 'Holiday'];
 const filteredEvents = filterEventsById(events, eventIdToFilter);
 
 function EmployeeCalendar() {
-    const [newEvent, setNewEvent] = useState({ title: "", start: "", id: "" });
-    const [allEvents, setAllEvents] = useState(filteredEvents);
-
-   
-   
-
-    function handleAddEvent() {
-        for (let i = 0; i < allEvents.length; i++) {
-            const d1 = new Date(allEvents[i].start);
-            const d2 = new Date(newEvent.start);
-            const d3 = new Date(allEvents[i].end);
-            const d4 = new Date(newEvent.end);
-            
-            if ((d1 <= d2 && d2 <= d3) || (d1 <= d4 && d4 <= d3)) {
-                alert("CLASH");
-                break;
-            }
-        }
-
-        setAllEvents([...allEvents, newEvent]);
-    }
-   
+    const [allEvents, setAllEvents] = useState(filteredEvents );
 
     const eventPropGetter = useCallback(
         (event) => ({
@@ -77,7 +58,7 @@ function EmployeeCalendar() {
                 className: 'yellow',
               }),...(event && event.title && event.title.includes('Viajes de trabajo') && {
                 className: 'yellow',
-              }), 
+              }),
               ...(event && event.title && event.title.includes('Festivo Chile') && {
                 className: 'purple',
               }),
@@ -91,6 +72,7 @@ function EmployeeCalendar() {
                 className: 'purple',
               }),
 
+
           }),
           
           []
@@ -98,13 +80,13 @@ function EmployeeCalendar() {
        
     return (
         <div className="event">
-            <EmployeeCalendar
+            <Calendar
                 eventPropGetter={eventPropGetter}
                 localizer={localizer}
                 events={allEvents}
-                style={{ height: 500, margin: "50px" }}  
+                style={{ height: 500, margin: "50px" }}
             />
-           
+    
         </div>
     );
 }

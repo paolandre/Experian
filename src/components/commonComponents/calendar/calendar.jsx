@@ -31,27 +31,8 @@ function filterEventsById(data, id) {
 const filteredEvents = filterEventsById(events, eventIdToFilter);
 
 function MyCalendar() {
-    const [newEvent, setNewEvent] = useState({ title: "", start: "", id: "" });
     const [allEvents, setAllEvents] = useState(filteredEvents );
 
-  function handleAddEvent() {
-    for (let i = 0; i < allEvents.length; i++) {
-      const d1 = new Date(allEvents[i].start);
-      const d2 = new Date(newEvent.start);
-      const d3 = new Date(allEvents[i].end);
-      const d4 = new Date(newEvent.end);
-
-      if ((d1 <= d2 && d2 <= d3) || (d1 <= d4 && d4 <= d3)) {
-        alert("CLASH");
-        break;
-      }
-    }
-
-    setAllEvents([...allEvents, newEvent]);
-  }
-
-
-    
     const eventPropGetter = useCallback(
         (event) => ({
           
@@ -98,7 +79,7 @@ function MyCalendar() {
         )
        
     return (
-        <div className="vent">
+        <div className="event">
             <Calendar
                 eventPropGetter={eventPropGetter}
                 localizer={localizer}
