@@ -94,9 +94,8 @@ function TeamFowTab() {
         </div>
       </section>
       <section
-        className={`sectionSelect ${
-          selectsVisible ? "sectionSelect " : "modificSection"
-        }`}
+        className={`sectionSelect ${selectsVisible ? "sectionSelect " : "modificSection"
+          }`}
       >
         <div className="desktop:flex flex-col  desktop:w-[11vw] telephone:w-[20vw] telephone:mr-8">
           {selectsVisible && (
@@ -161,9 +160,8 @@ function TeamFowTab() {
         <div className="sectionButton">
           <div id="buttons" className="borderButton">
             <button
-              className={`tabutton ${
-                activeTab === "Team list" ? "effectButton" : "text-black"
-              }`}
+              className={`tabutton ${activeTab === "Team list" ? "effectButton" : "text-black"
+                }`}
               onClick={() => {
                 setActiveTab("Team list");
                 setSelectsVisible(true);
@@ -177,9 +175,8 @@ function TeamFowTab() {
               Team list
             </button>
             <button
-              className={`tabutton ${
-                activeTab === "Monthly charts" ? "effectButton " : "text-black"
-              }`}
+              className={`tabutton ${activeTab === "Monthly charts" ? "effectButton " : "text-black"
+                }`}
               onClick={() => {
                 setActiveTab("Monthly charts");
                 setSelectsVisible(false);
@@ -212,7 +209,7 @@ function TeamFowTab() {
           className="border-l-light-blue border-4 pl-4 p-2 bg-white shadow-custom-shadow rounded-md mt-4"
           style={{ maxWidth: "60vw" }}
         >
-          <p className="textParraf">
+          <p className="parrafo">
             If you have any concerns or need clarification, please feel free to
             contact us at the email address:{" "}
             <a

@@ -40,25 +40,25 @@ function PersonalFowTab() {
           </div>
           <div className="desktop:mt-4 telephone:mt-1">
             <p className="desktop:text-base telephone:text-sm">
-              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold">
+              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold mr-2">
                 Job:
               </span>
               Lider técnico funcional
             </p>
             <p className="desktop:text-base telephone:text-sm">
-              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold">
+              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold mr-2">
                 VP:
               </span>
               Delivery & VAPS CS Delivery
             </p>
             <p className="desktop:text-base telephone:text-sm">
-              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold">
+              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold mr-2">
                 Country:
               </span>
               Colombia
             </p>
             <p className="desktop:text-base telephone:text-sm">
-              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold">
+              <span className="desktop:text-base desktop:font-bold telephone:text-sm telephone:font-bold mr-2">
                 Office location:
               </span>
               CO Bogotá oficina principal

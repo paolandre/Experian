@@ -90,7 +90,7 @@ export default function Home() {
             ))}
           </article>
 
-          <article className="desktop:w-[50vw] grid grid-cols-4 text-center mt-4 telephone:w-[150vw] overflow-x-auto">
+          <article className="desktop:w-[50vw] grid grid-cols-4 text-center mt-4 telephone:w-[150vw]">
             {imagenes.map((imagen, index) => (
               <div
                 key={index}

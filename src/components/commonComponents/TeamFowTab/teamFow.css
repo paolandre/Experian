@@ -179,7 +179,7 @@
   height: 2vh;
 }
 
-.textParraf {
+.parrafo {
   color: black;
 }
 
@@ -190,6 +190,7 @@
 }
 
 @media screen and (max-width: 640px) {
+
   .firstRow,
   .tableColumns,
   .tableProfile {
@@ -272,11 +273,13 @@
     border-radius: 9px;
     margin-right: 5px;
   }
+
   .modificSection {
     display: flex;
     justify-content: flex-end;
     width: 30vw;
   }
+
   .sectionButton {
     width: 30vw;
     height: 12vw;
@@ -299,7 +302,7 @@
     margin-top: 3vw;
   }
 
-  .textParraf {
+  .parrafo {
     font-size: small;
   }
 }
