@@ -98,8 +98,6 @@ Recursos:
 
 Se diseño una Interfaz de Usuario mediante la plataforma figma, en la cual podemos observar una idea general del proyectó, con funcionalidad, ingresando al siguiente link. <a href="https://www.figma.com/proto/wuTXc96v2vfLiM6MmIkwAI/Experian?type=design&node-id=160-41340&t=R1qZvLZESHAJGu06-1&scaling=min-zoom&page-id=158%3A3645&mode=design)https://www.figma.com/proto/wuTXc96v2vfLiM6MmIkwAI/Experian?type=design&node-id=160-41340&t=R1qZvLZESHAJGu06-1&scaling=min-zoom&page-id=158%3A3645&mode=design"> FIGMA </a>
 
-link. <a href="https://balsamiq.cloud/s6uzhqq/pscs7rn/rC3FC"> balsamiq</a>
-
 ## 4. Historias de Usuario
 Primera historia de usuario: 
 
