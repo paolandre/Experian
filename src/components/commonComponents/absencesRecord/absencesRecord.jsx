@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { IoPersonCircleSharp } from 'react-icons/io5';
 import DatePicker from 'react-datepicker';
 import exportbutton from "./../../../assets/teamFow/exportbutton.png";
@@ -9,27 +9,47 @@ import {
     exportToExcel,
     filterData,
     getApprovedClasses,
-    getDeclinedClasses
-} from './functions';
+    getDeclinedClasses,
+    handleRequest,
+    ResponsiveSection,
+    ResponsiveTable
+} from './functions.js';
+import "./absencesRecord.css";
 
 function AbsencesRecord() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
-
     const [selectedRequest, setSelectedRequest] = useState("default");
-    const handleRequest = (e) => {
-        setSelectedRequest(e.target.value);
-    };
-
     const [searchValue, setSearchValue] = useState("");
-
     const filteredData = useMemo(() => filterData(selectedRequest, searchValue, selectedDate, requests), [selectedRequest, searchValue, selectedDate]);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 390);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 390);
+        };
 
+        window.addEventListener('resize', handleResize);
+
+        // Limpiar el event listener cuando el componente se desmonte
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     return (
         <>
-            <div className="w-full">
+            <ResponsiveSection
+                data={filteredData}
+                isMobile={isMobile}
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+                selectedRequest={selectedRequest}
+                setSelectedRequest={setSelectedRequest}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+            />
+            <div className="w-full non-responsive-section">
                 <div className="flex flex-row-reverse w-11/12 mx-auto my-4">
                     <img
                         src={exportbutton}
@@ -37,9 +57,8 @@ function AbsencesRecord() {
                         className="w-24 transition-transform transform hover:scale-110 cursor-pointer"
                         onClick={() => exportToExcel(filteredData)}
                     />
-
                 </div>
-                <section className="flex flex-col md:flex-row w-11/12 mx-auto">
+                <section className="flex flex-wrap md:flex-nowrap w-11/12 mx-auto space-x-4 md:space-x-0">
                     <div className="flex flex-col w-[11vw]">
                         <span htmlFor="dateSelectBox">Date</span>
                         <div className="flex flex-row bg-white border-custom-gray border-2 rounded-md w-[10vw] h-[4vh] items-center">
@@ -50,20 +69,23 @@ function AbsencesRecord() {
                             />
                             <DatePicker
                                 selected={selectedDate}
-                                onChange={handleDateChange}
-                                dateFormat="MMM/yyyy"
+                                onChange={(date) => handleDateChange(date, setSelectedDate)}
                                 showMonthYearPicker
+                                dateFormat="MMM/yyyy"
                                 className="w-[7vw] border-transparent focus:outline-none"
                             />
                         </div>
                     </div>
 
-                    <div className="flex flex-col w-[11vw]">
-                        <label htmlFor="requestSelectBox">Type of request</label>
+                    <div className="flex flex-col w-[11vw] ml-4">
+                        <div className="flex flex-col w-[11vw]">
+                            <label htmlFor="requestSelectBox" className="block md:hidden">Request</label>
+                            <label htmlFor="requestSelectBox" className="hidden md:block">Type of request</label>
+                        </div>
                         <select
                             id="selectRequest"
                             value={selectedRequest}
-                            onChange={handleRequest}
+                            onChange={(e) => handleRequest(e, setSelectedRequest)}
                             className="desktop:bg-white desktop:border-custom-gray desktop:border-2 desktop:rounded-md desktop:w-[10vw] desktop:h-[4vh] telephone:bg-white telephone:border-custom-gray telephone:border-2 telephone:rounded-md telephone:w-[20vw] telephone:text-xs"
                         >
                             <option value="default">
@@ -92,11 +114,11 @@ function AbsencesRecord() {
                 </section>
             </div>
 
+
             <div className="bg-white">
 
                 <div className="p-4 bg-background-gray rounded-md">
-                    <div className="flex justify-end space-x-6">
-
+                    <div className="flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-6">
                         {/* Yellow icon circle */}
                         <div className="flex items-center space-x-2">
                             <span className="w-4 h-4 bg-yellow-icon rounded-full"></span>
@@ -111,8 +133,8 @@ function AbsencesRecord() {
                     </div>
                 </div>
 
-
-                <div className="overflow-x-auto">
+                <ResponsiveTable data={filteredData} />
+                <div className="overflow-x-auto non-responsive-table">
                     <table className="min-w-full bg-white w-full table-auto">
                         <thead>
                             <tr>

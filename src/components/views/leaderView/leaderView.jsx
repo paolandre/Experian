@@ -17,7 +17,7 @@ export default function LeaderView() {
       </header>
 
       {/* Comienza el tab bar */}
-      <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md ">
+      <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md">
         <Link to="/">
           <div className="flex items-center space-x-1 ml-3 p-1 my-1.5 rounded-md ">
             <AiOutlineArrowLeft
@@ -29,46 +29,42 @@ export default function LeaderView() {
         </Link>
       </div>
 
-      <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl relative  h-fit">
+      <div className="ml-10 bg-background-gray shadow-custom-shadow  p-4 mr-10 rounded-2xl relative pb-1 h-fit">
         <span
-          className={`cursor-pointer ${
-            activeTab === "Personal FOW"
-              ? "border-b-2 border-pink-color font-bold text-dark-blue"
-              : "text-black"
-          }`}
+          className={`cursor-pointer ${activeTab === "Personal FOW"
+            ? "border-b-2 border-pink-color font-bold text-dark-blue"
+            : "text-black"
+            }`}
           onClick={() => setActiveTab("Personal FOW")}
         >
           Personal FOW
         </span>
 
         <span
-          className={`ml-4 cursor-pointer ${
-            activeTab === "Team FOW"
-              ? "border-b-2 border-pink-color font-bold text-dark-blue"
-              : "text-black"
-          }`}
+          className={`ml-4 cursor-pointer ${activeTab === "Team FOW"
+            ? "border-b-2 border-pink-color font-bold text-dark-blue"
+            : "text-black"
+            }`}
           onClick={() => setActiveTab("Team FOW")}
         >
           Team FOW
         </span>
 
         <span
-          className={`ml-4 cursor-pointer ${
-            activeTab === "Team Absences"
-              ? "border-b-2 border-pink-color font-bold text-dark-blue"
-              : "text-black"
-          }`}
+          className={`ml-4 cursor-pointer ${activeTab === "Team Absences"
+            ? "border-b-2 border-pink-color font-bold text-dark-blue"
+            : "text-black"
+            }`}
           onClick={() => setActiveTab("Team Absences")}
         >
           Team Absences
         </span>
 
         <span
-          className={`ml-4 cursor-pointer ${
-            activeTab === "Absences Record"
-              ? "border-b-2 border-pink-color font-bold text-dark-blue"
-              : "text-black"
-          }`}
+          className={`ml-4 cursor-pointer ${activeTab === "Absences Record"
+            ? "border-b-2 border-pink-color font-bold text-dark-blue"
+            : "text-black"
+            }`}
           onClick={() => setActiveTab("Absences Record")}
         >
           Absences Record
@@ -76,7 +72,6 @@ export default function LeaderView() {
 
         {/* Condicionales para las dos tabs */}
         {activeTab === "Personal FOW" && <PersonalFowTab />}
-
         {activeTab === "Team FOW" && <TeamFowTab />}
         {activeTab === "Team Absences" && <TeamAbsences />}
         {activeTab === "Absences Record" && <AbsencesRecord />}
