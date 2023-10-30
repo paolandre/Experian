@@ -1,4 +1,4 @@
-# EXPERIAN
+<p><img src="[https://github.com/leidypardo/DEV007-data-lovers/blob/main/src/gallery/vista3Final.png](https://github.com/AndreaRoa/Experian/blob/main/src/assets/logo.png?raw=true)">
 
 ## Índice
 
